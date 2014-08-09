@@ -29,7 +29,7 @@ public class DeadlandGame extends ApplicationAdapter {
 
         EntityManager.instance.add(new Hero(0, 0));
 
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 50; i++) {
             Zombie zombie = new Zombie(MathUtils.random(800), MathUtils.random(600));
             zombie.destination = new Vector2(400, 300);
             EntityManager.instance.add(zombie);

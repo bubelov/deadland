@@ -1,5 +1,6 @@
 package com.deadland.model;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -19,6 +20,8 @@ public class Hero extends Entity {
     public Vector2 destination = new Vector2(256, 256);
 
     public Health health;
+
+    public float shootTimeoutSeconds;
 
     public Hero(float x, float y) {
         sprite = new Sprite(texture);
@@ -47,6 +50,25 @@ public class Hero extends Entity {
                 sprite.translate(movementVector.nor().x * 5, movementVector.nor().y * 5);
                 //boundingRectangle.setPosition(sprite.getX(), sprite.getY());
                 boundingCircle.setPosition(sprite.getX() + sprite.getWidth() / 2, sprite.getY() + sprite.getHeight() / 2);
+            }
+        }
+
+        shootTimeoutSeconds -= Gdx.graphics.getDeltaTime();
+
+        if (shootTimeoutSeconds <= 0) {
+            for (Entity entity : EntityManager.instance.entities) {
+                if (entity instanceof Zombie && Vector2.dst(x(), y(), entity.x(), entity.y()) < 300) {
+                    float angle = new Vector2(x(), y()).sub(entity.x(), entity.y()).angle() - sprite.getRotation();
+                    System.out.println("ANGLE: " + angle);
+
+                    if (angle > -45 && angle < 45) {
+                        EntityManager.instance.add(new Bullet(x(), y(), entity.x(), entity.y()));
+                        shootTimeoutSeconds = 0.5f;
+                    }
+
+
+                    break;
+                }
             }
         }
         health.update(sprite.getX(), sprite.getY());
