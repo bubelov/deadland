@@ -75,8 +75,8 @@ public class DeadlandGame extends ApplicationAdapter {
         font = new BitmapFont();
         font.setScale(5);
 
-        EntityManager.instance.add(new Weapons(400, 100));
-        EntityManager.instance.add(new Trash(600, 100));
+        EntityManager.instance.add(new Weapons(400, 1400));
+        EntityManager.instance.add(new Trash(600, 1400));
 
         //gameOver = true;
     }
