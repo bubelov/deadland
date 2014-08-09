@@ -74,8 +74,11 @@ public class GunTower extends Building {
 
     private void shoot(float x, float y) {
         if (ResourcesManager.instance.spendWeapon(1)) {
-            Bullet b = new Bullet(x(), y(), x, y);
-            EntityManager.instance.add(b);
+            if (level < 2) {
+                EntityManager.instance.add(new Bullet(x(), y(), x, y));
+            } else {
+                EntityManager.instance.add(new Bullet(x(), y(), x, y, true));
+            }
         }
     }
 

@@ -26,6 +26,10 @@ public class Bullet extends Entity {
     private ParticleEffect effect;
 
     public Bullet(float x, float y, float dstX, float dstY) {
+        this(x, y, dstX, dstY, false);
+    }
+
+    public Bullet(float x, float y, float dstX, float dstY, boolean fire) {
         pos = new Vector2(dstX - x, dstY - y);
 
         sprite = new Sprite(texture);
@@ -38,15 +42,16 @@ public class Bullet extends Entity {
 
         boundingCircle = new Circle(x() + sprite.getWidth() / 2, y() + sprite.getHeight() / 2, 5);
 
+        if (fire) {
+            effect = new ParticleEffect();
+            effect.load(Gdx.files.internal("particles/fire.p"), Gdx.files.internal("particles"));
+            effect.setPosition(200, 200);
+            effect.setDuration(10000);
 
-        effect = new ParticleEffect();
-        effect.load(Gdx.files.internal("particles/fire.p"), Gdx.files.internal("particles"));
-        effect.setPosition(200, 200);
-        effect.setDuration(10000);
+            effect.getEmitters().get(0).setAdditive(false);
 
-        effect.getEmitters().get(0).setAdditive(false);
-
-        effect.start();
+            effect.start();
+        }
     }
 
     @Override
@@ -67,8 +72,11 @@ public class Bullet extends Entity {
     @Override
     public void render(SpriteBatch batch) {
         super.render(batch);
-        effect.setPosition(x(), y());
-        effect.draw(batch, Gdx.graphics.getDeltaTime());
+
+        if (effect != null) {
+            effect.setPosition(x(), y());
+            effect.draw(batch, Gdx.graphics.getDeltaTime());
+        }
     }
 
     @Override
