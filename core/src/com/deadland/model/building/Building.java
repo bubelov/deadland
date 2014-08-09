@@ -45,7 +45,7 @@ public abstract class Building extends Entity {
             if (ControlManager.instance.isUnderConstruction == this) {
                 ControlManager.instance.isUnderConstruction = null;
                 control = null;
-            } else {
+            } else if (ControlManager.instance.isUnderConstruction == null) {
                 ControlManager.instance.isUnderConstruction = this;
                 control = new EditBuildingControl(this, 30);
             }
@@ -83,5 +83,10 @@ public abstract class Building extends Entity {
             control.render(batch);
         }
         super.render(batch);
+    }
+
+    @Override
+    public void destroy() {
+        super.destroy();
     }
 }

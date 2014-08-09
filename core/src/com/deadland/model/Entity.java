@@ -55,4 +55,8 @@ public abstract class Entity {
     public void onTap(float x, float y, int count, int button) {
 
     }
+
+    public void destroy() {
+
+    }
 }
