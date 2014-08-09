@@ -2,6 +2,8 @@ package com.deadland;
 
 import com.badlogic.gdx.math.Intersector;
 import com.deadland.model.Entity;
+import com.deadland.model.Trash;
+import com.deadland.model.Weapons;
 
 import java.util.List;
 
@@ -16,6 +18,10 @@ public class EntityUtils {
 
         for (int i = 0; i < entities.size(); i++) {
             Entity entity2 = entities.get(i);
+
+            if (entity2 instanceof Weapons || entity2 instanceof Trash) {
+                continue;
+            }
 
             if (entity2 == entity) {
                 continue;
