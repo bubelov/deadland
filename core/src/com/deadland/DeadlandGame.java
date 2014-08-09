@@ -14,6 +14,7 @@ import com.deadland.model.Hero;
 import com.deadland.model.Stone;
 import com.deadland.model.Zombie;
 import com.deadland.model.menu.GunTowerButton;
+import com.deadland.model.*;
 
 public class DeadlandGame extends ApplicationAdapter {
     public static DeadlandGame instance;
@@ -77,6 +78,9 @@ public class DeadlandGame extends ApplicationAdapter {
         font = new BitmapFont();
         font.setScale(5);
 
+        EntityManager.instance.add(new Weapons(400, 100));
+        EntityManager.instance.add(new Trash(600, 100));
+
         //gameOver = true;
     }
 
@@ -105,8 +109,8 @@ public class DeadlandGame extends ApplicationAdapter {
             return;
         }
 
-        for (int i = 0; i < 30; i++) {
-            for (int j = 0; j < 30; j++) {
+        for (int i = 0; i < 1000; i++) {
+            for (int j = 0; j < 1000; j++) {
                 batch.draw(sand, i * 32, j * 32, 32, 32);
             }
         }

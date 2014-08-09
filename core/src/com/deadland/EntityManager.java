@@ -62,6 +62,12 @@ public class EntityManager {
                         entity1.onCollision(entity2);
                     }
                 }
+
+                if (entity1.boundingRectangle != null && entity2.boundingCircle != null) {
+                    if (Intersector.overlaps(entity2.boundingCircle, entity1.boundingRectangle)) {
+                        entity1.onCollision(entity2);
+                    }
+                }
             }
         }
 
