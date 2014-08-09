@@ -38,6 +38,17 @@ public class EditBuildingControl {
         upgradeSprite.draw(batch);
     }
 
+    public boolean inControlArea(float x, float y) {
+        if (y >= upgradeSprite.getY() && y <= upgradeSprite.getY() + 16) {
+            if (x > upgradeSprite.getX() && x <= upgradeSprite.getX() + 16) {
+                return true;
+            } else if (x > removeSprite.getX() && x <= removeSprite.getX() + 16) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public void onClick(float x, float y) {
         System.out.println("x:" + x + ", y:" + y);
         if (y >= upgradeSprite.getY() && y <= upgradeSprite.getY() + 16) {

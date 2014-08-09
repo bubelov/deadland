@@ -58,7 +58,12 @@ public abstract class Building extends Entity {
             }
         } else {
             if (ControlManager.instance.isUnderConstruction == this) {
-                control.onClick(x, y);
+                if (control.inControlArea(x, y)) {
+                    control.onClick(x, y);
+                } else {
+                    ControlManager.instance.isUnderConstruction = null;
+                    control = null;
+                }
             }
         }
     }
