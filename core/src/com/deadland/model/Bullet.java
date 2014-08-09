@@ -3,6 +3,7 @@ package com.deadland.model;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.Vector2;
 import com.deadland.EntityManager;
 
@@ -12,9 +13,9 @@ import com.deadland.EntityManager;
 public class Bullet extends Entity {
     public static Texture texture = new Texture("bullet.png");
 
-    private float speed = 10;
+    private float speed = 500;
 
-    private float power = 1;
+    private float power = 100;
 
     private Vector2 pos;
     private float age = 0;
@@ -30,6 +31,8 @@ public class Bullet extends Entity {
 
         sprite.setPosition(x, y);
         sprite.setRotation(pos.angle());
+
+        boundingCircle = new Circle(x() + sprite.getWidth() / 2, y() + sprite.getHeight() / 2, 5);
     }
 
     @Override
@@ -43,6 +46,7 @@ public class Bullet extends Entity {
         } else {
             pos.add(pos.nor().x * deltaSecs * speed, pos.nor().y * deltaSecs * speed);
             sprite.translate(pos.x, pos.y);
+            boundingCircle.setPosition(x() + sprite.getWidth() / 2, y() + sprite.getHeight() / 2);
         }
     }
 
