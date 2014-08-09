@@ -1,5 +1,6 @@
 package com.deadland.support;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -20,6 +21,8 @@ public class Health {
     private float panelWidth;
     private float startHealth;
     private float panelMargin;
+
+    private float delayAfterWound = 0;
 
     public Health(Entity entity, float health, float panelWidth, float panelMargin) {
         this.health = this.startHealth = health;
@@ -47,17 +50,19 @@ public class Health {
     public void wound(float woundValue) {
         health -= woundValue;
         greenSprite.setSize(health / startHealth * panelWidth, 3);
+        delayAfterWound = 0;
     }
 
     public void update(float x, float y) {
         blackSprite.setPosition(x, y + panelMargin);
         greenSprite.setPosition(x + 1, y + 1 + panelMargin);
+        delayAfterWound += Gdx.graphics.getDeltaTime();
     }
 
     public void render(SpriteBatch batch) {
-        blackSprite.draw(batch);
-        greenSprite.draw(batch);
+        if (health != startHealth && delayAfterWound <= 5) {
+            blackSprite.draw(batch);
+            greenSprite.draw(batch);
+        }
     }
-
-
 }
