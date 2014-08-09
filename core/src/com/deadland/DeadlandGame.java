@@ -9,10 +9,10 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.input.GestureDetector;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
-import com.deadland.model.GunTower;
 import com.deadland.model.Hero;
 import com.deadland.model.Stone;
 import com.deadland.model.Zombie;
+import com.deadland.model.menu.GuntowerButton;
 
 public class DeadlandGame extends ApplicationAdapter {
     private OrthographicCamera camera;
@@ -40,8 +40,10 @@ public class DeadlandGame extends ApplicationAdapter {
             EntityManager.instance.add(new Stone(MathUtils.random(8000), MathUtils.random(6000)));
         }
 
-        GunTower gunTower = new GunTower(350, 250);
-        EntityManager.instance.add(gunTower);
+        TownHelper.createTown(300, 200);
+
+        GuntowerButton b = new GuntowerButton(0, 0, camera);
+        EntityManager.instance.add(b);
 
         Gdx.input.setInputProcessor(new GestureDetector(new GestureDetector.GestureAdapter() {
             @Override
