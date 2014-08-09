@@ -15,9 +15,8 @@ import com.deadland.support.Health;
  * Created by inver on 09.08.2014.
  */
 public abstract class Building extends Entity {
-    protected Health health;
     protected Vector2 pos;
-
+    protected Health health;
     protected EditBuildingControl control;
 
     BitmapFont font;

@@ -120,8 +120,8 @@ public class DeadlandGame extends ApplicationAdapter {
             return;
         }
 
-        for (int i = 0; i < 1000; i++) {
-            for (int j = 0; j < 1000; j++) {
+        for (int i = 0; i < 30; i++) {
+            for (int j = 0; j < 30; j++) {
                 batch.draw(sand, i * 32, j * 32, 32, 32);
             }
         }
@@ -129,8 +129,9 @@ public class DeadlandGame extends ApplicationAdapter {
         EntityManager.instance.update();
         EntityManager.instance.render(batch);
         ResourcesManager.instance.render(batch, camera);
-
         batch.end();
+        if (ControlManager.instance.isUnderConstruction != null)
+            EntityManager.instance.renderArea(camera);
 
         //EntityManager.instance.renderCollisions(camera);
     }

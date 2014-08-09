@@ -10,6 +10,8 @@ import com.badlogic.gdx.math.Rectangle;
 public class MainTower extends Building {
     public static Texture texture = new Texture("building_mainTower.png");
 
+    public float buildingRadius = 200;
+
     public MainTower(float x, float y) {
         super(x, y, 10);
 

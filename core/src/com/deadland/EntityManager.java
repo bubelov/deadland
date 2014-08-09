@@ -1,10 +1,14 @@
 package com.deadland;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Intersector;
 import com.deadland.model.Entity;
+import com.deadland.model.building.MainTower;
 
 import java.util.*;
 
@@ -94,6 +98,25 @@ public class EntityManager {
         }
 
         renderer.end();
+    }
+
+    public void renderArea(OrthographicCamera camera) {
+        renderer.setProjectionMatrix(camera.combined);
+        Gdx.gl.glEnable(GL20.GL_BLEND);
+        renderer.begin(ShapeRenderer.ShapeType.Filled);
+
+        renderer.setColor(new Color(0, 0, 1, 0.1f));
+
+        for (Entity entity : entities) {
+            if (entity instanceof MainTower) {
+                renderer.circle(entity.x() + entity.sprite.getWidth() / 2,
+                        entity.y() + entity.sprite.getHeight() / 2,
+                        ((MainTower) entity).buildingRadius);
+            }
+        }
+
+        renderer.end();
+        Gdx.gl.glDisable(GL20.GL_BLEND);
     }
 
     public void add(Entity entity) {
