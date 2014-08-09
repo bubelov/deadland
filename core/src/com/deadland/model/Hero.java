@@ -31,6 +31,8 @@ public class Hero extends Entity {
 
     private float gunRotation = 0;
 
+    private boolean moving;
+
     public Hero(float x, float y) {
         sprite = new Sprite(texture);
         sprite.setSize(177 / 3, 96 / 3);
@@ -64,7 +66,9 @@ public class Hero extends Entity {
 
             if (movementVector.len() < 5) {
                 destination.set(sprite.getX(), sprite.getY());
+                moving = false;
             } else {
+                moving = true;
                 sprite.setRotation(movementVector.angle());
                 sprite.translate(movementVector.nor().x * 5, movementVector.nor().y * 5);
                 //boundingRectangle.setPosition(sprite.getX(), sprite.getY());
@@ -106,8 +110,12 @@ public class Hero extends Entity {
     public void onCollision(Entity entity) {
         if (entity instanceof Zombie) {
             health.wound(1);
-            EntityManager.instance.destroy(entity);
-            EntityManager.instance.add(new BloodMess(entity.x(), entity.y()));
+
+            if (moving) {
+                EntityManager.instance.destroy(entity);
+                EntityManager.instance.add(new BloodMess(entity.x(), entity.y()));
+            }
+
 
             System.out.println("HEALTH: " + health);
         }
