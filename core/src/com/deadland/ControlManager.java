@@ -10,4 +10,5 @@ public class ControlManager {
 
     public OrthographicCamera camera;
     public boolean isUnderConstruction = false;
+    public boolean justLeftConstruction = false;
 }

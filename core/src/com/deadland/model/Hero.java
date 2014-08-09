@@ -101,8 +101,14 @@ public class Hero extends Entity {
 
     @Override
     public void onTap(float x, float y, int count, int button) {
-        if (!ControlManager.instance.isUnderConstruction)
-            destination.set(x, y);
+        if (!ControlManager.instance.isUnderConstruction) {
+            if (ControlManager.instance.justLeftConstruction) {
+                ControlManager.instance.justLeftConstruction = false;
+            } else {
+                destination.set(x, y);
+            }
+
+        }
     }
 
     @Override

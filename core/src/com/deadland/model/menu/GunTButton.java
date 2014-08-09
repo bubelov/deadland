@@ -29,6 +29,8 @@ public class GunTButton extends Entity {
         sprite.setOrigin(sprite.getWidth() / 2, sprite.getHeight() / 2);
 
         sprite.setPosition(x, y);
+
+        z = -1000;
     }
 
     @Override
@@ -48,6 +50,7 @@ public class GunTButton extends Entity {
                 ControlManager.instance.isUnderConstruction = true;
             } else {
                 ControlManager.instance.isUnderConstruction = false;
+                ControlManager.instance.justLeftConstruction = true;
                 EntityManager.instance.destroy(spirit);
                 spirit = null;
             }
