@@ -22,6 +22,7 @@ public abstract class Building extends Entity {
     protected int level = 0;
 
     public Building(float x, float y, float health) {
+        z = -1000;
         initSprite(x, y);
         pos = new Vector2(x, y);
         this.health = new Health(this, health, 40, 30);
@@ -47,6 +48,7 @@ public abstract class Building extends Entity {
                 control = null;
             } else if (ControlManager.instance.isUnderConstruction == null) {
                 ControlManager.instance.isUnderConstruction = this;
+                ControlManager.instance.justLeftConstruction = true;
                 control = new EditBuildingControl(this, 30);
             }
         } else {
