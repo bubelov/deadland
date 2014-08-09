@@ -70,7 +70,7 @@ public class Hero extends Entity {
             } else {
                 moving = true;
                 sprite.setRotation(movementVector.angle());
-                sprite.translate(movementVector.nor().x * 5, movementVector.nor().y * 5);
+                sprite.translate(movementVector.nor().x * 120 * Gdx.graphics.getDeltaTime(), movementVector.nor().y * 120 * Gdx.graphics.getDeltaTime());
                 //boundingRectangle.setPosition(sprite.getX(), sprite.getY());
                 boundingCircle.setPosition(sprite.getX() + sprite.getWidth() / 2, sprite.getY() + sprite.getHeight() / 2);
                 gunSprite.setPosition(x() + sprite.getWidth() / 2 - gunSprite.getWidth() / 2, y() + sprite.getHeight() / 2 - gunSprite.getHeight() / 2);

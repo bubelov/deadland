@@ -19,7 +19,7 @@ public class GunTower extends Building {
     public static Texture towerTexture = new Texture("building_tower.png");
     public static Texture gunTexture = new Texture("building_gun.png");
 
-    public static float price = 100;
+    public static int price = 100;
 
     private Sprite towerSprite;
 

@@ -64,14 +64,9 @@ public class DeadlandGame extends ApplicationAdapter {
         Gdx.input.setInputProcessor(new GestureDetector(new GestureDetector.GestureAdapter() {
             @Override
             public boolean tap(float x, float y, int count, int button) {
-
-
                 x = camera.position.x + x - camera.viewportWidth / 2;
                 y = 600 - y + camera.position.y - 300;
                 EntityManager.instance.onTap(x, y, count, button);
-
-                System.out.println("Tap X: " + x);
-                System.out.println("Tap Y: " + y);
 
                 return false;
             }
@@ -96,9 +91,6 @@ public class DeadlandGame extends ApplicationAdapter {
         EntityManager.instance.add(new Zombie(130, 100));
 
         EntityManager.instance.add(new Zombie(-23, -50));
-
-
-        //gameOver = true;
     }
 
     @Override
@@ -126,18 +118,24 @@ public class DeadlandGame extends ApplicationAdapter {
             return;
         }
 
-        for (int i = 0; i < 30; i++) {
-            for (int j = 0; j < 30; j++) {
-                batch.draw(sand, i * 32, j * 32, 32, 32);
+        for (int i = 0; i < 150; i++) {
+            for (int j = 0; j < 150; j++) {
+                if (camera.position.dst(i * 32, j * 32, 0) < 550) {
+                    batch.draw(sand, i * 32, j * 32, 32, 32);
+                }
             }
         }
 
         EntityManager.instance.update();
         EntityManager.instance.render(batch);
         ResourcesManager.instance.render(batch, camera);
+
         batch.end();
+
         if (ControlManager.instance.isUnderConstruction != null)
             EntityManager.instance.renderArea(camera);
+
+        System.out.println(Gdx.graphics.getFramesPerSecond());
 
         //EntityManager.instance.renderCollisions(camera);
     }

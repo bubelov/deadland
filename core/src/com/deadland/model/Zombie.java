@@ -17,13 +17,11 @@ import com.deadland.support.Health;
  */
 
 public class Zombie extends Entity {
-    public static float POWER = 1;
+    public static float POWER = 0.3f;
 
     public static Texture texture = new Texture("zombie.png");
 
     public Vector2 destination = null;
-
-//    public float health = 10;
 
     public float moveTimeoutSeconds = MathUtils.random(0, 40);
 
@@ -70,12 +68,12 @@ public class Zombie extends Entity {
             movementVector.sub(sprite.getX(), sprite.getY());
 
             sprite.setRotation(movementVector.angle());
-            sprite.translate(movementVector.nor().x * 3, movementVector.nor().y * 3);
+            sprite.translate(movementVector.nor().x * 50 * Gdx.graphics.getDeltaTime(), movementVector.nor().y * 50 * Gdx.graphics.getDeltaTime());
             boundingCircle.setPosition(sprite.getX() + sprite.getWidth() / 2, sprite.getY() + sprite.getHeight() / 2);
 
             if (EntityUtils.collidesAny(this, EntityManager.instance.entities, true)) {
                 sprite.setRotation(movementVector.angle());
-                sprite.translate(-movementVector.nor().x * 3, -movementVector.nor().y * 3);
+                sprite.translate(-movementVector.nor().x * 50 * Gdx.graphics.getDeltaTime(), -movementVector.nor().y * 50 * Gdx.graphics.getDeltaTime());
                 boundingCircle.setPosition(sprite.getX() + sprite.getWidth() / 2, sprite.getY() + sprite.getHeight() / 2);
             }
         }

@@ -11,8 +11,8 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 public class ResourcesManager {
     public static ResourcesManager instance = new ResourcesManager();
 
-    private float trash = 100000000;
-    private float weapon = 10000000;
+    private int trash = 10000000;
+    private int weapon = 10000000;
     BitmapFont font;
 
     public ResourcesManager() {
@@ -21,7 +21,7 @@ public class ResourcesManager {
         font.setColor(Color.BLACK);
     }
 
-    public boolean spendTrash(float trash) {
+    public boolean spendTrash(int trash) {
         if (this.trash - trash >= 0) {
             this.trash -= trash;
             return true;
@@ -29,7 +29,7 @@ public class ResourcesManager {
         return false;
     }
 
-    public boolean spendWeapon(float weapon) {
+    public boolean spendWeapon(int weapon) {
         if (this.weapon - weapon >= 0) {
             this.weapon -= weapon;
             return true;
