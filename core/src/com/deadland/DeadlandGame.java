@@ -10,6 +10,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.input.GestureDetector;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
+import com.deadland.model.Gates;
 import com.deadland.model.Hero;
 import com.deadland.model.Stone;
 import com.deadland.model.Zombie;
@@ -49,6 +50,8 @@ public class DeadlandGame extends ApplicationAdapter {
         }
 
         TownHelper.createTown(300, 200);
+
+        EntityManager.instance.add(new Gates(200, 200));
 
         GuntowerButton b = new GuntowerButton(0, 0, camera);
         EntityManager.instance.add(b);

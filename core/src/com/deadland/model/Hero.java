@@ -103,7 +103,7 @@ public class Hero extends Entity {
     @Override
     public void onCollision(Entity entity) {
         if (entity instanceof Zombie) {
-            health.wound(10);
+            health.wound(1);
             EntityManager.instance.destroy(entity);
             EntityManager.instance.add(new BloodMess(entity.x(), entity.y()));
 
