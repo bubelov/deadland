@@ -18,6 +18,8 @@ public class Zombie extends Entity {
 
     public Vector2 destination = null;
 
+    public float health = 10;
+
     public float moveTimeoutSeconds = MathUtils.random(0, 40);
 
     public Zombie(float x, float y) {

@@ -45,6 +45,8 @@ project(":core") {
     dependencies {
         compile "com.badlogicgames.gdx:gdx:$gdxVersion"
         compile "com.badlogicgames.ashley:ashley:1.0.1"
+
+        compile "commons-collections:commons-collections:3.2.1"
     }
 }
 

@@ -8,29 +8,35 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.input.GestureDetector;
 import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.math.Vector2;
+import com.deadland.model.GunTower;
 import com.deadland.model.Hero;
 import com.deadland.model.Zombie;
 
 public class DeadlandGame extends ApplicationAdapter {
     private OrthographicCamera camera;
 
-	SpriteBatch batch;
+    SpriteBatch batch;
     Texture sand;
-	
-	@Override
-	public void create () {
+
+    @Override
+    public void create() {
         camera = new OrthographicCamera(800, 600);
         camera.setToOrtho(false);
 
-		batch = new SpriteBatch();
+        batch = new SpriteBatch();
         sand = new Texture("sand.jpg");
 
         EntityManager.instance.add(new Hero(0, 0));
 
-        for (int i = 0; i < 1000; i++) {
-            Zombie zombie = new Zombie(MathUtils.random(100 * 32), MathUtils.random(100 * 32));
+        for (int i = 0; i < 10; i++) {
+            Zombie zombie = new Zombie(MathUtils.random(800), MathUtils.random(600));
+            zombie.destination = new Vector2(400, 300);
             EntityManager.instance.add(zombie);
         }
+
+        GunTower gunTower = new GunTower(350, 250);
+        EntityManager.instance.add(gunTower);
 
         Gdx.input.setInputProcessor(new GestureDetector(new GestureDetector.GestureAdapter() {
             @Override
@@ -48,15 +54,15 @@ public class DeadlandGame extends ApplicationAdapter {
                 return false;
             }
         }));
-	}
+    }
 
-	@Override
-	public void render () {
-		Gdx.gl.glClearColor(0, 0, 0, 1);
-		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+    @Override
+    public void render() {
+        Gdx.gl.glClearColor(0, 0, 0, 1);
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         batch.setProjectionMatrix(camera.combined);
-		batch.begin();
+        batch.begin();
 
         for (int i = 0; i < 1000; i++) {
             for (int j = 0; j < 1000; j++) {
@@ -68,9 +74,8 @@ public class DeadlandGame extends ApplicationAdapter {
         EntityManager.instance.render(batch);
 
 
-
-		batch.end();
+        batch.end();
 
         //EntityManager.instance.renderCollisions(camera);
-	}
+    }
 }

@@ -2,7 +2,6 @@ package com.deadland.model;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.Rectangle;
 
@@ -24,6 +23,14 @@ public abstract class Entity {
     public float y() {
         return sprite.getY();
     }
+
+//    protected void initSprite(Texture texture, float sizeX, float sizeY) {
+//
+//        sprite = new Sprite(texture);
+//        sprite.setSize(sizeX, sizeY);
+//
+//        sprite.setPosition(x, y);
+//    }
 
     public void update() {
         //Gdx.graphics.getDeltaTime()

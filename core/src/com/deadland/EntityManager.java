@@ -4,14 +4,9 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Intersector;
-import com.badlogic.gdx.math.Matrix4;
 import com.deadland.model.Entity;
-import javafx.scene.Camera;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 
 /**
  * Author: Igor Bubelov
@@ -28,7 +23,7 @@ public class EntityManager {
     private static ShapeRenderer renderer = new ShapeRenderer();
 
     public void update() {
-        entities.sort(new Comparator<Entity>() {
+        Collections.sort(entities, new Comparator<Entity>() {
             @Override
             public int compare(Entity o1, Entity o2) {
                 return o1.z - o2.z;
