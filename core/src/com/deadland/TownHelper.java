@@ -1,6 +1,7 @@
 package com.deadland;
 
 import com.deadland.model.building.GunTower;
+import com.deadland.model.building.MainTower;
 import com.deadland.model.building.Wall;
 
 /**
@@ -35,5 +36,8 @@ public class TownHelper {
             Wall w = new Wall(x - 24, y + i * 16 + 24, 300);
             EntityManager.instance.add(w);
         }
+
+        MainTower t = new MainTower(x + 16, y + 40);
+        EntityManager.instance.add(t);
     }
 }

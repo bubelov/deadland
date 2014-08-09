@@ -71,7 +71,6 @@ public class GunTower extends Building {
         movementVector.sub(x(), y());
 
         sprite.setRotation(movementVector.angle());
-//        sprite.translate(movementVector.nor().x * 3, movementVector.nor().y * 3);
     }
 
     @Override
