@@ -11,6 +11,7 @@ import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.deadland.model.GunTower;
 import com.deadland.model.Hero;
+import com.deadland.model.Stone;
 import com.deadland.model.Zombie;
 
 public class DeadlandGame extends ApplicationAdapter {
@@ -25,7 +26,7 @@ public class DeadlandGame extends ApplicationAdapter {
         camera.setToOrtho(false);
 
         batch = new SpriteBatch();
-        sand = new Texture("sand.jpg");
+        sand = new Texture("sand1.jpg");
 
         EntityManager.instance.add(new Hero(0, 0));
 
@@ -33,6 +34,10 @@ public class DeadlandGame extends ApplicationAdapter {
             Zombie zombie = new Zombie(MathUtils.random(800), MathUtils.random(600));
             zombie.destination = new Vector2(400, 300);
             EntityManager.instance.add(zombie);
+        }
+
+        for (int i = 0; i < 500; i++) {
+            EntityManager.instance.add(new Stone(MathUtils.random(8000), MathUtils.random(6000)));
         }
 
         GunTower gunTower = new GunTower(350, 250);

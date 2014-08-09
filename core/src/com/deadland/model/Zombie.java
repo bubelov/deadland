@@ -17,7 +17,7 @@ import com.deadland.support.Health;
  */
 
 public class Zombie extends Entity {
-    public static Texture texture = new Texture("zombie.jpeg");
+    public static Texture texture = new Texture("zombie.png");
 
     public Vector2 destination = null;
 
