@@ -1,10 +1,10 @@
 package com.deadland.model.building;
 
-import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.deadland.ControlManager;
 import com.deadland.EntityManager;
+import com.deadland.ResourcesManager;
 import com.deadland.model.Entity;
 import com.deadland.model.Zombie;
 import com.deadland.support.EditBuildingControl;
@@ -18,6 +18,8 @@ public abstract class Building extends Entity {
     protected Vector2 pos;
 
     protected EditBuildingControl control;
+
+    protected int level = 0;
 
     public Building(float x, float y, float health) {
         initSprite(x, y);
@@ -56,8 +58,21 @@ public abstract class Building extends Entity {
         if (x > x() && x < x() + sprite.getWidth() && y > y() && y < y() + sprite.getHeight()) {
             return true;
         }
-
         return false;
+    }
+
+    public void onRemove() {
+        ResourcesManager.instance.spendTrash(-50);
+        EntityManager.instance.destroy(this);
+        ControlManager.instance.isUnderConstruction = false;
+        System.out.println("onRemove");
+    }
+
+    public void onUpgrade() {
+        if (ResourcesManager.instance.spendTrash(100)) {
+            level++;
+        }
+        System.out.println("onUpgrade");
     }
 
     @Override
