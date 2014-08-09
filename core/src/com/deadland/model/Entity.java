@@ -4,7 +4,6 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.Rectangle;
-import com.deadland.EntityManager;
 
 /**
  * Author: Igor Bubelov
@@ -15,6 +14,14 @@ public abstract class Entity {
     public Sprite sprite;
     public Circle boundingCircle;
     public Rectangle boundingRectangle;
+
+    public float x() {
+        return sprite.getX();
+    }
+
+    public float y() {
+        return sprite.getY();
+    }
 
     public void update() {
         //Gdx.graphics.getDeltaTime()
