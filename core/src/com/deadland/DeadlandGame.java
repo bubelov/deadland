@@ -10,11 +10,10 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.input.GestureDetector;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
-import com.deadland.model.Gates;
 import com.deadland.model.Hero;
 import com.deadland.model.Stone;
 import com.deadland.model.Zombie;
-import com.deadland.model.menu.GuntowerButton;
+import com.deadland.model.menu.GunTowerButton;
 
 public class DeadlandGame extends ApplicationAdapter {
     public static DeadlandGame instance;
@@ -31,7 +30,8 @@ public class DeadlandGame extends ApplicationAdapter {
     public void create() {
         instance = this;
 
-        camera = new OrthographicCamera(800, 600);
+        ControlManager.instance.camera = new OrthographicCamera(800, 600);
+        camera = ControlManager.instance.camera;
         camera.setToOrtho(false);
 
         batch = new SpriteBatch();
@@ -51,7 +51,10 @@ public class DeadlandGame extends ApplicationAdapter {
 
         TownHelper.createTown(600, 500, 10);
 
-        GuntowerButton b = new GuntowerButton(0, 0, camera);
+        GunTowerButton b = new GunTowerButton(
+                camera.viewportWidth - 32,
+                0,
+                camera);
         EntityManager.instance.add(b);
 
         Gdx.input.setInputProcessor(new GestureDetector(new GestureDetector.GestureAdapter() {
@@ -102,8 +105,8 @@ public class DeadlandGame extends ApplicationAdapter {
             return;
         }
 
-        for (int i = 0; i < 1000; i++) {
-            for (int j = 0; j < 1000; j++) {
+        for (int i = 0; i < 30; i++) {
+            for (int j = 0; j < 30; j++) {
                 batch.draw(sand, i * 32, j * 32, 32, 32);
             }
         }

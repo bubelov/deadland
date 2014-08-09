@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.Vector2;
+import com.deadland.ControlManager;
 import com.deadland.DeadlandGame;
 import com.deadland.EntityManager;
 import com.deadland.ResourcesManager;
@@ -97,7 +98,8 @@ public class Hero extends Entity {
 
     @Override
     public void onTap(float x, float y, int count, int button) {
-        destination.set(x, y);
+        if (!ControlManager.instance.isUnderConstruction)
+            destination.set(x, y);
     }
 
     @Override

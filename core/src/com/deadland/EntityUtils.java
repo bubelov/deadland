@@ -3,7 +3,6 @@ package com.deadland;
 import com.badlogic.gdx.math.Intersector;
 import com.deadland.model.Entity;
 
-import java.util.Collection;
 import java.util.List;
 
 /**
@@ -46,5 +45,26 @@ public class EntityUtils {
         }
 
         return collides;
+    }
+
+    public static boolean collidesAll(Entity e) {
+        for (Entity entity : EntityManager.instance.entities) {
+            if (e == entity) {
+                continue;
+            }
+
+            if (e.boundingCircle != null && entity.boundingCircle != null) {
+                if (Intersector.overlaps(entity.boundingCircle, entity.boundingCircle)) {
+                    return true;
+                }
+            }
+
+            if (e.boundingCircle != null && entity.boundingRectangle != null) {
+                if (Intersector.overlaps(entity.boundingCircle, entity.boundingRectangle)) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 }
