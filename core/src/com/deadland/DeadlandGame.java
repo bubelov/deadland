@@ -58,9 +58,15 @@ public class DeadlandGame extends ApplicationAdapter {
         Gdx.input.setInputProcessor(new GestureDetector(new GestureDetector.GestureAdapter() {
             @Override
             public boolean tap(float x, float y, int count, int button) {
+
+
                 x = camera.position.x + x - camera.viewportWidth / 2;
                 y = 600 - y + camera.position.y - 300;
                 EntityManager.instance.onTap(x, y, count, button);
+
+                System.out.println("Tap X: " + x);
+                System.out.println("Tap Y: " + y);
+
                 return false;
             }
 
@@ -77,6 +83,14 @@ public class DeadlandGame extends ApplicationAdapter {
 
         EntityManager.instance.add(new Weapons(400, 1400));
         EntityManager.instance.add(new Trash(600, 1400));
+
+        EntityManager.instance.add(new Zombie(100, 100));
+        EntityManager.instance.add(new Zombie(110, 100));
+        EntityManager.instance.add(new Zombie(120, 100));
+        EntityManager.instance.add(new Zombie(130, 100));
+
+        EntityManager.instance.add(new Zombie(-23, -50));
+
 
         //gameOver = true;
     }

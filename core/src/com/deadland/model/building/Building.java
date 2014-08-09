@@ -39,7 +39,6 @@ public abstract class Building extends Entity {
 
     @Override
     public void onTap(float x, float y, int count, int button) {
-        System.out.println("x = " + x + "y= " + y);
         if (isButtonDown(x, y) && !ControlManager.instance.isUnderConstruction) {
             if (control == null) {
                 control = new EditBuildingControl(this, 30);
@@ -54,11 +53,10 @@ public abstract class Building extends Entity {
     }
 
     public boolean isButtonDown(float x, float y) {
-        Camera c = ControlManager.instance.camera;
-        float pX = c.position.x - c.viewportWidth / 2 + pos.x;
-        float pY = c.position.y - c.viewportHeight / 2 + pos.y;
-        if (x >= pX && x <= pX + 32 && y >= pY && y <= pY + 32)
+        if (x > x() && x < x() + sprite.getWidth() && y > y() && y < y() + sprite.getHeight()) {
             return true;
+        }
+
         return false;
     }
 

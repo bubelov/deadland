@@ -84,7 +84,6 @@ public class Hero extends Entity {
             for (Entity entity : EntityManager.instance.entities) {
                 if (entity instanceof Zombie && Vector2.dst(x(), y(), entity.x(), entity.y()) < 300) {
                     float angle = new Vector2(x(), y()).sub(entity.x(), entity.y()).angle() - sprite.getRotation();
-                    System.out.println("ANGLE: " + angle);
 
                     if (angle > -45 && angle < 45) {
                         if (ResourcesManager.instance.spendWeapon(1)) {
@@ -115,9 +114,6 @@ public class Hero extends Entity {
                 EntityManager.instance.destroy(entity);
                 EntityManager.instance.add(new BloodMess(entity.x(), entity.y()));
             }
-
-
-            System.out.println("HEALTH: " + health);
         }
 
         if (health.isDead()) {
