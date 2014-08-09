@@ -91,6 +91,7 @@ public abstract class Building extends Entity {
 
     @Override
     public void render(SpriteBatch batch) {
+        health.render(batch);
         if (control != null) {
             control.render(batch);
         }
