@@ -34,6 +34,9 @@ public class EntityManager {
             entity.update();
         }
 
+        for (Entity entity : entitiesToDestroy) {
+            entity.destroy();
+        }
         entities.removeAll(entitiesToDestroy);
         entitiesToDestroy.clear();
 
