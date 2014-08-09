@@ -73,7 +73,7 @@ public class Zombie extends Entity {
             sprite.translate(movementVector.nor().x * 3, movementVector.nor().y * 3);
             boundingCircle.setPosition(sprite.getX() + sprite.getWidth() / 2, sprite.getY() + sprite.getHeight() / 2);
 
-            if (EntityUtils.collidesAny(this, EntityManager.instance.entities)) {
+            if (EntityUtils.collidesAny(this, EntityManager.instance.entities, true)) {
                 sprite.setRotation(movementVector.angle());
                 sprite.translate(-movementVector.nor().x * 3, -movementVector.nor().y * 3);
                 boundingCircle.setPosition(sprite.getX() + sprite.getWidth() / 2, sprite.getY() + sprite.getHeight() / 2);

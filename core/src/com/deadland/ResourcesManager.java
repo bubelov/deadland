@@ -12,7 +12,7 @@ public class ResourcesManager {
     public static ResourcesManager instance = new ResourcesManager();
 
     private int trash = 1000;
-    private int weapon = 100;
+    private int weapon = 10000;
     BitmapFont font;
 
     public ResourcesManager() {

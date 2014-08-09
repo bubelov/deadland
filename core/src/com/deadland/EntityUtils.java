@@ -12,7 +12,9 @@ import java.util.List;
  */
 
 public class EntityUtils {
-    public static boolean collidesAny(Entity entity, List<Entity> entities) {
+    public static boolean collidesAny(Entity entity, List<Entity> entities, boolean collide) {
+        boolean collides = false;
+
         for (int i = 0; i < entities.size(); i++) {
             Entity entity2 = entities.get(i);
 
@@ -22,17 +24,27 @@ public class EntityUtils {
 
             if (entity.boundingCircle != null && entity2.boundingCircle != null) {
                 if (Intersector.overlaps(entity.boundingCircle, entity2.boundingCircle)) {
-                    return true;
+                    if (collide) {
+                        entity.onCollision(entity2);
+                        entity2.onCollision(entity);
+                    }
+
+                    collides = true;
                 }
             }
 
             if (entity.boundingCircle != null && entity2.boundingRectangle != null) {
                 if (Intersector.overlaps(entity.boundingCircle, entity2.boundingRectangle)) {
-                    return true;
+                    if (collide) {
+                        entity.onCollision(entity2);
+                        entity2.onCollision(entity);
+                    }
+
+                    collides = true;
                 }
             }
         }
 
-        return false;
+        return collides;
     }
 }

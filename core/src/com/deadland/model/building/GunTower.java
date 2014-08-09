@@ -22,7 +22,7 @@ public class GunTower extends Building {
     private Sprite towerSprite;
 
     public Radar radar;
-    private float shootTimeout = 0.1f;
+    private float shootTimeout = 0.5f;
     private float lastDeltaTs = 0;
 
     public GunTower(float x, float y) {
@@ -45,6 +45,8 @@ public class GunTower extends Building {
         sprite.setCenter(16, 16);
         sprite.setOrigin(16, 16);
         sprite.setPosition(x, y);
+
+        //boundingRectangle = new Rectangle(x(), y(), sprite.getWidth() / 2, sprite.getHeight() / 2);
     }
 
     @Override

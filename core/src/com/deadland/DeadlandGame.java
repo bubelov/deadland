@@ -39,8 +39,8 @@ public class DeadlandGame extends ApplicationAdapter {
 
         EntityManager.instance.add(new Hero(0, 0));
 
-        for (int i = 0; i < 100; i++) {
-            Zombie zombie = new Zombie(MathUtils.random(800), MathUtils.random(600));
+        for (int i = 0; i < 400; i++) {
+            Zombie zombie = new Zombie(MathUtils.random(8000), MathUtils.random(6000));
             zombie.destination = new Vector2(400, 300);
             EntityManager.instance.add(zombie);
         }
@@ -49,9 +49,7 @@ public class DeadlandGame extends ApplicationAdapter {
             EntityManager.instance.add(new Stone(MathUtils.random(8000), MathUtils.random(6000)));
         }
 
-        TownHelper.createTown(300, 200);
-
-        EntityManager.instance.add(new Gates(200, 200));
+        TownHelper.createTown(600, 500, 10);
 
         GuntowerButton b = new GuntowerButton(0, 0, camera);
         EntityManager.instance.add(b);
@@ -104,8 +102,8 @@ public class DeadlandGame extends ApplicationAdapter {
             return;
         }
 
-        for (int i = 0; i < 100; i++) {
-            for (int j = 0; j < 100; j++) {
+        for (int i = 0; i < 1000; i++) {
+            for (int j = 0; j < 1000; j++) {
                 batch.draw(sand, i * 32, j * 32, 32, 32);
             }
         }
