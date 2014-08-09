@@ -45,7 +45,7 @@ public abstract class BuildingSpirit extends Entity {
         if (!enabled) {
             return;
         }
-        Building building = createBuilding(x - 16, y - 16);
+        Building building = createBuilding(x, y);
         if (!EntityUtils.collidesAll(this) && ResourcesManager.instance.spendTrash(building.getPrice())) {
             EHelper.add(building);
         }

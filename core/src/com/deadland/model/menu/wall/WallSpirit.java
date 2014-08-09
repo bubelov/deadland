@@ -23,6 +23,6 @@ public class WallSpirit extends BuildingSpirit {
 
     @Override
     protected Building createBuilding(float x, float y) {
-        return new Wall(x, y, 300);
+        return new Wall(x - 8, y - 8, 300);
     }
 }
