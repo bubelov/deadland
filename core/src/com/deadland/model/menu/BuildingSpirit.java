@@ -4,24 +4,24 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.deadland.ControlManager;
+import com.deadland.Chelper;
 import com.deadland.EHelper;
 import com.deadland.EntityUtils;
 import com.deadland.ResourcesManager;
 import com.deadland.model.Entity;
-import com.deadland.model.building.GunTower;
+import com.deadland.model.building.Building;
 
 /**
- * Created by inver on 09.08.2014.
+ * Created by inver on 10.08.2014.
  */
-public class GunTowerSpirit extends Entity {
-    public static Texture texture = new Texture("building_tower_transparent.png");
+public abstract class BuildingSpirit extends Entity {
+    private MenuButton button;
 
-    private GunTButton button;
+    private boolean enabled = true;
 
-    public GunTowerSpirit(float x, float y, GunTButton e) {
+    public BuildingSpirit(float x, float y, MenuButton e) {
         button = e;
-        sprite = new Sprite(texture);
+        sprite = new Sprite(getTexture());
         sprite.setSize(32, 32);
         sprite.setCenter(sprite.getWidth() / 2, sprite.getHeight() / 2);
         sprite.setOrigin(sprite.getWidth() / 2, sprite.getHeight() / 2);
@@ -29,9 +29,11 @@ public class GunTowerSpirit extends Entity {
         sprite.setPosition(x, y);
     }
 
+    protected abstract Texture getTexture();
+
     @Override
     public void update() {
-        Camera c = ControlManager.instance.camera;
+        Camera c = Chelper.camera();
         sprite.setPosition(
                 c.position.x - c.viewportWidth / 2 + Gdx.input.getX() - 16,
                 c.position.y + c.viewportHeight / 2 - Gdx.input.getY() - 16
@@ -40,17 +42,18 @@ public class GunTowerSpirit extends Entity {
 
     @Override
     public void onTap(float x, float y, int count, int button) {
-        if (this.button.isButtonDown(x, y)) {
+        if (!enabled) {
             return;
         }
-
-        if (!EntityUtils.collidesAll(this) && ResourcesManager.instance.spendTrash(GunTower.price)) {
-            Camera c = ControlManager.instance.camera;
-            GunTower gt = new GunTower(
-                    c.position.x - c.viewportWidth / 2 + Gdx.input.getX() - 16,
-                    c.position.y + c.viewportHeight / 2 - Gdx.input.getY() - 16
-            );
-            EHelper.add(gt);
+        Building building = createBuilding(x - 16, y - 16);
+        if (!EntityUtils.collidesAll(this) && ResourcesManager.instance.spendTrash(building.getPrice())) {
+            EHelper.add(building);
         }
+    }
+
+    protected abstract Building createBuilding(float x, float y);
+
+    public void disable() {
+        enabled = false;
     }
 }

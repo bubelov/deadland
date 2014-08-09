@@ -33,6 +33,8 @@ public abstract class Building extends Entity {
 
     protected abstract void initSprite(float x, float y);
 
+    public abstract int getPrice();
+
     @Override
     public void onCollision(Entity entity) {
         if (entity instanceof Zombie) {

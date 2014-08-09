@@ -53,6 +53,11 @@ public class GunTower extends Building {
     }
 
     @Override
+    public int getPrice() {
+        return 100;
+    }
+
+    @Override
     public void update() {
         super.update();
 

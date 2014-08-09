@@ -24,4 +24,9 @@ public class Wall extends Building {
         sprite.setOrigin(8, 8);
         sprite.setPosition(x, y);
     }
+
+    @Override
+    public int getPrice() {
+        return 20;
+    }
 }

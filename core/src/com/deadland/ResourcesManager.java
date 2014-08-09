@@ -11,7 +11,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 public class ResourcesManager {
     public static ResourcesManager instance = new ResourcesManager();
 
-    private float trash = 1000;
+    private float trash = 100000000;
     private float weapon = 10000000;
     BitmapFont font;
 

@@ -26,4 +26,9 @@ public class MainTower extends Building {
         sprite.setOrigin(16, 16);
         sprite.setPosition(x, y);
     }
+
+    @Override
+    public int getPrice() {
+        return 500;
+    }
 }

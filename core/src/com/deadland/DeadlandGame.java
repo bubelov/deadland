@@ -11,7 +11,10 @@ import com.badlogic.gdx.input.GestureDetector;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.deadland.model.*;
-import com.deadland.model.menu.GunTButton;
+import com.deadland.model.menu.MenuButton;
+import com.deadland.model.menu.gun_tower.GunTowerButton;
+import com.deadland.model.menu.main_tower.MainTowerButton;
+import com.deadland.model.menu.wall.WallButton;
 
 public class DeadlandGame extends ApplicationAdapter {
     public static DeadlandGame instance;
@@ -49,11 +52,14 @@ public class DeadlandGame extends ApplicationAdapter {
 
         TownHelper.createTown(600, 500, 10);
 
-        GunTButton b = new GunTButton(
-                camera.viewportWidth - 32,
-                0,
-                camera);
-        EntityManager.instance.add(b);
+        MenuButton mb = new GunTowerButton(camera.viewportWidth - 32, 0);
+        EHelper.add(mb);
+
+        mb = new WallButton(camera.viewportWidth - 66, 0);
+        EHelper.add(mb);
+
+        mb = new MainTowerButton(camera.viewportWidth - 100, 0);
+        EHelper.add(mb);
 
         Gdx.input.setInputProcessor(new GestureDetector(new GestureDetector.GestureAdapter() {
             @Override
