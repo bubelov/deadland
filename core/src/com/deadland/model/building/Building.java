@@ -41,16 +41,18 @@ public abstract class Building extends Entity {
 
     @Override
     public void onTap(float x, float y, int count, int button) {
-        if (isButtonDown(x, y) && !ControlManager.instance.isUnderConstruction) {
-            if (control == null) {
-                control = new EditBuildingControl(this, 30);
-                ControlManager.instance.isUnderConstruction = true;
-            } else {
-                ControlManager.instance.isUnderConstruction = false;
+        if (isButtonDown(x, y)) {
+            if (ControlManager.instance.isUnderConstruction == this) {
+                ControlManager.instance.isUnderConstruction = null;
                 control = null;
+            } else {
+                ControlManager.instance.isUnderConstruction = this;
+                control = new EditBuildingControl(this, 30);
             }
-        } else if (control != null) {
-            control.onClick(x, y);
+        } else {
+            if (ControlManager.instance.isUnderConstruction == this) {
+                control.onClick(x, y);
+            }
         }
     }
 
@@ -64,7 +66,7 @@ public abstract class Building extends Entity {
     public void onRemove() {
         ResourcesManager.instance.spendTrash(-50);
         EntityManager.instance.destroy(this);
-        ControlManager.instance.isUnderConstruction = false;
+        ControlManager.instance.isUnderConstruction = null;
         System.out.println("onRemove");
     }
 

@@ -47,9 +47,9 @@ public class GunTButton extends Entity {
         if (isButtonDown(x, y)) {
             if (spirit == null) {
                 createSpirit(x, y);
-                ControlManager.instance.isUnderConstruction = true;
+                ControlManager.instance.isUnderConstruction = this;
             } else {
-                ControlManager.instance.isUnderConstruction = false;
+                ControlManager.instance.isUnderConstruction = null;
                 ControlManager.instance.justLeftConstruction = true;
                 EntityManager.instance.destroy(spirit);
                 spirit = null;
