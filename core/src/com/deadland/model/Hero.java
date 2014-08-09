@@ -8,6 +8,7 @@ import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.Vector2;
 import com.deadland.DeadlandGame;
 import com.deadland.EntityManager;
+import com.deadland.ResourcesManager;
 import com.deadland.support.Health;
 
 /**
@@ -81,12 +82,12 @@ public class Hero extends Entity {
                     System.out.println("ANGLE: " + angle);
 
                     if (angle > -45 && angle < 45) {
-                        EntityManager.instance.add(new Bullet(centerX(), centerY(), entity.x(), entity.y()));
-                        shootTimeoutSeconds = 0.1f;
+                        if (ResourcesManager.instance.spendWeapon(1)) {
+                            EntityManager.instance.add(new Bullet(centerX(), centerY(), entity.x(), entity.y()));
+                            shootTimeoutSeconds = 0.1f;
+                        }
                         gunRotation = angle;
                     }
-
-
                     break;
                 }
             }

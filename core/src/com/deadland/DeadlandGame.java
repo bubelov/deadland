@@ -86,24 +86,30 @@ public class DeadlandGame extends ApplicationAdapter {
 
         if (gameOver) {
             BitmapFont.TextBounds bounds = font.getBounds("GAME OVER");
-            font.draw(batch, "GAME OVER", 800 / 2 - bounds.width / 2, 600 / 2 + bounds.height / 2 + 50);
+            font.draw(batch, "GAME OVER",
+                    camera.position.x - bounds.width / 2,
+                    camera.position.y + bounds.height / 2 + 50
+            );
 
             bounds = font.getBounds("R.I.P.");
-            font.draw(batch, "R.I.P.", 800 / 2 - bounds.width / 2, 400 / 2 + bounds.height / 2 + 50);
+            font.draw(batch, "R.I.P.",
+                    camera.position.x - bounds.width / 2,
+                    camera.position.y + bounds.height / 2 - 20
+            );
 
             batch.end();
             return;
         }
 
-        for (int i = 0; i < 1000; i++) {
-            for (int j = 0; j < 1000; j++) {
+        for (int i = 0; i < 100; i++) {
+            for (int j = 0; j < 100; j++) {
                 batch.draw(sand, i * 32, j * 32, 32, 32);
             }
         }
 
         EntityManager.instance.update();
         EntityManager.instance.render(batch);
-
+        ResourcesManager.instance.render(batch, camera);
 
         batch.end();
 

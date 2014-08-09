@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.deadland.EntityManager;
+import com.deadland.ResourcesManager;
 import com.deadland.model.Bullet;
 import com.deadland.model.Entity;
 import com.deadland.model.Radar;
@@ -62,8 +63,10 @@ public class GunTower extends Building {
     }
 
     private void shoot(float x, float y) {
-        Bullet b = new Bullet(x(), y(), x, y);
-        EntityManager.instance.add(b);
+        if (ResourcesManager.instance.spendWeapon(1)) {
+            Bullet b = new Bullet(x(), y(), x, y);
+            EntityManager.instance.add(b);
+        }
     }
 
     private void rotateTo(float x, float y) {
