@@ -19,5 +19,7 @@ public class BloodMess extends Entity {
         sprite.setOrigin(sprite.getWidth() / 2, sprite.getHeight() / 2);
 
         sprite.setPosition(x, y);
+
+        z = -100;
     }
 }

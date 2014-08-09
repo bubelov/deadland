@@ -10,6 +10,7 @@ import javafx.scene.Camera;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -27,6 +28,13 @@ public class EntityManager {
     private static ShapeRenderer renderer = new ShapeRenderer();
 
     public void update() {
+        entities.sort(new Comparator<Entity>() {
+            @Override
+            public int compare(Entity o1, Entity o2) {
+                return o1.z - o2.z;
+            }
+        });
+
         for (Entity entity : entities) {
             entity.update();
         }
@@ -50,6 +58,12 @@ public class EntityManager {
 
                 if (entity1.boundingCircle != null && entity2.boundingCircle != null) {
                     if (Intersector.overlaps(entity1.boundingCircle, entity2.boundingCircle)) {
+                        entity1.onCollision(entity2);
+                    }
+                }
+
+                if (entity1.boundingCircle != null && entity2.boundingRectangle != null) {
+                    if (Intersector.overlaps(entity1.boundingCircle, entity2.boundingRectangle)) {
                         entity1.onCollision(entity2);
                     }
                 }

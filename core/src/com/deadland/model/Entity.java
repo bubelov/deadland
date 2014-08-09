@@ -15,6 +15,7 @@ public abstract class Entity {
     public Sprite sprite;
     public Circle boundingCircle;
     public Rectangle boundingRectangle;
+    public int z;
 
     public float x() {
         return sprite.getX();
