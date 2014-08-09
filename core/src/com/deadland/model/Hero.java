@@ -2,11 +2,11 @@ package com.deadland.model;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Circle;
-import com.badlogic.gdx.math.Intersector;
-import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.deadland.EntityManager;
+import com.deadland.support.Health;
 
 /**
  * Author: Igor Bubelov
@@ -18,7 +18,7 @@ public class Hero extends Entity {
 
     public Vector2 destination = new Vector2(256, 256);
 
-    public float health = 100;
+    public Health health;
 
     public Hero(float x, float y) {
         sprite = new Sprite(texture);
@@ -29,6 +29,7 @@ public class Hero extends Entity {
         sprite.setPosition(x, y);
 
         boundingCircle = new Circle(sprite.getX() + sprite.getWidth() / 2, sprite.getY() + sprite.getHeight() / 2, 20);
+        health = new Health(this, 100, 40, 60);
     }
 
     @Override
@@ -48,6 +49,7 @@ public class Hero extends Entity {
                 boundingCircle.setPosition(sprite.getX() + sprite.getWidth() / 2, sprite.getY() + sprite.getHeight() / 2);
             }
         }
+        health.update(sprite.getX(), sprite.getY());
     }
 
     @Override
@@ -58,11 +60,17 @@ public class Hero extends Entity {
     @Override
     public void onCollision(Entity entity) {
         if (entity instanceof Zombie) {
-            health -= 1;
+            health.wound(1);
             EntityManager.instance.destroy(entity);
             EntityManager.instance.add(new BloodMess(entity.x(), entity.y()));
 
             System.out.println("HEALTH: " + health);
         }
+    }
+
+    @Override
+    public void render(SpriteBatch batch) {
+        health.render(batch);
+        super.render(batch);
     }
 }

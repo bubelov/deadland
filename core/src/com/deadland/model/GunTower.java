@@ -13,7 +13,7 @@ public class GunTower extends Tower {
     public static Texture texture = new Texture("gun.png");
 
     public Radar radar;
-    private float shootTimeout = 1;
+    private float shootTimeout = 0.1f;
     private float lastDeltaTs = 0;
 
     public GunTower(float x, float y) {
@@ -42,7 +42,6 @@ public class GunTower extends Tower {
     }
 
     private void shoot(float x, float y) {
-
         Bullet b = new Bullet(x(), y(), x, y);
         EntityManager.instance.add(b);
     }

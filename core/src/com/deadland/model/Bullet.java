@@ -15,7 +15,7 @@ public class Bullet extends Entity {
 
     private float speed = 500;
 
-    private float power = 100;
+    private float power = 2;
 
     private Vector2 pos;
     private float age = 0;
@@ -53,14 +53,12 @@ public class Bullet extends Entity {
     @Override
     public void onCollision(Entity entity) {
         if (entity instanceof Zombie) {
-            ((Zombie) entity).health -= power;
-            if (((Zombie) entity).health <= 0) {
+            ((Zombie) entity).wound(power);
+            if (((Zombie) entity).isDead()) {
                 EntityManager.instance.destroy(entity);
                 EntityManager.instance.add(new BloodMess(entity.x(), entity.y()));
             }
             EntityManager.instance.destroy(this);
-
-//            System.out.println("HEALTH: " + health);
         }
     }
 }
