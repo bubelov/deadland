@@ -16,12 +16,17 @@ import com.deadland.support.Health;
 
 public class Hero extends Entity {
     public static Texture texture = new Texture("hero.png");
+    public static Texture gunTexture = new Texture("hero_gun.png");
 
     public Vector2 destination = new Vector2(256, 256);
 
     public Health health;
 
     public float shootTimeoutSeconds;
+
+    private Sprite gunSprite;
+
+    private float gunRotation = 0;
 
     public Hero(float x, float y) {
         sprite = new Sprite(texture);
@@ -33,11 +38,22 @@ public class Hero extends Entity {
 
         boundingCircle = new Circle(sprite.getX() + sprite.getWidth() / 2, sprite.getY() + sprite.getHeight() / 2, 20);
         health = new Health(this, 100, 40, 60);
+
+        gunSprite = new Sprite(gunTexture);
+        gunSprite.setSize(78 / 2, 26 / 2);
+        gunSprite.setCenter(gunSprite.getWidth() / 2, gunSprite.getHeight() / 2);
+        gunSprite.setOrigin(gunSprite.getWidth() / 2, gunSprite.getHeight() / 2);
+
+        //gunSprite.setPosition(x() + sprite.getWidth() / 2 - gunSprite.getWidth() / 2, y() + sprite.getHeight() / 2 - gunSprite.getHeight() / 2);
     }
 
     @Override
     public void update() {
         super.update();
+
+        if (destination == null) {
+            return;
+        }
 
         if (sprite.getX() != destination.x || sprite.getY() != destination.y) {
             Vector2 movementVector = new Vector2(destination);
@@ -50,6 +66,8 @@ public class Hero extends Entity {
                 sprite.translate(movementVector.nor().x * 5, movementVector.nor().y * 5);
                 //boundingRectangle.setPosition(sprite.getX(), sprite.getY());
                 boundingCircle.setPosition(sprite.getX() + sprite.getWidth() / 2, sprite.getY() + sprite.getHeight() / 2);
+                gunSprite.setPosition(x() + sprite.getWidth() / 2 - gunSprite.getWidth() / 2, y() + sprite.getHeight() / 2 - gunSprite.getHeight() / 2);
+                gunSprite.setRotation(sprite.getRotation() - 180 + gunRotation);
             }
         }
 
@@ -62,8 +80,9 @@ public class Hero extends Entity {
                     System.out.println("ANGLE: " + angle);
 
                     if (angle > -45 && angle < 45) {
-                        EntityManager.instance.add(new Bullet(x(), y(), entity.x(), entity.y()));
-                        shootTimeoutSeconds = 0.5f;
+                        EntityManager.instance.add(new Bullet(centerX(), centerY(), entity.x(), entity.y()));
+                        shootTimeoutSeconds = 0.1f;
+                        gunRotation = angle;
                     }
 
 
@@ -94,5 +113,6 @@ public class Hero extends Entity {
     public void render(SpriteBatch batch) {
         health.render(batch);
         super.render(batch);
+        gunSprite.draw(batch);
     }
 }

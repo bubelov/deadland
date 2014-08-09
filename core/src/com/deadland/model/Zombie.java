@@ -8,6 +8,7 @@ import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.deadland.EntityManager;
+import com.deadland.EntityUtils;
 import com.deadland.support.Health;
 
 /**
@@ -34,7 +35,7 @@ public class Zombie extends Entity {
 
         sprite.setPosition(x, y);
 
-        boundingCircle = new Circle(x, y, 15);
+        boundingCircle = new Circle(x, y, 5);
 
         health = new Health(this, 30, 30, 30);
     }
@@ -68,9 +69,13 @@ public class Zombie extends Entity {
 
             sprite.setRotation(movementVector.angle());
             sprite.translate(movementVector.nor().x * 3, movementVector.nor().y * 3);
-
-
             boundingCircle.setPosition(sprite.getX() + sprite.getWidth() / 2, sprite.getY() + sprite.getHeight() / 2);
+
+            if (EntityUtils.collidesAny(this, EntityManager.instance.entities)) {
+                sprite.setRotation(movementVector.angle());
+                sprite.translate(-movementVector.nor().x * 3, -movementVector.nor().y * 3);
+                boundingCircle.setPosition(sprite.getX() + sprite.getWidth() / 2, sprite.getY() + sprite.getHeight() / 2);
+            }
         }
         health.update(sprite.getX(), sprite.getY());
 

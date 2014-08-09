@@ -24,6 +24,14 @@ public abstract class Entity {
         return sprite.getY();
     }
 
+    public float centerX() {
+        return x() + sprite.getWidth() / 2;
+    }
+
+    public float centerY() {
+        return y() + sprite.getHeight() / 2;
+    }
+
 //    protected void initSprite(Texture texture, float sizeX, float sizeY) {
 //
 //        sprite = new Sprite(texture);
