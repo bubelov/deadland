@@ -3,6 +3,7 @@ package com.deadland.model;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.deadland.EntityManager;
@@ -26,6 +27,8 @@ public class Zombie extends Entity {
         sprite.setOrigin(sprite.getWidth() / 2, sprite.getHeight() / 2);
 
         sprite.setPosition(x, y);
+
+        boundingCircle = new Circle(x, y, 15);
     }
 
     @Override
@@ -51,7 +54,7 @@ public class Zombie extends Entity {
 
             sprite.setRotation(movementVector.angle());
             sprite.translate(movementVector.nor().x * 3, movementVector.nor().y * 3);
-
+            boundingCircle.setPosition(sprite.getX() + sprite.getWidth() / 2, sprite.getY() + sprite.getHeight() / 2);
         }
 
         if (!attacking && destination != null && destination.dst(sprite.getX(), sprite.getY()) < 5) {

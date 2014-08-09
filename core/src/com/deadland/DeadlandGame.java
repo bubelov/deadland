@@ -70,5 +70,7 @@ public class DeadlandGame extends ApplicationAdapter {
 
 
 		batch.end();
+
+        //EntityManager.instance.renderCollisions(camera);
 	}
 }
