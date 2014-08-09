@@ -1,5 +1,6 @@
 package com.deadland.model.building;
 
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.deadland.ControlManager;
@@ -19,6 +20,7 @@ public abstract class Building extends Entity {
 
     protected EditBuildingControl control;
 
+    BitmapFont font;
     protected int level = 0;
 
     public Building(float x, float y, float health) {
@@ -26,6 +28,8 @@ public abstract class Building extends Entity {
         initSprite(x, y);
         pos = new Vector2(x, y);
         this.health = new Health(this, health, 40, 30);
+        font = new BitmapFont();
+        font.setScale(1);
     }
 
     protected abstract void initSprite(float x, float y);
@@ -83,6 +87,10 @@ public abstract class Building extends Entity {
     public void render(SpriteBatch batch) {
         if (control != null) {
             control.render(batch);
+        }
+
+        if (level > 0) {
+            font.draw(batch, "" + level, pos.x + sprite.getWidth() / 2, pos.y + sprite.getHeight() + 15);
         }
         super.render(batch);
     }
