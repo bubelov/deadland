@@ -17,9 +17,9 @@ import com.deadland.model.building.GunTower;
 public class GunTowerSpirit extends Entity {
     public static Texture texture = new Texture("building_tower_transparent.png");
 
-    private GunTowerButton button;
+    private GunTButton button;
 
-    public GunTowerSpirit(float x, float y, GunTowerButton e) {
+    public GunTowerSpirit(float x, float y, GunTButton e) {
         button = e;
         sprite = new Sprite(texture);
         sprite.setSize(32, 32);

@@ -12,14 +12,14 @@ import com.deadland.model.Entity;
 /**
  * Created by inver on 09.08.2014.
  */
-public class GunTowerButton extends Entity {
+public class GunTButton extends Entity {
     public static Texture texture = new Texture("menu_gunTower.png");
 
     private Vector2 pos;
     private Camera camera;
     private Entity spirit = null;
 
-    public GunTowerButton(float x, float y, Camera camera) {
+    public GunTButton(float x, float y, Camera camera) {
         pos = new Vector2(x, y);
         this.camera = camera;
 
@@ -47,6 +47,7 @@ public class GunTowerButton extends Entity {
                 createSpirit(x, y);
                 ControlManager.instance.isUnderConstruction = true;
             } else {
+                ControlManager.instance.isUnderConstruction = false;
                 EntityManager.instance.destroy(spirit);
                 spirit = null;
             }
