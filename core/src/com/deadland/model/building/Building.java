@@ -1,9 +1,13 @@
 package com.deadland.model.building;
 
+import com.badlogic.gdx.graphics.Camera;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
+import com.deadland.ControlManager;
 import com.deadland.EntityManager;
 import com.deadland.model.Entity;
 import com.deadland.model.Zombie;
+import com.deadland.support.EditBuildingControl;
 import com.deadland.support.Health;
 
 /**
@@ -12,6 +16,8 @@ import com.deadland.support.Health;
 public abstract class Building extends Entity {
     protected Health health;
     protected Vector2 pos;
+
+    protected EditBuildingControl control;
 
     public Building(float x, float y, float health) {
         initSprite(x, y);
@@ -29,5 +35,38 @@ public abstract class Building extends Entity {
                 EntityManager.instance.destroy(this);
             }
         }
+    }
+
+    @Override
+    public void onTap(float x, float y, int count, int button) {
+        System.out.println("x = " + x + "y= " + y);
+        if (isButtonDown(x, y) && !ControlManager.instance.isUnderConstruction) {
+            if (control == null) {
+                control = new EditBuildingControl(this, 30);
+                ControlManager.instance.isUnderConstruction = true;
+            } else {
+                ControlManager.instance.isUnderConstruction = false;
+                control = null;
+            }
+        } else if (control != null) {
+            control.onClick(x, y);
+        }
+    }
+
+    public boolean isButtonDown(float x, float y) {
+        Camera c = ControlManager.instance.camera;
+        float pX = c.position.x - c.viewportWidth / 2 + pos.x;
+        float pY = c.position.y - c.viewportHeight / 2 + pos.y;
+        if (x >= pX && x <= pX + 32 && y >= pY && y <= pY + 32)
+            return true;
+        return false;
+    }
+
+    @Override
+    public void render(SpriteBatch batch) {
+        if (control != null) {
+            control.render(batch);
+        }
+        super.render(batch);
     }
 }
