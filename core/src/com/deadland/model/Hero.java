@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.Vector2;
+import com.deadland.DeadlandGame;
 import com.deadland.EntityManager;
 import com.deadland.support.Health;
 
@@ -101,11 +102,15 @@ public class Hero extends Entity {
     @Override
     public void onCollision(Entity entity) {
         if (entity instanceof Zombie) {
-            health.wound(1);
+            health.wound(10);
             EntityManager.instance.destroy(entity);
             EntityManager.instance.add(new BloodMess(entity.x(), entity.y()));
 
             System.out.println("HEALTH: " + health);
+        }
+
+        if (health.isDead()) {
+            DeadlandGame.instance.gameOver = true;
         }
     }
 

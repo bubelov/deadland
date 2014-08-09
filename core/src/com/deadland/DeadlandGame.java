@@ -5,6 +5,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.input.GestureDetector;
 import com.badlogic.gdx.math.MathUtils;
@@ -15,13 +16,20 @@ import com.deadland.model.Zombie;
 import com.deadland.model.menu.GuntowerButton;
 
 public class DeadlandGame extends ApplicationAdapter {
+    public static DeadlandGame instance;
+
     private OrthographicCamera camera;
 
     SpriteBatch batch;
     Texture sand;
 
+    public boolean gameOver;
+    BitmapFont font;
+
     @Override
     public void create() {
+        instance = this;
+
         camera = new OrthographicCamera(800, 600);
         camera.setToOrtho(false);
 
@@ -61,6 +69,11 @@ public class DeadlandGame extends ApplicationAdapter {
                 return false;
             }
         }));
+
+        font = new BitmapFont();
+        font.setScale(5);
+
+        //gameOver = true;
     }
 
     @Override
@@ -70,6 +83,17 @@ public class DeadlandGame extends ApplicationAdapter {
 
         batch.setProjectionMatrix(camera.combined);
         batch.begin();
+
+        if (gameOver) {
+            BitmapFont.TextBounds bounds = font.getBounds("GAME OVER");
+            font.draw(batch, "GAME OVER", 800 / 2 - bounds.width / 2, 600 / 2 + bounds.height / 2 + 50);
+
+            bounds = font.getBounds("R.I.P.");
+            font.draw(batch, "R.I.P.", 800 / 2 - bounds.width / 2, 400 / 2 + bounds.height / 2 + 50);
+
+            batch.end();
+            return;
+        }
 
         for (int i = 0; i < 1000; i++) {
             for (int j = 0; j < 1000; j++) {
