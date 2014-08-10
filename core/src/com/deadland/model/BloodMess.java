@@ -23,5 +23,6 @@ public class BloodMess extends Entity {
         z = -100;
 
         sprite.setRotation(MathUtils.random(360));
+        sprite.setScale(MathUtils.random(0.7f, 1.3f));
     }
 }
