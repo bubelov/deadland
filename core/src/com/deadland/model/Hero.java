@@ -7,10 +7,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
-import com.deadland.ControlManager;
-import com.deadland.DeadlandGame;
-import com.deadland.EntityManager;
-import com.deadland.ResourcesManager;
+import com.deadland.*;
 import com.deadland.support.Health;
 
 /**
@@ -46,7 +43,7 @@ public class Hero extends Entity {
         health = new Health(this, 100, 40, 60);
 
         gunSprite = new Sprite(gunTexture);
-        gunSprite.setSize(78 / 2, 26 / 2);
+        gunSprite.setSize(78 / 1.5f, 26 / 1.5f);
         gunSprite.setCenter(gunSprite.getWidth() / 2, gunSprite.getHeight() / 2);
         gunSprite.setOrigin(gunSprite.getWidth() / 2, gunSprite.getHeight() / 2);
 
@@ -72,7 +69,10 @@ public class Hero extends Entity {
                 moving = true;
                 sprite.setRotation(movementVector.angle());
                 sprite.translate(movementVector.nor().x * 120 * Gdx.graphics.getDeltaTime(), movementVector.nor().y * 120 * Gdx.graphics.getDeltaTime());
-                //boundingRectangle.setPosition(sprite.getX(), sprite.getY());
+
+                if (EntityUtils.collidesWithBuilding(this, EntityManager.instance.entities)) {
+                    sprite.translate(-movementVector.x * 120 * Gdx.graphics.getDeltaTime(), -movementVector.y * 120 * Gdx.graphics.getDeltaTime());
+                }
 
                 boundingCircle.setPosition(sprite.getX() + sprite.getWidth() / 2 + (MathUtils.cos(MathUtils.degreesToRadians * sprite.getRotation()) * 30), sprite.getY() + sprite.getHeight() / 2 + (MathUtils.sin(MathUtils.degreesToRadians * sprite.getRotation()) * 30));
                 gunSprite.setPosition(x() + sprite.getWidth() / 2 - gunSprite.getWidth() / 2 + (MathUtils.cos(MathUtils.degreesToRadians * sprite.getRotation()) * -30), y() + sprite.getHeight() / 2 - gunSprite.getHeight() / 2 + (MathUtils.sin(MathUtils.degreesToRadians * sprite.getRotation()) * -30));

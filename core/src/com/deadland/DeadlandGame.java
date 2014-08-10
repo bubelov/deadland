@@ -1,7 +1,6 @@
 package com.deadland;
 
-import com.badlogic.gdx.ApplicationAdapter;
-import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.*;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -63,7 +62,7 @@ public class DeadlandGame extends ApplicationAdapter {
         mb = new MainTowerButton(camera.viewportWidth - 100, 0);
         EHelper.add(mb);
 
-        Gdx.input.setInputProcessor(new GestureDetector(new GestureDetector.GestureAdapter() {
+        Gdx.input.setInputProcessor(new InputMultiplexer(new GestureDetector(new GestureDetector.GestureAdapter() {
             @Override
             public boolean tap(float x, float y, int count, int button) {
                 x = camera.position.x + x - camera.viewportWidth / 2;
@@ -77,6 +76,40 @@ public class DeadlandGame extends ApplicationAdapter {
             public boolean pan(float x, float y, float deltaX, float deltaY) {
                 camera.translate(-deltaX, deltaY);
                 camera.update();
+                return false;
+            }
+        }), new InputAdapter() {
+            @Override
+            public boolean keyUp(int keycode) {
+                if (keycode == Input.Keys.H) {
+                    for (Entity entity : EntityManager.instance.entities) {
+                        if (entity instanceof Hero) {
+                            Hero hero = (Hero)entity;
+                            hero.health.health = hero.health.startHealth;
+                            hero.health.wound(0);
+                        }
+                    }
+                }
+
+                if (keycode == Input.Keys.A) {
+                    Hero hero = null;
+
+                    for (Entity entity : EntityManager.instance.entities) {
+                        if (entity instanceof Hero) {
+                            hero = (Hero)entity;
+                        }
+                    }
+
+                    if (hero != null) {
+                        for (Entity entity : EntityManager.instance.entities) {
+                            if (entity instanceof Zombie) {
+                                Zombie zombie = (Zombie)entity;
+                                zombie.destination = new Vector2(hero.centerX(), hero.centerY());
+                            }
+                        }
+                    }
+                }
+
                 return false;
             }
         }));

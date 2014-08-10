@@ -17,9 +17,9 @@ public class Health {
     private Sprite greenSprite;
 
     private Entity entity;
-    private float health;
+    public float health;
     private float panelWidth;
-    private float startHealth;
+    public float startHealth;
     private float panelMargin;
 
     private float delayAfterWound = 0;
