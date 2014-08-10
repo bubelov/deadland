@@ -81,10 +81,9 @@ public class GunTower extends Building {
             } else if (level == 1) {
                 EntityManager.instance.add(new Bullet(getXCoord(8), getYCoord(8), sprite.getRotation(), false, 10));
                 EntityManager.instance.add(new Bullet(getXCoord(-8), getYCoord(-8), sprite.getRotation(), false, 10));
-            } else if (level < 2) {
-                EntityManager.instance.add(new Bullet(x(), y(), x, y));
             } else {
-                EntityManager.instance.add(new Bullet(x(), y(), x, y, true));
+                EntityManager.instance.add(new Bullet(getXCoord(8), getYCoord(8), sprite.getRotation(), true, 30));
+                EntityManager.instance.add(new Bullet(getXCoord(-8), getYCoord(-8), sprite.getRotation(), true, 30));
             }
         }
     }

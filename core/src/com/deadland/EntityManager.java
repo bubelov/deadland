@@ -1,6 +1,7 @@
 package com.deadland;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -78,9 +79,19 @@ public class EntityManager {
             }
         }
 
-        for (Entity entity : entities) {
-            entity.render(batch);
+        Camera c = ControlManager.instance.camera;
+        float minX = c.position.x - c.viewportWidth / 2 - 32;
+        float maxX = c.position.x + c.viewportWidth / 2 + 32;
+        float minY = c.position.y - c.viewportHeight / 2 - 32;
+        float maxY = c.position.y + c.viewportHeight / 2 + 32;
+        int i = 0;
+        for (Entity e : entities) {
+            if (e.x() > minX && e.x() < maxX && e.y() > minY && e.y() < maxY) {
+                i++;
+                e.render(batch);
+            }
         }
+//        System.out.println("count of entities: " + i);
     }
 
     public void renderCollisions(OrthographicCamera camera) {
