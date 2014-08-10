@@ -103,9 +103,8 @@ public class Hero extends Entity {
                         }
 
                         gunRotation = directionVector.angle() - sprite.getRotation() + 180;
+                        break;
                     }
-
-                    break;
                 }
             }
         }
