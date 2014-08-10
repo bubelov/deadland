@@ -18,6 +18,7 @@ import com.deadland.support.Health;
 public class Hero extends Entity {
     public static Texture texture = new Texture("truck.png");
     public static Texture gunTexture = new Texture("hero_gun.png");
+    public static Texture painTexture = new Texture("pain.png");
 
     public Vector2 destination = new Vector2(256, 256);
 
@@ -30,6 +31,8 @@ public class Hero extends Entity {
     private float gunRotation = 0;
 
     private boolean moving;
+
+    private float painDurationSeconds;
 
     public Hero(float x, float y) {
         sprite = new Sprite(texture);
@@ -130,6 +133,8 @@ public class Hero extends Entity {
             if (moving) {
                 EntityManager.instance.destroy(entity);
                 EntityManager.instance.add(new BloodMess(entity.x(), entity.y()));
+            } else {
+                painDurationSeconds = 0.5f;
             }
         }
 
@@ -143,5 +148,11 @@ public class Hero extends Entity {
         health.render(batch);
         super.render(batch);
         gunSprite.draw(batch);
+
+        painDurationSeconds -= Gdx.graphics.getDeltaTime();
+
+        if (painDurationSeconds > 0) {
+            batch.draw(painTexture, 0, 0, 8000, 6000);
+        }
     }
 }
