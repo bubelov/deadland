@@ -29,6 +29,34 @@ public class Bullet extends Entity {
         this(x, y, dstX, dstY, false);
     }
 
+    public Bullet(float x, float y, float angle, boolean fire, float power) {
+        pos = new Vector2(x, y);
+        pos.setAngle(angle);
+        this.power = power;
+
+        sprite = new Sprite(texture);
+        sprite.setSize(8, 2);
+        sprite.setCenter(sprite.getWidth() / 2, sprite.getHeight() / 2);
+        sprite.setOrigin(sprite.getWidth() / 2, sprite.getHeight() / 2);
+
+        sprite.setPosition(x, y);
+        sprite.setRotation(pos.angle());
+
+        sprite.translate(-sprite.getWidth() / 2, -sprite.getHeight() / 2);
+        boundingCircle = new Circle(x() + sprite.getWidth() / 2, y() + sprite.getHeight() / 2, 5);
+
+        if (fire) {
+            effect = new ParticleEffect();
+            effect.load(Gdx.files.internal("particles/fire.p"), Gdx.files.internal("particles"));
+            effect.setPosition(200, 200);
+            effect.setDuration(10000);
+
+            effect.getEmitters().get(0).setAdditive(false);
+
+            effect.start();
+        }
+    }
+
     public Bullet(float x, float y, float dstX, float dstY, boolean fire) {
         pos = new Vector2(dstX - x, dstY - y);
 
@@ -40,6 +68,7 @@ public class Bullet extends Entity {
         sprite.setPosition(x, y);
         sprite.setRotation(pos.angle());
 
+        sprite.translate(-sprite.getWidth() / 2, -sprite.getHeight() / 2);
         boundingCircle = new Circle(x() + sprite.getWidth() / 2, y() + sprite.getHeight() / 2, 5);
 
         if (fire) {

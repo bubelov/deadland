@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.deadland.EntityManager;
@@ -65,7 +66,7 @@ public class GunTower extends Building {
         Entity enemy = radar.getEnemy(300);
         if (enemy != null) {
             rotateTo(enemy.x(), enemy.y());
-            lastDeltaTs += Gdx.graphics.getDeltaTime();
+            lastDeltaTs += Gdx.graphics.getDeltaTime() * (level + 1);
             if (lastDeltaTs >= shootTimeout) {
                 shoot(enemy.x(), enemy.y());
                 lastDeltaTs = 0;
@@ -75,12 +76,32 @@ public class GunTower extends Building {
 
     private void shoot(float x, float y) {
         if (ResourcesManager.instance.spendWeapon(1)) {
-            if (level < 2) {
+            if (level == 0) {
+                EntityManager.instance.add(new Bullet(getXCoord(0), getYCoord(0), sprite.getRotation(), false, 2));
+            } else if (level == 1) {
+                EntityManager.instance.add(new Bullet(getXCoord(8), getYCoord(8), sprite.getRotation(), false, 10));
+                EntityManager.instance.add(new Bullet(getXCoord(-8), getYCoord(-8), sprite.getRotation(), false, 10));
+            } else if (level < 2) {
                 EntityManager.instance.add(new Bullet(x(), y(), x, y));
             } else {
                 EntityManager.instance.add(new Bullet(x(), y(), x, y, true));
             }
         }
+    }
+
+    private float getXCoord(float shift) {
+        return (float) (
+                centerX()
+                        + 16.0f * Math.cos(MathUtils.degreesToRadians * sprite.getRotation())
+                        - shift * Math.sin(MathUtils.degreesToRadians * sprite.getRotation())
+        );
+    }
+
+    private float getYCoord(float shift) {
+        return (float) (
+                centerY() + 16.0f * Math.sin(MathUtils.degreesToRadians * sprite.getRotation())
+                        + shift * Math.cos(MathUtils.degreesToRadians * sprite.getRotation())
+        );
     }
 
     private void rotateTo(float x, float y) {
