@@ -12,7 +12,7 @@ import com.deadland.ResourcesManager;
  */
 
 public class Trash extends Entity {
-    public static Texture texture = new Texture("trash.jpg");
+    public static Texture texture = new Texture("trash.png");
 
     public Trash(float x, float y) {
         sprite = new Sprite(texture);
