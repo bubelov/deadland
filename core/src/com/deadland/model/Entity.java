@@ -32,16 +32,8 @@ public abstract class Entity {
         return y() + sprite.getHeight() / 2;
     }
 
-//    protected void initSprite(Texture texture, float sizeX, float sizeY) {
-//
-//        sprite = new Sprite(texture);
-//        sprite.setSize(sizeX, sizeY);
-//
-//        sprite.setPosition(x, y);
-//    }
-
     public void update() {
-        //Gdx.graphics.getDeltaTime()
+        // Nothing to do here
     }
 
     public void render(SpriteBatch batch) {
@@ -56,7 +48,7 @@ public abstract class Entity {
 
     }
 
-    public void destroy() {
+    public void onDestroy() {
 
     }
 }

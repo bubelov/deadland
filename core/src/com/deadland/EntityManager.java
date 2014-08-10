@@ -39,7 +39,7 @@ public class EntityManager {
         }
 
         for (Entity entity : entitiesToDestroy) {
-            entity.destroy();
+            entity.onDestroy();
         }
         entities.removeAll(entitiesToDestroy);
         entitiesToDestroy.clear();

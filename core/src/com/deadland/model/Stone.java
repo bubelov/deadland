@@ -20,6 +20,6 @@ public class Stone extends Entity {
 
         sprite.setPosition(x - x % 32, y - y % 32);
 
-        z = -101;
+        z = -1001;
     }
 }

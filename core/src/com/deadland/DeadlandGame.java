@@ -31,9 +31,11 @@ public class DeadlandGame extends ApplicationAdapter {
     public void create() {
         instance = this;
 
+        System.out.println(Gdx.graphics.getWidth());
+
         ControlManager.instance.camera = new OrthographicCamera(800, 600);
         camera = ControlManager.instance.camera;
-        camera.setToOrtho(false);
+        camera.setToOrtho(false, 800, 600);
 
         batch = new SpriteBatch();
         sand = new Texture("sand1.jpg");
@@ -50,7 +52,7 @@ public class DeadlandGame extends ApplicationAdapter {
             EntityManager.instance.add(new Stone(MathUtils.random(8000), MathUtils.random(6000)));
         }
 
-        TownHelper.createTown(600, 500, 10);
+        TownHelper.createTown(600, 500, 18);
 
         MenuButton mb = new GunTowerButton(camera.viewportWidth - 32, 0);
         EHelper.add(mb);
@@ -135,7 +137,7 @@ public class DeadlandGame extends ApplicationAdapter {
         if (ControlManager.instance.isUnderConstruction != null)
             EntityManager.instance.renderArea(camera);
 
-        System.out.println(Gdx.graphics.getFramesPerSecond());
+        //System.out.println(Gdx.graphics.getFramesPerSecond());
 
         //EntityManager.instance.renderCollisions(camera);
     }

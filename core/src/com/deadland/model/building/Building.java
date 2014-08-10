@@ -104,7 +104,7 @@ public abstract class Building extends Entity {
     }
 
     @Override
-    public void destroy() {
+    public void onDestroy() {
         if (ControlManager.instance.isUnderConstruction == this) {
             ControlManager.instance.isUnderConstruction = null;
         }

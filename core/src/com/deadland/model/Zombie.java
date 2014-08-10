@@ -98,4 +98,15 @@ public class Zombie extends Entity {
     public boolean isDead() {
         return health.isDead();
     }
+
+    @Override
+    public void onDestroy() {
+        if (MathUtils.random(5) == 1) {
+            EntityManager.instance.add(new ZombieHead(centerX(), centerY()));
+        } else {
+            if (MathUtils.random(5) == 1) {
+                EntityManager.instance.add(new ZombieHand(centerX(), centerY()));
+            }
+        }
+    }
 }

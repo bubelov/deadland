@@ -49,7 +49,17 @@ public class TownHelper {
         EntityManager.instance.add(new Wall(x - 24, y + 168 - 16, 300));
         EntityManager.instance.add(new Wall(x - 24, y + 168 - 16 - 16, 300));
 
-        MainTower t = new MainTower(x + 65, y + 90);
+        for (int i = 1; i < size - 9; i++) {
+            EntityManager.instance.add(new Wall(x - 24, y + 168 + 16 * i, 300));
+        }
+
+//        EntityManager.instance.add(new Wall(x - 24, y + 168 + 16, 300));
+//        EntityManager.instance.add(new Wall(x - 24, y + 168 + 16 + 16, 300));
+//        EntityManager.instance.add(new Wall(x - 24, y + 168 + 16 + 16 + 16, 300));
+//        EntityManager.instance.add(new Wall(x - 24, y + 168 + 16 + 16 + 16 + 16, 300));
+//        EntityManager.instance.add(new Wall(x - 24, y + 168 + 16 + 16 + 16 + 16 + 16, 300));
+
+        MainTower t = new MainTower(x + 140, y + 150);
         EntityManager.instance.add(t);
     }
 }

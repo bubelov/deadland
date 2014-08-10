@@ -91,7 +91,7 @@ public class Hero extends Entity {
                     angle %= 360;
                     angle = Math.abs(angle);
 
-                    System.out.println("Angle: " + angle);
+                    //System.out.println("Angle: " + angle);
 
                     if (angle >= 180 - 45 && angle <= 180 + 45) {
                         if (ResourcesManager.instance.spendWeapon(1)) {
