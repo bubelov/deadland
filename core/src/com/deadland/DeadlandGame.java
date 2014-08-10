@@ -51,13 +51,13 @@ public class DeadlandGame extends ApplicationAdapter {
 
         TownHelper.createTown(600, 500, 18);
 
-        MenuButton mb = new GunTowerButton(camera.viewportWidth - 32, 0);
+        MenuButton mb = new GunTowerButton(camera.viewportWidth - 72, 4);
         EHelper.add(mb);
 
-        mb = new WallButton(camera.viewportWidth - 66, 0);
+        mb = new WallButton(camera.viewportWidth - 144, 4);
         EHelper.add(mb);
 
-        mb = new MainTowerButton(camera.viewportWidth - 100, 0);
+        mb = new MainTowerButton(camera.viewportWidth - 216, 4);
         EHelper.add(mb);
 
         Gdx.input.setInputProcessor(new InputMultiplexer(new GestureDetector(new GestureDetector.GestureAdapter() {

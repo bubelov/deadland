@@ -22,7 +22,7 @@ public abstract class MenuButton extends Entity {
     public MenuButton(float x, float y) {
         pos = new Vector2(x, y);
         sprite = new Sprite(getTexture());
-        sprite.setSize(32, 32);
+        sprite.setSize(64, 64);
         sprite.setCenter(sprite.getWidth() / 2, sprite.getHeight() / 2);
         sprite.setOrigin(sprite.getWidth() / 2, sprite.getHeight() / 2);
         sprite.setPosition(x, y);
@@ -70,7 +70,7 @@ public abstract class MenuButton extends Entity {
         Camera c = ControlManager.instance.camera;
         float pX = c.position.x - c.viewportWidth / 2 + pos.x;
         float pY = c.position.y - c.viewportHeight / 2 + pos.y;
-        if (x >= pX && x <= pX + 32 && y >= pY && y <= pY + 32)
+        if (x >= pX && x <= pX + 64 && y >= pY && y <= pY + 64)
             return true;
         return false;
     }
