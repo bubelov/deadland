@@ -89,8 +89,11 @@ public abstract class MenuButton extends Entity {
 
     @Override
     public void render(SpriteBatch batch) {
+        Camera c = ControlManager.instance.camera;
         BitmapFont.TextBounds bounds = font.getBounds(menuName);
-        font.draw(batch, menuName, pos.x + 60 - bounds.width, pos.y + sprite.getHeight() + 15);
+        font.draw(batch, menuName,
+                c.position.x - c.viewportWidth / 2 + pos.x + 60 - bounds.width,
+                c.position.y - c.viewportHeight / 2 + pos.y + sprite.getHeight() + 15);
         System.out.println(menuName);
         super.render(batch);
     }
