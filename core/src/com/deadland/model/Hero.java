@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Circle;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.deadland.ControlManager;
 import com.deadland.DeadlandGame;
@@ -18,7 +19,7 @@ import com.deadland.support.Health;
  */
 
 public class Hero extends Entity {
-    public static Texture texture = new Texture("hero.png");
+    public static Texture texture = new Texture("truck.png");
     public static Texture gunTexture = new Texture("hero_gun.png");
 
     public Vector2 destination = new Vector2(256, 256);
@@ -35,7 +36,7 @@ public class Hero extends Entity {
 
     public Hero(float x, float y) {
         sprite = new Sprite(texture);
-        sprite.setSize(177 / 3, 96 / 3);
+        sprite.setSize(147 / 1.5f, 72 / 1.5f);
         sprite.setCenter(sprite.getWidth() / 2, sprite.getHeight() / 2);
         sprite.setOrigin(sprite.getWidth() / 2, sprite.getHeight() / 2);
 
@@ -72,8 +73,9 @@ public class Hero extends Entity {
                 sprite.setRotation(movementVector.angle());
                 sprite.translate(movementVector.nor().x * 120 * Gdx.graphics.getDeltaTime(), movementVector.nor().y * 120 * Gdx.graphics.getDeltaTime());
                 //boundingRectangle.setPosition(sprite.getX(), sprite.getY());
-                boundingCircle.setPosition(sprite.getX() + sprite.getWidth() / 2, sprite.getY() + sprite.getHeight() / 2);
-                gunSprite.setPosition(x() + sprite.getWidth() / 2 - gunSprite.getWidth() / 2, y() + sprite.getHeight() / 2 - gunSprite.getHeight() / 2);
+
+                boundingCircle.setPosition(sprite.getX() + sprite.getWidth() / 2 + (MathUtils.cos(MathUtils.degreesToRadians * sprite.getRotation()) * 30), sprite.getY() + sprite.getHeight() / 2 + (MathUtils.sin(MathUtils.degreesToRadians * sprite.getRotation()) * 30));
+                gunSprite.setPosition(x() + sprite.getWidth() / 2 - gunSprite.getWidth() / 2 + (MathUtils.cos(MathUtils.degreesToRadians * sprite.getRotation()) * -30), y() + sprite.getHeight() / 2 - gunSprite.getHeight() / 2 + (MathUtils.sin(MathUtils.degreesToRadians * sprite.getRotation()) * -30));
                 gunSprite.setRotation(sprite.getRotation() - 180 + gunRotation);
             }
         }
@@ -82,20 +84,29 @@ public class Hero extends Entity {
 
         if (shootTimeoutSeconds <= 0) {
             for (Entity entity : EntityManager.instance.entities) {
-                if (entity instanceof Zombie && Vector2.dst(x(), y(), entity.x(), entity.y()) < 300) {
-                    float angle = new Vector2(x(), y()).sub(entity.x(), entity.y()).angle() - sprite.getRotation();
+                if (entity instanceof Zombie && Vector2.dst(x(), y(), entity.centerX(), entity.centerY()) < 300) {
+                    Vector2 directionVector = new Vector2(entity.centerX(), entity.centerY()).sub(centerX(), centerY());
+                    float angle = directionVector.angle() - sprite.getRotation();
 
-                    if (angle > -45 && angle < 45) {
+                    angle %= 360;
+                    angle = Math.abs(angle);
+
+                    System.out.println("Angle: " + angle);
+
+                    if (angle >= 180 - 45 && angle <= 180 + 45) {
                         if (ResourcesManager.instance.spendWeapon(1)) {
-                            EntityManager.instance.add(new Bullet(centerX(), centerY(), entity.x(), entity.y()));
+                            EntityManager.instance.add(new Bullet(gunSprite.getX() + gunSprite.getWidth() / 2 + (MathUtils.cos(MathUtils.degreesToRadians * gunSprite.getRotation()) * +20), gunSprite.getY() + gunSprite.getHeight() / 2 + (MathUtils.sin(MathUtils.degreesToRadians * gunSprite.getRotation()) * +20), entity.x(), entity.y()));
                             shootTimeoutSeconds = 0.1f;
                         }
-                        gunRotation = angle;
+
+                        gunRotation = directionVector.angle() - sprite.getRotation() + 180;
                     }
+
                     break;
                 }
             }
         }
+
         health.update(sprite.getX(), sprite.getY());
     }
 
