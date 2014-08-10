@@ -3,6 +3,7 @@ package com.deadland;
 import com.badlogic.gdx.*;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -113,6 +114,8 @@ public class DeadlandGame extends ApplicationAdapter {
                 return false;
             }
         }));
+
+        Gdx.input.setCursorImage(new Pixmap(Gdx.files.internal("cursor.png")), 0, 0);
 
         font = new BitmapFont();
         font.setScale(5);
