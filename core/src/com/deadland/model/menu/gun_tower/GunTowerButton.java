@@ -10,8 +10,8 @@ import com.deadland.model.menu.MenuButton;
 public class GunTowerButton extends MenuButton {
     public static Texture texture = new Texture("menu_gunTower.png");
 
-    public GunTowerButton(float x, float y) {
-        super(x, y);
+    public GunTowerButton(float x, float y, String menuName) {
+        super(x, y, menuName);
     }
 
     @Override

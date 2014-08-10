@@ -10,8 +10,8 @@ import com.deadland.model.menu.MenuButton;
 public class WallButton extends MenuButton {
     public static Texture texture = new Texture("menu_wall.png");
 
-    public WallButton(float x, float y) {
-        super(x, y);
+    public WallButton(float x, float y, String menuName) {
+        super(x, y, menuName);
     }
 
     @Override

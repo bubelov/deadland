@@ -1,8 +1,11 @@
 package com.deadland.model.menu;
 
 import com.badlogic.gdx.graphics.Camera;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.deadland.Chelper;
 import com.deadland.ControlManager;
@@ -17,9 +20,11 @@ public abstract class MenuButton extends Entity {
     public static Texture texture = new Texture("menu_gunTower.png");
 
     private Vector2 pos;
-    private Entity spirit = null;
 
-    public MenuButton(float x, float y) {
+    BitmapFont font;
+    String menuName;
+
+    public MenuButton(float x, float y, String menuName) {
         pos = new Vector2(x, y);
         sprite = new Sprite(getTexture());
         sprite.setSize(64, 64);
@@ -28,6 +33,11 @@ public abstract class MenuButton extends Entity {
         sprite.setPosition(x, y);
 
         z = -1000;
+
+        font = new BitmapFont();
+        font.setScale(1);
+        font.setColor(Color.BLACK);
+        this.menuName = menuName;
     }
 
     protected abstract Texture getTexture();
@@ -76,4 +86,12 @@ public abstract class MenuButton extends Entity {
     }
 
     protected abstract BuildingSpirit createSpirit(float x, float y);
+
+    @Override
+    public void render(SpriteBatch batch) {
+        BitmapFont.TextBounds bounds = font.getBounds(menuName);
+        font.draw(batch, menuName, pos.x + 60 - bounds.width, pos.y + sprite.getHeight() + 15);
+        System.out.println(menuName);
+        super.render(batch);
+    }
 }

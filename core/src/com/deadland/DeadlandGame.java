@@ -40,7 +40,7 @@ public class DeadlandGame extends ApplicationAdapter {
 
         EntityManager.instance.add(new Hero(0, 0));
 
-        for (int i = 0; i < 400; i++) {
+        for (int i = 0; i < 600; i++) {
             Zombie zombie = new Zombie(MathUtils.random(8000), MathUtils.random(6000));
             zombie.destination = new Vector2(400, 300);
             EntityManager.instance.add(zombie);
@@ -52,13 +52,13 @@ public class DeadlandGame extends ApplicationAdapter {
 
         TownHelper.createTown(600, 500, 18);
 
-        MenuButton mb = new GunTowerButton(camera.viewportWidth - 72, 4);
+        MenuButton mb = new GunTowerButton(camera.viewportWidth - 72, 4, "Fire tower");
         EHelper.add(mb);
 
-        mb = new WallButton(camera.viewportWidth - 144, 4);
+        mb = new WallButton(camera.viewportWidth - 72, 90, "Wall");
         EHelper.add(mb);
 
-        mb = new MainTowerButton(camera.viewportWidth - 216, 4);
+        mb = new MainTowerButton(camera.viewportWidth - 72, 174, "Main tower");
         EHelper.add(mb);
 
         Gdx.input.setInputProcessor(new InputMultiplexer(new GestureDetector(new GestureDetector.GestureAdapter() {
@@ -198,7 +198,7 @@ public class DeadlandGame extends ApplicationAdapter {
         if (ControlManager.instance.isUnderConstruction != null)
             EntityManager.instance.renderArea(camera);
 
-        System.out.println(Gdx.graphics.getFramesPerSecond());
+//        System.out.println(Gdx.graphics.getFramesPerSecond());
 
 //        EntityManager.instance.renderCollisions(camera);
     }
