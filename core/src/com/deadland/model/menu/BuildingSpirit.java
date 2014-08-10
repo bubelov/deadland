@@ -44,10 +44,9 @@ public abstract class BuildingSpirit extends Entity {
         } else {
             setNormalTexture();
         }
-        sprite.setPosition(
-                c.position.x - c.viewportWidth / 2 + Gdx.input.getX() - 16,
-                c.position.y + c.viewportHeight / 2 - Gdx.input.getY() - 16
-        );
+        int xPos = (int) (c.position.x - c.viewportWidth / 2 + Gdx.input.getX() - 16);
+        int yPos = (int) (c.position.y + c.viewportHeight / 2 - Gdx.input.getY() - 16);
+        sprite.setPosition(xPos - (xPos % 16) + 16, yPos + 16 - (yPos % 16));
         boundingRectangle.setPosition(sprite.getX(), sprite.getY());
     }
 
@@ -56,7 +55,7 @@ public abstract class BuildingSpirit extends Entity {
         if (!enabled) {
             return;
         }
-        Building building = createBuilding(x, y);
+        Building building = createBuilding(x - (x % 16) + 16, y - (y % 16) + 16);
         if (!collidesAll && ResourcesManager.instance.spendTrash(building.getPrice())) {
             EHelper.add(building);
         }

@@ -2,6 +2,7 @@ package com.deadland.model;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.math.MathUtils;
 
 /**
  * Author: Igor Bubelov
@@ -20,5 +21,6 @@ public class ZombieHead extends Entity {
         sprite.setPosition(x, y);
 
         z = -50;
+        sprite.setRotation(MathUtils.random(360));
     }
 }

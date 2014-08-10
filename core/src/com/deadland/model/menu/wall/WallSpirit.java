@@ -16,7 +16,8 @@ public class WallSpirit extends BuildingSpirit {
 
     public WallSpirit(float x, float y, MenuButton e) {
         super(x, y, e);
-        boundingRectangle = new Rectangle(x + 8, y + 8, 16, 16);
+        sprite.setSize(16, 16);
+        boundingRectangle = new Rectangle(x, y, 16, 16);
     }
 
     @Override
@@ -36,12 +37,12 @@ public class WallSpirit extends BuildingSpirit {
 
     @Override
     protected Building createBuilding(float x, float y) {
-        return new Wall(x - 8, y - 8, 300);
+        return new Wall(x - 16, y - 16, 300);
     }
 
     @Override
     public void update() {
         super.update();
-        boundingRectangle.setPosition(sprite.getX() + 8, sprite.getY() + 8);
+        boundingRectangle.setPosition(sprite.getX(), sprite.getY());
     }
 }

@@ -2,7 +2,7 @@ package com.deadland.model;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.math.Circle;
+import com.badlogic.gdx.math.MathUtils;
 
 /**
  * Author: Igor Bubelov
@@ -21,5 +21,7 @@ public class BloodMess extends Entity {
         sprite.setPosition(x, y);
 
         z = -100;
+
+        sprite.setRotation(MathUtils.random(360));
     }
 }
