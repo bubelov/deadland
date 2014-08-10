@@ -8,6 +8,7 @@ import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.deadland.*;
+import com.deadland.model.building.Cave;
 import com.deadland.support.Health;
 
 /**
@@ -87,7 +88,7 @@ public class Hero extends Entity {
 
         if (shootTimeoutSeconds <= 0) {
             for (Entity entity : EntityManager.instance.entities) {
-                if (entity instanceof Zombie && Vector2.dst(x(), y(), entity.centerX(), entity.centerY()) < 300) {
+                if ((entity instanceof Zombie || entity instanceof Cave) && Vector2.dst(x(), y(), entity.centerX(), entity.centerY()) < 300) {
                     Vector2 directionVector = new Vector2(entity.centerX(), entity.centerY()).sub(centerX(), centerY());
                     float angle = directionVector.angle() - sprite.getRotation();
 
@@ -98,7 +99,7 @@ public class Hero extends Entity {
 
                     if (angle >= 180 - 45 && angle <= 180 + 45) {
                         if (ResourcesManager.instance.spendWeapon(1)) {
-                            EntityManager.instance.add(new Bullet(gunSprite.getX() + gunSprite.getWidth() / 2 + (MathUtils.cos(MathUtils.degreesToRadians * gunSprite.getRotation()) * +20), gunSprite.getY() + gunSprite.getHeight() / 2 + (MathUtils.sin(MathUtils.degreesToRadians * gunSprite.getRotation()) * +20), entity.x(), entity.y()));
+                            EntityManager.instance.add(new Bullet(gunSprite.getX() + gunSprite.getWidth() / 2 + (MathUtils.cos(MathUtils.degreesToRadians * gunSprite.getRotation()) * +20), gunSprite.getY() + gunSprite.getHeight() / 2 + (MathUtils.sin(MathUtils.degreesToRadians * gunSprite.getRotation()) * +20), entity.centerX(), entity.centerY()));
                             shootTimeoutSeconds = 0.1f;
                         }
 

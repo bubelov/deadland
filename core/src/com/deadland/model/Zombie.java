@@ -9,6 +9,7 @@ import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.deadland.EntityManager;
 import com.deadland.EntityUtils;
+import com.deadland.model.building.GunTower;
 import com.deadland.support.Health;
 
 /**
@@ -53,6 +54,13 @@ public class Zombie extends Entity {
         boolean attacking = false;
 
         for (Entity entity : EntityManager.instance.entities) {
+            if (entity instanceof GunTower) {
+                if (Vector2.dst(sprite.getX(), sprite.getY(), entity.sprite.getX(), entity.sprite.getY()) < 300) {
+                    attacking = true;
+                    destination = new Vector2(entity.sprite.getX(), entity.sprite.getY());
+                }
+            }
+
             if (entity instanceof Hero) {
                 Hero hero = (Hero) entity;
 

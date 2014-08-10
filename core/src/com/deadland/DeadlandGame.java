@@ -135,11 +135,8 @@ public class DeadlandGame extends ApplicationAdapter {
 
         EntityManager.instance.add(new Weapons(400, 1200));
         EntityManager.instance.add(new Trash(600, 1000));
-        //ZombieSpawner.instance.registerEmitter(trash);
 
-        Cave cave = new Cave(800, 1400);
-        EntityManager.instance.add(cave);
-        ZombieSpawner.instance.registerEmitter(cave);
+        EntityManager.instance.add(new Cave(800, 1400));
 
         EntityManager.instance.add(new Zombie(100, 100));
         EntityManager.instance.add(new Zombie(110, 100));
