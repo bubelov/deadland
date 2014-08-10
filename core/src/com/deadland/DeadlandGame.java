@@ -8,6 +8,7 @@ import com.badlogic.gdx.input.GestureDetector;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.deadland.model.*;
+import com.deadland.model.building.Cave;
 import com.deadland.model.menu.MenuButton;
 import com.deadland.model.menu.gun_tower.GunTowerButton;
 import com.deadland.model.menu.main_tower.MainTowerButton;
@@ -112,7 +113,15 @@ public class DeadlandGame extends ApplicationAdapter {
                     gameOver = false;
                     EntityManager.instance.entities.clear();
                     ResourcesManager.instance = new ResourcesManager();
+                    ZombieSpawner.instance.clearEmitters();
                     create();
+                }
+
+                if (keycode == Input.Keys.S) {
+                    for (int i = 0; i < 500; i++) {
+                        Zombie zombie = new Zombie(MathUtils.random(8000), MathUtils.random(6000));
+                        EntityManager.instance.add(zombie);
+                    }
                 }
 
                 return false;
@@ -124,8 +133,13 @@ public class DeadlandGame extends ApplicationAdapter {
         font = new BitmapFont();
         font.setScale(5);
 
-        EntityManager.instance.add(new Weapons(400, 1400));
-        EntityManager.instance.add(new Trash(600, 1400));
+        EntityManager.instance.add(new Weapons(400, 1200));
+        EntityManager.instance.add(new Trash(600, 1000));
+        //ZombieSpawner.instance.registerEmitter(trash);
+
+        Cave cave = new Cave(800, 1400);
+        EntityManager.instance.add(cave);
+        ZombieSpawner.instance.registerEmitter(cave);
 
         EntityManager.instance.add(new Zombie(100, 100));
         EntityManager.instance.add(new Zombie(110, 100));
@@ -172,6 +186,8 @@ public class DeadlandGame extends ApplicationAdapter {
                 }
             }
         }
+
+        ZombieSpawner.instance.update();
 
         EntityManager.instance.update();
         EntityManager.instance.render(batch);

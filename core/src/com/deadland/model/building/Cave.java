@@ -16,9 +16,9 @@ public class Cave extends Building {
     @Override
     protected void initSprite(float x, float y) {
         sprite = new Sprite(texture);
-        sprite.setSize(64, 64);
-        sprite.setCenter(32, 32);
-        sprite.setOrigin(32, 32);
+        sprite.setSize(96, 96);
+        sprite.setCenter(sprite.getWidth() / 2, sprite.getHeight() / 2);
+        sprite.setOrigin(sprite.getWidth() / 2, sprite.getHeight() / 2);
         sprite.setPosition(x, y);
     }
 
