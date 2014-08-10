@@ -22,6 +22,16 @@ public class MainTowerSpirit extends BuildingSpirit {
     }
 
     @Override
+    protected void setCollidesTexture() {
+
+    }
+
+    @Override
+    protected void setNormalTexture() {
+
+    }
+
+    @Override
     protected Building createBuilding(float x, float y) {
         return new MainTower(x - 16, y - 16);
     }

@@ -18,6 +18,7 @@ import com.deadland.model.Radar;
 public class GunTower extends Building {
     public static Texture towerTexture = new Texture("building_tower.png");
     public static Texture gunTexture = new Texture("building_gun.png");
+    public static Texture gun2Texture = new Texture("building_gun2.png");
 
     public static int price = 100;
 
@@ -93,5 +94,12 @@ public class GunTower extends Building {
     public void render(SpriteBatch batch) {
         towerSprite.draw(batch);
         super.render(batch);
+    }
+
+    @Override
+    public void onUpgrade() {
+        super.onUpgrade();
+        if (level == 1)
+            sprite.setTexture(gun2Texture);
     }
 }

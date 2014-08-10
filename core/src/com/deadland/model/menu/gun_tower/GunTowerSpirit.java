@@ -10,7 +10,8 @@ import com.deadland.model.menu.MenuButton;
  * Created by inver on 09.08.2014.
  */
 public class GunTowerSpirit extends BuildingSpirit {
-    public static Texture texture = new Texture("building_tower_transparent.png");
+    public static Texture greenTexture = new Texture("building_tower_green_transparent.png");
+    public static Texture redTexture = new Texture("building_tower_red_transparent.png");
 
     public GunTowerSpirit(float x, float y, MenuButton e) {
         super(x, y, e);
@@ -18,7 +19,17 @@ public class GunTowerSpirit extends BuildingSpirit {
 
     @Override
     protected Texture getTexture() {
-        return texture;
+        return greenTexture;
+    }
+
+    @Override
+    protected void setCollidesTexture() {
+        sprite.setTexture(redTexture);
+    }
+
+    @Override
+    protected void setNormalTexture() {
+        sprite.setTexture(greenTexture);
     }
 
     @Override

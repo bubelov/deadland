@@ -84,7 +84,8 @@ public abstract class Building extends Entity {
 
     public void onUpgrade() {
         if (ResourcesManager.instance.spendTrash(100)) {
-            level++;
+            if (level <= 2)
+                level++;
         }
         System.out.println("onUpgrade");
     }

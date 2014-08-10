@@ -60,13 +60,25 @@ public class EntityUtils {
             }
 
             if (e.boundingCircle != null && entity.boundingCircle != null) {
-                if (Intersector.overlaps(entity.boundingCircle, entity.boundingCircle)) {
+                if (Intersector.overlaps(e.boundingCircle, entity.boundingCircle)) {
                     return true;
                 }
             }
 
             if (e.boundingCircle != null && entity.boundingRectangle != null) {
-                if (Intersector.overlaps(entity.boundingCircle, entity.boundingRectangle)) {
+                if (Intersector.overlaps(e.boundingCircle, entity.boundingRectangle)) {
+                    return true;
+                }
+            }
+
+            if (e.boundingRectangle != null && entity.boundingRectangle != null) {
+                if (Intersector.overlaps(e.boundingRectangle, entity.boundingRectangle)) {
+                    return true;
+                }
+            }
+
+            if (e.boundingRectangle != null && entity.boundingCircle != null) {
+                if (Intersector.overlaps(entity.boundingCircle, e.boundingRectangle)) {
                     return true;
                 }
             }

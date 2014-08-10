@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.math.Rectangle;
 import com.deadland.Chelper;
 import com.deadland.EHelper;
 import com.deadland.EntityUtils;
@@ -19,6 +20,8 @@ public abstract class BuildingSpirit extends Entity {
 
     private boolean enabled = true;
 
+    private boolean collidesAll = false;
+
     public BuildingSpirit(float x, float y, MenuButton e) {
         button = e;
         sprite = new Sprite(getTexture());
@@ -27,6 +30,7 @@ public abstract class BuildingSpirit extends Entity {
         sprite.setOrigin(sprite.getWidth() / 2, sprite.getHeight() / 2);
 
         sprite.setPosition(x, y);
+        boundingRectangle = new Rectangle(x, y, 32, 32);
     }
 
     protected abstract Texture getTexture();
@@ -34,10 +38,17 @@ public abstract class BuildingSpirit extends Entity {
     @Override
     public void update() {
         Camera c = Chelper.camera();
+        collidesAll = EntityUtils.collidesAll(this);
+        if (collidesAll) {
+            setCollidesTexture();
+        } else {
+            setNormalTexture();
+        }
         sprite.setPosition(
                 c.position.x - c.viewportWidth / 2 + Gdx.input.getX() - 16,
                 c.position.y + c.viewportHeight / 2 - Gdx.input.getY() - 16
         );
+        boundingRectangle.setPosition(sprite.getX(), sprite.getY());
     }
 
     @Override
@@ -46,10 +57,14 @@ public abstract class BuildingSpirit extends Entity {
             return;
         }
         Building building = createBuilding(x, y);
-        if (!EntityUtils.collidesAll(this) && ResourcesManager.instance.spendTrash(building.getPrice())) {
+        if (!collidesAll && ResourcesManager.instance.spendTrash(building.getPrice())) {
             EHelper.add(building);
         }
     }
+
+    protected abstract void setCollidesTexture();
+
+    protected abstract void setNormalTexture();
 
     protected abstract Building createBuilding(float x, float y);
 
