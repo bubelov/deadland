@@ -79,7 +79,7 @@ public abstract class Building extends Entity {
         ResourcesManager.instance.spendTrash(-50);
         EntityManager.instance.destroy(this);
         ControlManager.instance.isUnderConstruction = null;
-        System.out.println("onRemove");
+        //System.out.println("onRemove");
     }
 
     public void onUpgrade() {
@@ -87,7 +87,7 @@ public abstract class Building extends Entity {
             if (level <= 2)
                 level++;
         }
-        System.out.println("onUpgrade");
+        //System.out.println("onUpgrade");
     }
 
     @Override

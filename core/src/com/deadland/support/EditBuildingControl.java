@@ -50,7 +50,7 @@ public class EditBuildingControl {
     }
 
     public void onClick(float x, float y) {
-        System.out.println("x:" + x + ", y:" + y);
+        //System.out.println("x:" + x + ", y:" + y);
         if (y >= upgradeSprite.getY() && y <= upgradeSprite.getY() + 16) {
             if (x > upgradeSprite.getX() && x <= upgradeSprite.getX() + 16) {
                 e.onUpgrade();

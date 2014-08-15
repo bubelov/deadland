@@ -94,7 +94,7 @@ public abstract class MenuButton extends Entity {
         font.draw(batch, menuName,
                 c.position.x - c.viewportWidth / 2 + pos.x + 60 - bounds.width,
                 c.position.y - c.viewportHeight / 2 + pos.y + sprite.getHeight() + 15);
-        System.out.println(menuName);
+        //System.out.println(menuName);
         super.render(batch);
     }
 }

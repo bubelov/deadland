@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.input.GestureDetector;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.math.Vector3;
 import com.deadland.model.*;
 import com.deadland.model.building.Cave;
 import com.deadland.model.menu.MenuButton;
@@ -29,11 +30,9 @@ public class DeadlandGame extends ApplicationAdapter {
     public void create() {
         instance = this;
 
-        System.out.println(Gdx.graphics.getWidth());
-
-        ControlManager.instance.camera = new OrthographicCamera(800, 600);
+        ControlManager.instance.camera = new OrthographicCamera(Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
         camera = ControlManager.instance.camera;
-        camera.setToOrtho(false, 800, 600);
+        camera.setToOrtho(false, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
 
         batch = new SpriteBatch();
         sand = new Texture("sand1.jpg");
@@ -64,10 +63,9 @@ public class DeadlandGame extends ApplicationAdapter {
         Gdx.input.setInputProcessor(new InputMultiplexer(new GestureDetector(new GestureDetector.GestureAdapter() {
             @Override
             public boolean tap(float x, float y, int count, int button) {
-                x = camera.position.x + x - camera.viewportWidth / 2;
-                y = 600 - y + camera.position.y - 300;
-                EntityManager.instance.onTap(x, y, count, button);
-
+                Vector3 position = new Vector3(x, y, 0);
+                camera.unproject(position);
+                EntityManager.instance.onTap(position.x, position.y, count, button);
                 return false;
             }
 
