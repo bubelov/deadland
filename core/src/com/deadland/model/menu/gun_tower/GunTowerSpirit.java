@@ -1,6 +1,7 @@
 package com.deadland.model.menu.gun_tower;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.deadland.Assets;
 import com.deadland.model.building.Building;
 import com.deadland.model.building.GunTower;
@@ -16,18 +17,18 @@ public class GunTowerSpirit extends BuildingSpirit {
     }
 
     @Override
-    protected Texture getTexture() {
+    protected TextureRegion getTexture() {
         return Assets.Textures.buildingTowerGreenTransparent;
     }
 
     @Override
     protected void setCollidesTexture() {
-        sprite.setTexture(Assets.Textures.buildingTowerRedTransparent);
+        sprite.setRegion(Assets.Textures.buildingTowerRedTransparent);
     }
 
     @Override
     protected void setNormalTexture() {
-        sprite.setTexture(Assets.Textures.buildingTowerGreenTransparent);
+        sprite.setRegion(Assets.Textures.buildingTowerGreenTransparent);
     }
 
     @Override

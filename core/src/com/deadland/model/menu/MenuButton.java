@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.deadland.Chelper;
 import com.deadland.ControlManager;
@@ -38,7 +39,7 @@ public abstract class MenuButton extends Entity {
         this.menuName = menuName;
     }
 
-    protected abstract Texture getTexture();
+    protected abstract TextureRegion getTexture();
 
     @Override
     public void update() {

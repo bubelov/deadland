@@ -1,6 +1,7 @@
 package com.deadland.model.menu.wall;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.deadland.Assets;
 import com.deadland.model.building.Building;
@@ -19,18 +20,18 @@ public class WallSpirit extends BuildingSpirit {
     }
 
     @Override
-    protected Texture getTexture() {
+    protected TextureRegion getTexture() {
         return Assets.Textures.buildingWallGreenTransparent;
     }
 
     @Override
     protected void setCollidesTexture() {
-        sprite.setTexture(Assets.Textures.buildingWallRedTransparent);
+        sprite.setRegion(Assets.Textures.buildingWallRedTransparent);
     }
 
     @Override
     protected void setNormalTexture() {
-        sprite.setTexture(Assets.Textures.buildingWallGreenTransparent);
+        sprite.setRegion(Assets.Textures.buildingWallGreenTransparent);
     }
 
     @Override

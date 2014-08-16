@@ -116,6 +116,6 @@ public class GunTower extends Building {
     public void onUpgrade() {
         super.onUpgrade();
         if (level == 1)
-            sprite.setTexture(Assets.Textures.buildingGun2);
+            sprite.setRegion(Assets.Textures.buildingGun2);
     }
 }

@@ -1,6 +1,7 @@
 package com.deadland.model.menu.main_tower;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.deadland.Assets;
 import com.deadland.model.building.Building;
 import com.deadland.model.building.MainTower;
@@ -16,7 +17,7 @@ public class MainTowerSpirit extends BuildingSpirit {
     }
 
     @Override
-    protected Texture getTexture() {
+    protected TextureRegion getTexture() {
         return Assets.Textures.buildingMainTowerTransparent;
     }
 

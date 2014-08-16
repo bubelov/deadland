@@ -1,6 +1,9 @@
 package com.deadland;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 /**
  * Author: Igor Bubelov
@@ -9,38 +12,38 @@ import com.badlogic.gdx.graphics.Texture;
 
 public final class Assets {
     public static final class Textures {
-        public static Texture blackPixel;
-        public static Texture bloodmess;
-        public static Texture buildingCave;
-        public static Texture buildingGun;
-        public static Texture buildingGun2;
-        public static Texture buildingMainTower;
-        public static Texture buildingMainTowerTransparent;
-        public static Texture buildingRemove;
-        public static Texture buildingTower;
-        public static Texture buildingTowerGreenTransparent;
-        public static Texture buildingTowerRedTransparent;
-        public static Texture buildingUpgrade;
-        public static Texture buildingWall;
-        public static Texture buildingWallGreenTransparent;
-        public static Texture buildingWallRedTransparent;
-        public static Texture bullet;
-        public static Texture gates;
-        public static Texture greenPixel;
-        public static Texture heroGun;
-        public static Texture menuGunTower;
-        public static Texture menuMainTower;
-        public static Texture menuWall;
-        public static Texture pain;
-        public static Texture sand;
-        public static Texture stone;
-        public static Texture stone2;
-        public static Texture trash;
-        public static Texture truck;
-        public static Texture weapons;
-        public static Texture zombie;
-        public static Texture zombieHand;
-        public static Texture zombieHead;
+        public static TextureRegion blackPixel;
+        public static TextureRegion bloodmess;
+        public static TextureRegion buildingCave;
+        public static TextureRegion buildingGun;
+        public static TextureRegion buildingGun2;
+        public static TextureRegion buildingMainTower;
+        public static TextureRegion buildingMainTowerTransparent;
+        public static TextureRegion buildingRemove;
+        public static TextureRegion buildingTower;
+        public static TextureRegion buildingTowerGreenTransparent;
+        public static TextureRegion buildingTowerRedTransparent;
+        public static TextureRegion buildingUpgrade;
+        public static TextureRegion buildingWall;
+        public static TextureRegion buildingWallGreenTransparent;
+        public static TextureRegion buildingWallRedTransparent;
+        public static TextureRegion bullet;
+        public static TextureRegion gates;
+        public static TextureRegion greenPixel;
+        public static TextureRegion heroGun;
+        public static TextureRegion menuGunTower;
+        public static TextureRegion menuMainTower;
+        public static TextureRegion menuWall;
+        public static TextureRegion pain;
+        public static TextureRegion sand;
+        public static TextureRegion stone;
+        public static TextureRegion stone2;
+        public static TextureRegion trash;
+        public static TextureRegion truck;
+        public static TextureRegion weapons;
+        public static TextureRegion zombie;
+        public static TextureRegion zombieHand;
+        public static TextureRegion zombieHead;
     }
 
     public static final class Sounds {
@@ -56,37 +59,39 @@ public final class Assets {
     }
 
     public static void initialize() {
-        Textures.blackPixel = new Texture("blackPixel.png");
-        Textures.bloodmess = new Texture("bloodmess.png");
-        Textures.buildingCave = new Texture("building_cave.png");
-        Textures.buildingGun = new Texture("building_gun.png");
-        Textures.buildingGun2 = new Texture("building_gun2.png");
-        Textures.buildingMainTower = new Texture("building_mainTower.png");
-        Textures.buildingMainTowerTransparent = new Texture("building_mainTower_transparent.png");
-        Textures.buildingRemove = new Texture("building_remove.png");
-        Textures.buildingTower = new Texture("building_tower.png");
-        Textures.buildingTowerGreenTransparent = new Texture("building_tower_green_transparent.png");
-        Textures.buildingTowerRedTransparent = new Texture("building_tower_red_transparent.png");
-        Textures.buildingUpgrade = new Texture("building_upgrade.png");
-        Textures.buildingWall = new Texture("building_wall.png");
-        Textures.buildingWallGreenTransparent = new Texture("building_wall_green_transparent.png");
-        Textures.buildingWallRedTransparent = new Texture("building_wall_red_transparent.png");
-        Textures.bullet = new Texture("bullet.png");
-        Textures.gates = new Texture("gates.png");
-        Textures.greenPixel = new Texture("greenPixel.png");
-        Textures.heroGun = new Texture("hero_gun.png");
-        Textures.menuGunTower = new Texture("menu_gunTower.png");
-        Textures.menuMainTower = new Texture("menu_mainTower.png");
-        Textures.menuWall = new Texture("menu_wall.png");
-        Textures.pain = new Texture("pain.png");
-        Textures.sand = new Texture("sand.png");
-        Textures.stone = new Texture("stone.png");
-        Textures.stone2 = new Texture("stone2.png");
-        Textures.trash = new Texture("trash.png");
-        Textures.truck = new Texture("truck.png");
-        Textures.weapons = new Texture("weapons.png");
-        Textures.zombie = new Texture("zombie.png");
-        Textures.zombieHand = new Texture("zombie_hand.png");
-        Textures.zombieHead = new Texture("zombie_head.png");
+        TextureAtlas atlas = new TextureAtlas(Gdx.files.internal("atlas/atlas.atlas"));
+
+        Textures.blackPixel = atlas.findRegion("blackPixel");
+        Textures.bloodmess = atlas.findRegion("bloodmess");
+        Textures.buildingCave = atlas.findRegion("building_cave");
+        Textures.buildingGun = atlas.findRegion("building_gun");
+        Textures.buildingGun2 = atlas.findRegion("building_gun2");
+        Textures.buildingMainTower = atlas.findRegion("building_mainTower");
+        Textures.buildingMainTowerTransparent = atlas.findRegion("building_mainTower_transparent");
+        Textures.buildingRemove = atlas.findRegion("building_remove");
+        Textures.buildingTower = atlas.findRegion("building_tower");
+        Textures.buildingTowerGreenTransparent = atlas.findRegion("building_tower_green_transparent");
+        Textures.buildingTowerRedTransparent = atlas.findRegion("building_tower_red_transparent");
+        Textures.buildingUpgrade = atlas.findRegion("building_upgrade");
+        Textures.buildingWall = atlas.findRegion("building_wall");
+        Textures.buildingWallGreenTransparent = atlas.findRegion("building_wall_green_transparent");
+        Textures.buildingWallRedTransparent = atlas.findRegion("building_wall_red_transparent");
+        Textures.bullet = atlas.findRegion("bullet");
+        Textures.gates = atlas.findRegion("gates");
+        Textures.greenPixel = atlas.findRegion("greenPixel");
+        Textures.heroGun = atlas.findRegion("hero_gun");
+        Textures.menuGunTower = atlas.findRegion("menu_gunTower");
+        Textures.menuMainTower = atlas.findRegion("menu_mainTower");
+        Textures.menuWall = atlas.findRegion("menu_wall");
+        Textures.pain = atlas.findRegion("pain");
+        Textures.sand = atlas.findRegion("sand");
+        Textures.stone = atlas.findRegion("stone");
+        Textures.stone2 = atlas.findRegion("stone2");
+        Textures.trash = atlas.findRegion("trash");
+        Textures.truck = atlas.findRegion("truck");
+        Textures.weapons = atlas.findRegion("weapons");
+        Textures.zombie = atlas.findRegion("zombie");
+        Textures.zombieHand = atlas.findRegion("zombie_hand");
+        Textures.zombieHead = atlas.findRegion("zombie_head");
     }
 }
