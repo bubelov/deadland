@@ -1,17 +1,14 @@
 package com.deadland.support;
 
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.deadland.Assets;
 import com.deadland.model.building.Building;
 
 /**
  * Created by inver on 09.08.2014.
  */
 public class EditBuildingControl {
-    private static Texture removeTexture = new Texture("building_remove.png");
-    private static Texture upgradeTexture = new Texture("building_upgrade.png");
-
     private Sprite upgradeSprite;
     private Sprite removeSprite;
 
@@ -20,13 +17,13 @@ public class EditBuildingControl {
     public EditBuildingControl(Building e, float panelMargin) {
         this.e = e;
 
-        upgradeSprite = new Sprite(upgradeTexture);
+        upgradeSprite = new Sprite(Assets.Textures.buildingUpgrade);
         upgradeSprite.setSize(16, 16);
         upgradeSprite.setCenter(8, 8);
         upgradeSprite.setOrigin(8, 8);
         upgradeSprite.setPosition(e.x() - 8, e.y() + panelMargin + 1);
 
-        removeSprite = new Sprite(removeTexture);
+        removeSprite = new Sprite(Assets.Textures.buildingRemove);
         removeSprite.setSize(16, 16);
         removeSprite.setCenter(8, 8);
         removeSprite.setOrigin(8, 8);

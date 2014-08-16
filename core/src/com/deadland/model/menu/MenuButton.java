@@ -17,8 +17,6 @@ import com.deadland.model.Entity;
  * Created by inver on 10.08.2014.
  */
 public abstract class MenuButton extends Entity {
-    public static Texture texture = new Texture("menu_gunTower.png");
-
     private Vector2 pos;
 
     BitmapFont font;

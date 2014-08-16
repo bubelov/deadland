@@ -17,7 +17,7 @@ public class MenuManager {
     public void init() {
         stage = new Stage();
         Skin skin = new Skin();
-        skin.add("gunTower", new Texture("menu_gunTower.png"));
+        skin.add("gunTower", Assets.Textures.menuGunTower);
         Button.ButtonStyle style = new Button.ButtonStyle();
 //        textButtonStyle.font = font;
 //        textButtonStyle.up = skin.getDrawable("up-button");

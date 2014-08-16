@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
+import com.deadland.Assets;
 import com.deadland.EntityManager;
 import com.deadland.EntityUtils;
 import com.deadland.model.Bullet;
@@ -15,8 +16,6 @@ import com.deadland.model.Zombie;
  * Created by inver on 10.08.2014.
  */
 public class Cave extends Building {
-    public static Texture texture = new Texture("building_cave.png");
-
     public float spawnTimeout = 10;
 
     public Cave(float x, float y) {
@@ -25,7 +24,7 @@ public class Cave extends Building {
 
     @Override
     protected void initSprite(float x, float y) {
-        sprite = new Sprite(texture);
+        sprite = new Sprite(Assets.Textures.buildingCave);
         sprite.setSize(96, 96);
         sprite.setCenter(sprite.getWidth() / 2, sprite.getHeight() / 2);
         sprite.setOrigin(sprite.getWidth() / 2, sprite.getHeight() / 2);

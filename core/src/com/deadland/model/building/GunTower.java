@@ -1,12 +1,12 @@
 package com.deadland.model.building;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
+import com.deadland.Assets;
 import com.deadland.EntityManager;
 import com.deadland.ResourcesManager;
 import com.deadland.model.Bullet;
@@ -17,10 +17,6 @@ import com.deadland.model.Radar;
  * Created by inver on 09.08.2014.
  */
 public class GunTower extends Building {
-    public static Texture towerTexture = new Texture("building_tower.png");
-    public static Texture gunTexture = new Texture("building_gun.png");
-    public static Texture gun2Texture = new Texture("building_gun2.png");
-
     public static int price = 100;
 
     private Sprite towerSprite;
@@ -39,13 +35,13 @@ public class GunTower extends Building {
 
     @Override
     protected void initSprite(float x, float y) {
-        towerSprite = new Sprite(towerTexture);
+        towerSprite = new Sprite(Assets.Textures.buildingTower);
         towerSprite.setSize(32, 32);
         towerSprite.setCenter(16, 16);
         towerSprite.setOrigin(16, 16);
         towerSprite.setPosition(x, y);
 
-        sprite = new Sprite(gunTexture);
+        sprite = new Sprite(Assets.Textures.buildingGun);
         sprite.setSize(32, 32);
         sprite.setCenter(16, 16);
         sprite.setOrigin(16, 16);
@@ -120,6 +116,6 @@ public class GunTower extends Building {
     public void onUpgrade() {
         super.onUpgrade();
         if (level == 1)
-            sprite.setTexture(gun2Texture);
+            sprite.setTexture(Assets.Textures.buildingGun2);
     }
 }

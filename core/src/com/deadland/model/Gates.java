@@ -1,10 +1,10 @@
 package com.deadland.model;
 
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
+import com.deadland.Assets;
 import com.deadland.EntityManager;
 
 /**
@@ -13,12 +13,10 @@ import com.deadland.EntityManager;
  */
 
 public class Gates extends Entity {
-    public static Texture texture = new Texture("gates.jpg");
-
     boolean visible = true;
 
     public Gates(float x, float y) {
-        sprite = new Sprite(texture);
+        sprite = new Sprite(Assets.Textures.gates);
         sprite.setSize(16, 96);
         sprite.setCenter(sprite.getWidth() / 2, sprite.getHeight() / 2);
         sprite.setOrigin(sprite.getWidth() / 2, sprite.getHeight() / 2);

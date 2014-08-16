@@ -1,15 +1,13 @@
 package com.deadland.model.building;
 
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Rectangle;
+import com.deadland.Assets;
 
 /**
  * Created by inver on 09.08.2014.
  */
 public class MainTower extends Building {
-    public static Texture texture = new Texture("building_mainTower.png");
-
     public float buildingRadius = 250;
 
     public MainTower(float x, float y) {
@@ -20,7 +18,7 @@ public class MainTower extends Building {
 
     @Override
     protected void initSprite(float x, float y) {
-        sprite = new Sprite(texture);
+        sprite = new Sprite(Assets.Textures.buildingMainTower);
         sprite.setSize(32, 32);
         sprite.setCenter(16, 16);
         sprite.setOrigin(16, 16);

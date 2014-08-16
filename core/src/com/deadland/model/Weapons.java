@@ -1,8 +1,8 @@
 package com.deadland.model;
 
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Rectangle;
+import com.deadland.Assets;
 import com.deadland.EntityManager;
 import com.deadland.ResourcesManager;
 
@@ -12,9 +12,8 @@ import com.deadland.ResourcesManager;
  */
 
 public class Weapons extends Entity {
-    public static Texture texture = new Texture("weapons.png");
     public Weapons(float x, float y) {
-        sprite = new Sprite(texture);
+        sprite = new Sprite(Assets.Textures.weapons);
         sprite.setSize(64, 64);
         sprite.setCenter(sprite.getWidth() / 2, sprite.getHeight() / 2);
         sprite.setOrigin(sprite.getWidth() / 2, sprite.getHeight() / 2);

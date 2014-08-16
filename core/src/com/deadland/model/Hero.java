@@ -17,10 +17,6 @@ import com.deadland.support.Health;
  */
 
 public class Hero extends Entity {
-    public static Texture texture = new Texture("truck.png");
-    public static Texture gunTexture = new Texture("hero_gun.png");
-    public static Texture painTexture = new Texture("pain.png");
-
     public Vector2 destination = new Vector2(256, 256);
 
     public Health health;
@@ -36,7 +32,7 @@ public class Hero extends Entity {
     private float painDurationSeconds;
 
     public Hero(float x, float y) {
-        sprite = new Sprite(texture);
+        sprite = new Sprite(Assets.Textures.truck);
         sprite.setSize(147 / 1.5f, 72 / 1.5f);
         sprite.setCenter(sprite.getWidth() / 2, sprite.getHeight() / 2);
         sprite.setOrigin(sprite.getWidth() / 2, sprite.getHeight() / 2);
@@ -46,7 +42,7 @@ public class Hero extends Entity {
         boundingCircle = new Circle(sprite.getX() + sprite.getWidth() / 2, sprite.getY() + sprite.getHeight() / 2, 20);
         health = new Health(this, 100, 40, 60);
 
-        gunSprite = new Sprite(gunTexture);
+        gunSprite = new Sprite(Assets.Textures.heroGun);
         gunSprite.setSize(78 / 1.5f, 26 / 1.5f);
         gunSprite.setCenter(gunSprite.getWidth() / 2, gunSprite.getHeight() / 2);
         gunSprite.setOrigin(gunSprite.getWidth() / 2, gunSprite.getHeight() / 2);
@@ -152,7 +148,7 @@ public class Hero extends Entity {
         painDurationSeconds -= Gdx.graphics.getDeltaTime();
 
         if (painDurationSeconds > 0) {
-            batch.draw(painTexture, 0, 0, 8000, 6000);
+            batch.draw(Assets.Textures.pain, 0, 0, 8000, 6000);
         }
     }
 }

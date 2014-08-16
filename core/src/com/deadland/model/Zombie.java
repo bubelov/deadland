@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
+import com.deadland.Assets;
 import com.deadland.EntityManager;
 import com.deadland.EntityUtils;
 import com.deadland.model.building.GunTower;
@@ -20,8 +21,6 @@ import com.deadland.support.Health;
 public class Zombie extends Entity {
     public static float POWER = 1f;
 
-    public static Texture texture = new Texture("zombie.png");
-
     public Vector2 destination = null;
 
     public float moveTimeoutSeconds = MathUtils.random(0, 40);
@@ -29,7 +28,7 @@ public class Zombie extends Entity {
     private Health health;
 
     public Zombie(float x, float y) {
-        sprite = new Sprite(texture);
+        sprite = new Sprite(Assets.Textures.zombie);
         sprite.setSize(28, 19);
         sprite.setCenter(sprite.getWidth() / 2, sprite.getHeight() / 2);
         sprite.setOrigin(sprite.getWidth() / 2, sprite.getHeight() / 2);

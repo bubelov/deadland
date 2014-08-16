@@ -1,18 +1,15 @@
 package com.deadland.support;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.deadland.Assets;
 import com.deadland.model.Entity;
 
 /**
  * Created by inver on 09.08.2014.
  */
 public class Health {
-    private static Texture blackPixel = new Texture("blackPixel.png");
-    private static Texture greenPixel = new Texture("greenPixel.png");
-
     private Sprite blackSprite;
     private Sprite greenSprite;
 
@@ -30,13 +27,13 @@ public class Health {
         this.panelMargin = panelMargin;
         this.panelWidth = panelWidth;
 
-        blackSprite = new Sprite(blackPixel);
+        blackSprite = new Sprite(Assets.Textures.blackPixel);
         blackSprite.setSize(panelWidth, 5);
         blackSprite.setCenter(panelWidth / 2, 0);
         blackSprite.setOrigin(panelWidth / 2, 0);
         blackSprite.setPosition(entity.x(), entity.y() + panelMargin);
 
-        greenSprite = new Sprite(greenPixel);
+        greenSprite = new Sprite(Assets.Textures.greenPixel);
         greenSprite.setSize(panelWidth - 2, 3);
         greenSprite.setCenter((panelWidth - 2) / 2, 0);
         greenSprite.setOrigin((panelWidth - 2) / 2, 0);

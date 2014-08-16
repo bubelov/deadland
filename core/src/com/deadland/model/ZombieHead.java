@@ -1,8 +1,8 @@
 package com.deadland.model;
 
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.MathUtils;
+import com.deadland.Assets;
 
 /**
  * Author: Igor Bubelov
@@ -10,10 +10,8 @@ import com.badlogic.gdx.math.MathUtils;
  */
 
 public class ZombieHead extends Entity {
-    public static Texture texture = new Texture("zombie_head.png");
-
     public ZombieHead(float x, float y) {
-        sprite = new Sprite(texture);
+        sprite = new Sprite(Assets.Textures.zombieHead);
         sprite.setSize(13, 9);
         sprite.setCenter(sprite.getWidth() / 2, sprite.getHeight() / 2);
         sprite.setOrigin(sprite.getWidth() / 2, sprite.getHeight() / 2);

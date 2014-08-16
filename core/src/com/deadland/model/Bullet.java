@@ -1,20 +1,18 @@
 package com.deadland.model;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.ParticleEffect;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.Vector2;
+import com.deadland.Assets;
 import com.deadland.EntityManager;
 
 /**
  * Created by inver on 09.08.2014.
  */
 public class Bullet extends Entity {
-    public static Texture texture = new Texture("bullet.png");
-
     private float speed = 500;
 
     private float power = 2;
@@ -34,7 +32,7 @@ public class Bullet extends Entity {
         pos.setAngle(angle);
         this.power = power;
 
-        sprite = new Sprite(texture);
+        sprite = new Sprite(Assets.Textures.bullet);
         sprite.setSize(8, 2);
         sprite.setCenter(sprite.getWidth() / 2, sprite.getHeight() / 2);
         sprite.setOrigin(sprite.getWidth() / 2, sprite.getHeight() / 2);
@@ -60,7 +58,7 @@ public class Bullet extends Entity {
     public Bullet(float x, float y, float dstX, float dstY, boolean fire) {
         pos = new Vector2(dstX - x, dstY - y);
 
-        sprite = new Sprite(texture);
+        sprite = new Sprite(Assets.Textures.bullet);
         sprite.setSize(8, 2);
         sprite.setCenter(sprite.getWidth() / 2, sprite.getHeight() / 2);
         sprite.setOrigin(sprite.getWidth() / 2, sprite.getHeight() / 2);

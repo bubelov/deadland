@@ -1,7 +1,7 @@
 package com.deadland.model;
 
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.deadland.Assets;
 
 /**
  * Author: Igor Bubelov
@@ -9,11 +9,8 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
  */
 
 public class Stone extends Entity {
-    public static Texture texture = new Texture("stone.jpg");
-    public static Texture texture2 = new Texture("stone2.jpg");
-
     public Stone(float x, float y) {
-        sprite = new Sprite(x % 2 == 0 ? texture : texture2);
+        sprite = new Sprite(x % 2 == 0 ? Assets.Textures.stone : Assets.Textures.stone2);
         sprite.setSize(32, 32);
         sprite.setCenter(sprite.getWidth() / 2, sprite.getHeight() / 2);
         sprite.setOrigin(sprite.getWidth() / 2, sprite.getHeight() / 2);

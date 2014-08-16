@@ -1,8 +1,8 @@
 package com.deadland.model;
 
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.MathUtils;
+import com.deadland.Assets;
 
 /**
  * Author: Igor Bubelov
@@ -10,10 +10,8 @@ import com.badlogic.gdx.math.MathUtils;
  */
 
 public class ZombieHand extends Entity {
-    public static Texture texture = new Texture("zombie_hand.png");
-
     public ZombieHand(float x, float y) {
-        sprite = new Sprite(texture);
+        sprite = new Sprite(Assets.Textures.zombieHand);
         sprite.setSize(20, 7);
         sprite.setCenter(sprite.getWidth() / 2, sprite.getHeight() / 2);
         sprite.setOrigin(sprite.getWidth() / 2, sprite.getHeight() / 2);
