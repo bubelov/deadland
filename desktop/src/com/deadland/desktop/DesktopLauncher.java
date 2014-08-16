@@ -8,8 +8,8 @@ import com.deadland.DeadlandGame;
 public class DesktopLauncher {
 	public static void main (String[] arg) {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
-        config.width = Constants.SCREEN_WIDTH / 2;
-        config.height = Constants.SCREEN_HEIGHT / 2;
+        config.width = Constants.SCREEN_WIDTH;
+        config.height = Constants.SCREEN_HEIGHT;
         config.title = "Deadland";
 		new LwjglApplication(new DeadlandGame(), config);
 	}
