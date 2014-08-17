@@ -12,7 +12,7 @@ import com.deadland.Assets;
 public class ZombieHead extends Entity {
     public ZombieHead(float x, float y) {
         sprite = new Sprite(Assets.Textures.zombieHead);
-        sprite.setSize(13, 9);
+        sprite.setSize(26, 18);
         sprite.setCenter(sprite.getWidth() / 2, sprite.getHeight() / 2);
         sprite.setOrigin(sprite.getWidth() / 2, sprite.getHeight() / 2);
 

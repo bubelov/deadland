@@ -17,6 +17,9 @@ import com.deadland.model.Radar;
  * Created by inver on 09.08.2014.
  */
 public class GunTower extends Building {
+    private static final int WIDTH = 64;
+    private static final int HEIGHT = 64;
+
     public static int price = 100;
 
     private Sprite towerSprite;
@@ -30,21 +33,21 @@ public class GunTower extends Building {
         super(x, y, 300);
         radar = new Radar(this);
 
-        boundingRectangle = new Rectangle(x, y, 32, 32);
+        boundingRectangle = new Rectangle(x, y, WIDTH, HEIGHT);
     }
 
     @Override
     protected void initSprite(float x, float y) {
         towerSprite = new Sprite(Assets.Textures.buildingTower);
-        towerSprite.setSize(32, 32);
-        towerSprite.setCenter(16, 16);
-        towerSprite.setOrigin(16, 16);
+        towerSprite.setSize(WIDTH, HEIGHT);
+        towerSprite.setCenter(WIDTH / 2, HEIGHT / 2);
+        towerSprite.setOrigin(WIDTH / 2, HEIGHT / 2);
         towerSprite.setPosition(x, y);
 
         sprite = new Sprite(Assets.Textures.buildingGun);
-        sprite.setSize(32, 32);
-        sprite.setCenter(16, 16);
-        sprite.setOrigin(16, 16);
+        sprite.setSize(WIDTH, HEIGHT);
+        sprite.setCenter(WIDTH / 2, HEIGHT / 2);
+        sprite.setOrigin(WIDTH / 2, HEIGHT / 2);
         sprite.setPosition(x, y);
 
         //boundingRectangle = new Rectangle(x(), y(), sprite.getWidth() / 2, sprite.getHeight() / 2);
@@ -115,6 +118,7 @@ public class GunTower extends Building {
     @Override
     public void onUpgrade() {
         super.onUpgrade();
+
         if (level == 1)
             sprite.setRegion(Assets.Textures.buildingGun2);
     }

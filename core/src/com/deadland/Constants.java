@@ -6,6 +6,6 @@ package com.deadland;
  */
 
 public interface Constants {
-    int SCREEN_WIDTH = 1920 / 2;
-    int SCREEN_HEIGHT = 1080 / 2;
+    int SCREEN_WIDTH = 1920;
+    int SCREEN_HEIGHT = 1080;
 }

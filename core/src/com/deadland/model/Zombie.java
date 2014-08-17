@@ -29,13 +29,13 @@ public class Zombie extends Entity {
 
     public Zombie(float x, float y) {
         sprite = new Sprite(Assets.Textures.zombie);
-        sprite.setSize(28, 19);
+        sprite.setSize(28 *  2, 19 * 2);
         sprite.setCenter(sprite.getWidth() / 2, sprite.getHeight() / 2);
         sprite.setOrigin(sprite.getWidth() / 2, sprite.getHeight() / 2);
 
         sprite.setPosition(x, y);
 
-        boundingCircle = new Circle(x, y, 5);
+        boundingCircle = new Circle(x, y, 10);
 
         health = new Health(this, 30, 30, 30);
     }
@@ -54,7 +54,7 @@ public class Zombie extends Entity {
 
         for (Entity entity : EntityManager.instance.entities) {
             if (entity instanceof GunTower) {
-                if (Vector2.dst(sprite.getX(), sprite.getY(), entity.sprite.getX(), entity.sprite.getY()) < 300) {
+                if (Vector2.dst(sprite.getX(), sprite.getY(), entity.sprite.getX(), entity.sprite.getY()) < 600) {
                     attacking = true;
                     destination = new Vector2(entity.sprite.getX(), entity.sprite.getY());
                 }
@@ -63,7 +63,7 @@ public class Zombie extends Entity {
             if (entity instanceof Hero) {
                 Hero hero = (Hero) entity;
 
-                if (Vector2.dst(sprite.getX(), sprite.getY(), hero.sprite.getX(), hero.sprite.getY()) < 300) {
+                if (Vector2.dst(sprite.getX(), sprite.getY(), hero.sprite.getX(), hero.sprite.getY()) < 600) {
                     attacking = true;
                     destination = new Vector2(hero.sprite.getX(), hero.sprite.getY());
                 }
@@ -75,12 +75,12 @@ public class Zombie extends Entity {
             movementVector.sub(sprite.getX(), sprite.getY());
 
             sprite.setRotation(movementVector.angle());
-            sprite.translate(movementVector.nor().x * 50 * Gdx.graphics.getDeltaTime(), movementVector.nor().y * 50 * Gdx.graphics.getDeltaTime());
+            sprite.translate(movementVector.nor().x * 100 * Gdx.graphics.getDeltaTime(), movementVector.nor().y * 100 * Gdx.graphics.getDeltaTime());
             boundingCircle.setPosition(sprite.getX() + sprite.getWidth() / 2, sprite.getY() + sprite.getHeight() / 2);
 
             if (EntityUtils.collidesAny(this, EntityManager.instance.entities, true)) {
                 sprite.setRotation(movementVector.angle());
-                sprite.translate(-movementVector.nor().x * 50 * Gdx.graphics.getDeltaTime(), -movementVector.nor().y * 50 * Gdx.graphics.getDeltaTime());
+                sprite.translate(-movementVector.nor().x * 100 * Gdx.graphics.getDeltaTime(), -movementVector.nor().y * 100 * Gdx.graphics.getDeltaTime());
                 boundingCircle.setPosition(sprite.getX() + sprite.getWidth() / 2, sprite.getY() + sprite.getHeight() / 2);
             }
         }

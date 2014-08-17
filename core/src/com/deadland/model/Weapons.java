@@ -14,7 +14,7 @@ import com.deadland.ResourcesManager;
 public class Weapons extends Entity {
     public Weapons(float x, float y) {
         sprite = new Sprite(Assets.Textures.weapons);
-        sprite.setSize(64, 64);
+        sprite.setSize(128, 128);
         sprite.setCenter(sprite.getWidth() / 2, sprite.getHeight() / 2);
         sprite.setOrigin(sprite.getWidth() / 2, sprite.getHeight() / 2);
 

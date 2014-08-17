@@ -33,7 +33,7 @@ public class Bullet extends Entity {
         this.power = power;
 
         sprite = new Sprite(Assets.Textures.bullet);
-        sprite.setSize(8, 2);
+        sprite.setSize(16, 4);
         sprite.setCenter(sprite.getWidth() / 2, sprite.getHeight() / 2);
         sprite.setOrigin(sprite.getWidth() / 2, sprite.getHeight() / 2);
 

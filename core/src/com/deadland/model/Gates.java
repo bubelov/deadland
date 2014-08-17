@@ -17,7 +17,7 @@ public class Gates extends Entity {
 
     public Gates(float x, float y) {
         sprite = new Sprite(Assets.Textures.gates);
-        sprite.setSize(16, 96);
+        sprite.setSize(32, 192);
         sprite.setCenter(sprite.getWidth() / 2, sprite.getHeight() / 2);
         sprite.setOrigin(sprite.getWidth() / 2, sprite.getHeight() / 2);
 
@@ -38,7 +38,7 @@ public class Gates extends Entity {
             if (entity instanceof Hero) {
                 Hero hero = (Hero)entity;
 
-                if (Vector2.dst(x(), y(), hero.x(), hero.y()) < 100) {
+                if (Vector2.dst(x(), y(), hero.x(), hero.y()) < 200) {
                     visible = false;
                 }
             }

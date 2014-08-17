@@ -12,7 +12,7 @@ import com.deadland.Assets;
 public class BloodMess extends Entity {
     public BloodMess(float x, float y) {
         sprite = new Sprite(Assets.Textures.bloodmess);
-        sprite.setSize(32, 32);
+        sprite.setSize(64, 64);
         sprite.setCenter(sprite.getWidth() / 2, sprite.getHeight() / 2);
         sprite.setOrigin(sprite.getWidth() / 2, sprite.getHeight() / 2);
 

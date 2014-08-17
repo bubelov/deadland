@@ -1,7 +1,6 @@
 package com.deadland.model.building;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
@@ -16,6 +15,9 @@ import com.deadland.model.Zombie;
  * Created by inver on 10.08.2014.
  */
 public class Cave extends Building {
+    private static final int WIDTH = 96 * 2;
+    private static final int HEIGHT = 96 * 2;
+
     public float spawnTimeout = 10;
 
     public Cave(float x, float y) {
@@ -25,7 +27,7 @@ public class Cave extends Building {
     @Override
     protected void initSprite(float x, float y) {
         sprite = new Sprite(Assets.Textures.buildingCave);
-        sprite.setSize(96, 96);
+        sprite.setSize(WIDTH, HEIGHT);
         sprite.setCenter(sprite.getWidth() / 2, sprite.getHeight() / 2);
         sprite.setOrigin(sprite.getWidth() / 2, sprite.getHeight() / 2);
         sprite.setPosition(x, y);
@@ -62,7 +64,7 @@ public class Cave extends Building {
                 Zombie zombie = new Zombie(centerX() - 100 + MathUtils.random(200), centerY() - 100 + MathUtils.random(200));
 
                 while (EntityUtils.collidesAny(zombie, EntityManager.instance.entities, false)) {
-                    zombie = new Zombie(centerX() - 100 + MathUtils.random(200), centerY() - 100 + MathUtils.random(200));
+                    zombie = new Zombie(centerX() - 200 + MathUtils.random(400), centerY() - 200 + MathUtils.random(400));
                 }
 
                 EntityManager.instance.add(zombie);

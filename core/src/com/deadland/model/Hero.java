@@ -1,7 +1,6 @@
 package com.deadland.model;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Circle;
@@ -17,7 +16,7 @@ import com.deadland.support.Health;
  */
 
 public class Hero extends Entity {
-    public Vector2 destination = new Vector2(256, 256);
+    public Vector2 destination = new Vector2(512, 512);
 
     public Health health;
 
@@ -33,21 +32,19 @@ public class Hero extends Entity {
 
     public Hero(float x, float y) {
         sprite = new Sprite(Assets.Textures.truck);
-        sprite.setSize(147 / 1.5f, 72 / 1.5f);
+        sprite.setSize(147 / 1.5f * 2f, 72 / 1.5f * 2f);
         sprite.setCenter(sprite.getWidth() / 2, sprite.getHeight() / 2);
         sprite.setOrigin(sprite.getWidth() / 2, sprite.getHeight() / 2);
 
         sprite.setPosition(x, y);
 
-        boundingCircle = new Circle(sprite.getX() + sprite.getWidth() / 2, sprite.getY() + sprite.getHeight() / 2, 20);
+        boundingCircle = new Circle(sprite.getX() + sprite.getWidth() / 2, sprite.getY() + sprite.getHeight() / 2, 40);
         health = new Health(this, 100, 40, 60);
 
         gunSprite = new Sprite(Assets.Textures.heroGun);
-        gunSprite.setSize(78 / 1.5f, 26 / 1.5f);
+        gunSprite.setSize(78 / 1.5f * 2f, 26 / 1.5f * 2f);
         gunSprite.setCenter(gunSprite.getWidth() / 2, gunSprite.getHeight() / 2);
         gunSprite.setOrigin(gunSprite.getWidth() / 2, gunSprite.getHeight() / 2);
-
-        //gunSprite.setPosition(x() + sprite.getWidth() / 2 - gunSprite.getWidth() / 2, y() + sprite.getHeight() / 2 - gunSprite.getHeight() / 2);
     }
 
     @Override
@@ -68,10 +65,10 @@ public class Hero extends Entity {
             } else {
                 moving = true;
                 sprite.setRotation(movementVector.angle());
-                sprite.translate(movementVector.nor().x * 120 * Gdx.graphics.getDeltaTime(), movementVector.nor().y * 120 * Gdx.graphics.getDeltaTime());
+                sprite.translate(movementVector.nor().x * 240 * Gdx.graphics.getDeltaTime(), movementVector.nor().y * 240 * Gdx.graphics.getDeltaTime());
 
                 if (EntityUtils.collidesWithBuilding(this, EntityManager.instance.entities)) {
-                    sprite.translate(-movementVector.x * 120 * Gdx.graphics.getDeltaTime(), -movementVector.y * 120 * Gdx.graphics.getDeltaTime());
+                    sprite.translate(-movementVector.x * 240 * Gdx.graphics.getDeltaTime(), -movementVector.y * 240 * Gdx.graphics.getDeltaTime());
                 }
 
                 boundingCircle.setPosition(sprite.getX() + sprite.getWidth() / 2 + (MathUtils.cos(MathUtils.degreesToRadians * sprite.getRotation()) * 30), sprite.getY() + sprite.getHeight() / 2 + (MathUtils.sin(MathUtils.degreesToRadians * sprite.getRotation()) * 30));
@@ -84,7 +81,7 @@ public class Hero extends Entity {
 
         if (shootTimeoutSeconds <= 0) {
             for (Entity entity : EntityManager.instance.entities) {
-                if ((entity instanceof Zombie || entity instanceof Cave) && Vector2.dst(x(), y(), entity.centerX(), entity.centerY()) < 300) {
+                if ((entity instanceof Zombie || entity instanceof Cave) && Vector2.dst(x(), y(), entity.centerX(), entity.centerY()) < 600) {
                     Vector2 directionVector = new Vector2(entity.centerX(), entity.centerY()).sub(centerX(), centerY());
                     float angle = directionVector.angle() - sprite.getRotation();
 

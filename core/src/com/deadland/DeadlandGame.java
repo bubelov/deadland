@@ -15,6 +15,8 @@ import com.deadland.model.menu.gun_tower.GunTowerButton;
 import com.deadland.model.menu.main_tower.MainTowerButton;
 import com.deadland.model.menu.wall.WallButton;
 
+import java.util.concurrent.TimeUnit;
+
 public class DeadlandGame extends ApplicationAdapter {
     public static DeadlandGame instance;
 
@@ -40,8 +42,8 @@ public class DeadlandGame extends ApplicationAdapter {
         EntityManager.instance.add(new Hero(0, 0));
 
         for (int i = 0; i < 100; i++) {
-            Zombie zombie = new Zombie(MathUtils.random(8000), MathUtils.random(6000));
-            zombie.destination = new Vector2(400, 300);
+            Zombie zombie = new Zombie(MathUtils.random(16000), MathUtils.random(12000));
+            zombie.destination = new Vector2(800, 600);
             EntityManager.instance.add(zombie);
         }
 
@@ -49,7 +51,7 @@ public class DeadlandGame extends ApplicationAdapter {
 //            EntityManager.instance.add(new Stone(MathUtils.random(8000), MathUtils.random(6000)));
 //        }
 
-        TownHelper.createTown(600, 500, 18);
+        TownHelper.createTown(1200, 1000, 18);
 
         MenuButton mb = new GunTowerButton(camera.viewportWidth - 72, 4, "Fire tower");
         EHelper.add(mb);
@@ -131,17 +133,17 @@ public class DeadlandGame extends ApplicationAdapter {
         font = new BitmapFont();
         font.setScale(5);
 
-        EntityManager.instance.add(new Weapons(400, 1200));
-        EntityManager.instance.add(new Trash(600, 1000));
+        EntityManager.instance.add(new Weapons(800, 2400));
+        EntityManager.instance.add(new Trash(1200, 2000));
 
-        EntityManager.instance.add(new Cave(800, 1400));
+        EntityManager.instance.add(new Cave(1600, 2800));
 
-        EntityManager.instance.add(new Zombie(100, 100));
-        EntityManager.instance.add(new Zombie(110, 100));
-        EntityManager.instance.add(new Zombie(120, 100));
-        EntityManager.instance.add(new Zombie(130, 100));
+        EntityManager.instance.add(new Zombie(200, 200));
+        EntityManager.instance.add(new Zombie(220, 200));
+        EntityManager.instance.add(new Zombie(240, 200));
+        EntityManager.instance.add(new Zombie(260, 200));
 
-        EntityManager.instance.add(new Zombie(-23, -50));
+        EntityManager.instance.add(new Zombie(-46, -100));
     }
 
     @Override
@@ -184,8 +186,16 @@ public class DeadlandGame extends ApplicationAdapter {
 
         ZombieSpawner.instance.update();
 
+        long timeBeforeUpdate = System.nanoTime();
         EntityManager.instance.update();
+        long updateTime = System.nanoTime() - timeBeforeUpdate;
+        System.out.println("Update: " + TimeUnit.NANOSECONDS.toMillis(updateTime) + " ms");
+
+        long timeBeforeRender = System.nanoTime();
         EntityManager.instance.render(batch);
+        long renderTime = System.nanoTime() - timeBeforeRender;
+        System.out.println("Render: " + TimeUnit.NANOSECONDS.toMillis(renderTime) + " ms");
+
         ResourcesManager.instance.render(batch, camera);
 
         batch.end();
@@ -193,8 +203,8 @@ public class DeadlandGame extends ApplicationAdapter {
         if (ControlManager.instance.isUnderConstruction != null)
             EntityManager.instance.renderArea(camera);
 
-        System.out.println(Gdx.graphics.getFramesPerSecond());
+        System.out.println("FPS: " + Gdx.graphics.getFramesPerSecond());
 
-//        EntityManager.instance.renderCollisions(camera);
+        //EntityManager.instance.renderCollisions(camera);
     }
 }
