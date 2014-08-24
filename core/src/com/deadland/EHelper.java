@@ -1,6 +1,6 @@
 package com.deadland;
 
-import com.deadland.model.Entity;
+import com.deadland.base.model.Entity;
 
 /**
  * Created by inver on 09.08.2014.

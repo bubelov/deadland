@@ -9,8 +9,8 @@ import com.badlogic.gdx.math.Vector2;
 import com.deadland.Assets;
 import com.deadland.EntityManager;
 import com.deadland.ResourcesManager;
+import com.deadland.base.model.Entity;
 import com.deadland.model.Bullet;
-import com.deadland.model.Entity;
 import com.deadland.model.Radar;
 
 /**
@@ -21,11 +21,8 @@ public class GunTower extends Building {
     private static final int HEIGHT = 64;
 
     public static int price = 100;
-
-    private Sprite towerSprite;
-
-
     public Radar radar;
+    private Sprite towerSprite;
     private float shootTimeout = 0.5f;
     private float lastDeltaTs = 0;
 
@@ -59,8 +56,8 @@ public class GunTower extends Building {
     }
 
     @Override
-    public void update() {
-        super.update();
+    public void update(float delta) {
+        super.update(delta);
 
         Entity enemy = radar.getEnemy(300);
         if (enemy != null) {

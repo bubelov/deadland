@@ -8,7 +8,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Intersector;
-import com.deadland.model.Entity;
+import com.deadland.base.model.Entity;
 import com.deadland.model.building.MainTower;
 
 import java.util.*;
@@ -20,12 +20,10 @@ import java.util.*;
 
 public class EntityManager {
     public static EntityManager instance = new EntityManager();
-
+    private static ShapeRenderer renderer = new ShapeRenderer();
     public List<Entity> entities = new ArrayList<Entity>();
     private Collection<Entity> entitiesToCreate = new ArrayList<Entity>();
     private Collection<Entity> entitiesToDestroy = new ArrayList<Entity>();
-
-    private static ShapeRenderer renderer = new ShapeRenderer();
 
     public void update() {
         Collections.sort(entities, new Comparator<Entity>() {
@@ -36,7 +34,7 @@ public class EntityManager {
         });
 
         for (Entity entity : entities) {
-            entity.update();
+            entity.update(0);
         }
 
         for (Entity entity : entitiesToDestroy) {

@@ -2,7 +2,7 @@ package com.deadland.base;
 
 /**
  * @author Alexey Nevinsky
- * @version 18.08.14 23:32
+ * @version 21.08.14 22:58
  */
-public class GameObjects {
+public class SceneManager {
 }

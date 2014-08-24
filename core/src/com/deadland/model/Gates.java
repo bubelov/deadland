@@ -6,6 +6,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.deadland.Assets;
 import com.deadland.EntityManager;
+import com.deadland.base.model.Entity;
 
 /**
  * Author: Igor Bubelov
@@ -29,14 +30,14 @@ public class Gates extends Entity {
     }
 
     @Override
-    public void update() {
-        super.update();
+    public void update(float delta) {
+        super.update(delta);
 
         visible = true;
 
         for (Entity entity : EntityManager.instance.entities) {
             if (entity instanceof Hero) {
-                Hero hero = (Hero)entity;
+                Hero hero = (Hero) entity;
 
                 if (Vector2.dst(x(), y(), hero.x(), hero.y()) < 200) {
                     visible = false;

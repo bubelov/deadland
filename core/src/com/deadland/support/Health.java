@@ -4,19 +4,18 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.deadland.Assets;
-import com.deadland.model.Entity;
+import com.deadland.base.model.Entity;
 
 /**
  * Created by inver on 09.08.2014.
  */
 public class Health {
+    public float health;
+    public float startHealth;
     private Sprite blackSprite;
     private Sprite greenSprite;
-
     private Entity entity;
-    public float health;
     private float panelWidth;
-    public float startHealth;
     private float panelMargin;
 
     private float delayAfterWound = 0;

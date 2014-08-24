@@ -2,26 +2,21 @@ package com.deadland.model.menu;
 
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
-import com.deadland.Chelper;
 import com.deadland.ControlManager;
-import com.deadland.EHelper;
-import com.deadland.EntityManager;
-import com.deadland.model.Entity;
+import com.deadland.base.model.Entity;
 
 /**
  * Created by inver on 10.08.2014.
  */
 public abstract class MenuButton extends Entity {
-    private Vector2 pos;
-
     BitmapFont font;
     String menuName;
+    private Vector2 pos;
 
     public MenuButton(float x, float y, String menuName) {
         pos = new Vector2(x, y);
@@ -30,6 +25,7 @@ public abstract class MenuButton extends Entity {
         sprite.setCenter(sprite.getWidth() / 2, sprite.getHeight() / 2);
         sprite.setOrigin(sprite.getWidth() / 2, sprite.getHeight() / 2);
         sprite.setPosition(x, y);
+        addSprite(sprite);
 
         z = -1000;
 
@@ -42,34 +38,25 @@ public abstract class MenuButton extends Entity {
     protected abstract TextureRegion getTexture();
 
     @Override
-    public void update() {
-        Camera c = Chelper.camera();
-        sprite.setPosition(
-                c.position.x - c.viewportWidth / 2 + pos.x,
-                c.position.y - c.viewportHeight / 2 + pos.y
-        );
-        super.update();
-    }
-
-    @Override
     public void onTap(float x, float y, int count, int button) {
         if (isButtonDown(x, y)) {
             BuildingSpirit bs = createSpirit(x - 16, y - 16);
             if (ControlManager.instance.spirit != null) {
                 ControlManager.instance.spirit.disable();
-                EntityManager.instance.destroy(ControlManager.instance.spirit);
-                if (ControlManager.instance.spirit.getClass() == bs.getClass()) {
-                    ControlManager.instance.isUnderConstruction = null;
-                    ControlManager.instance.justLeftConstruction = true;
-                    ControlManager.instance.spirit = null;
-                } else {
-                    ControlManager.instance.spirit = bs;
-                    EHelper.add(bs);
-                    ControlManager.instance.isUnderConstruction = this;
-                }
+                // todo
+//                EntityManager.instance.destroy(ControlManager.instance.spirit);
+//                if (ControlManager.instance.spirit.getClass() == bs.getClass()) {
+//                    ControlManager.instance.isUnderConstruction = null;
+//                    ControlManager.instance.justLeftConstruction = true;
+//                    ControlManager.instance.spirit = null;
+//                } else {
+//                    ControlManager.instance.spirit = bs;
+//                    ControlManager.instance.demoScene.add(bs);
+//                    ControlManager.instance.isUnderConstruction = this;
+//                }
             } else {
                 ControlManager.instance.spirit = bs;
-                EHelper.add(bs);
+                ControlManager.instance.demoScene.add(bs);
                 ControlManager.instance.isUnderConstruction = this;
             }
         }
@@ -87,13 +74,17 @@ public abstract class MenuButton extends Entity {
     protected abstract BuildingSpirit createSpirit(float x, float y);
 
     @Override
-    public void render(SpriteBatch batch) {
-        Camera c = ControlManager.instance.camera;
+    public void smartRender(SpriteBatch batch, float left, float top, float right, float bottom) {
         BitmapFont.TextBounds bounds = font.getBounds(menuName);
-        font.draw(batch, menuName,
-                c.position.x - c.viewportWidth / 2 + pos.x + 60 - bounds.width,
-                c.position.y - c.viewportHeight / 2 + pos.y + sprite.getHeight() + 15);
-        //System.out.println(menuName);
+        font.draw(batch, menuName, right + pos.x + 60 - bounds.width, bottom + pos.y + sprite.getHeight() + 15);
+        //well, this is dirty hack...
+        sprite.setPosition(right + pos.x, bottom + pos.y);
+
         super.render(batch);
+    }
+
+    @Override
+    public void update(float delta) {
+        super.update(delta);
     }
 }

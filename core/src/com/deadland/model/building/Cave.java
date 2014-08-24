@@ -7,8 +7,8 @@ import com.badlogic.gdx.math.Rectangle;
 import com.deadland.Assets;
 import com.deadland.EntityManager;
 import com.deadland.EntityUtils;
+import com.deadland.base.model.Entity;
 import com.deadland.model.Bullet;
-import com.deadland.model.Entity;
 import com.deadland.model.Zombie;
 
 /**
@@ -52,7 +52,7 @@ public class Cave extends Building {
     }
 
     @Override
-    public void update() {
+    public void update(float delta) {
         spawnTimeout -= Gdx.graphics.getDeltaTime();
 
         if (spawnTimeout < 0) {

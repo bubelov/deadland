@@ -6,7 +6,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.deadland.ControlManager;
 import com.deadland.EntityManager;
 import com.deadland.ResourcesManager;
-import com.deadland.model.Entity;
+import com.deadland.base.model.Entity;
 import com.deadland.model.Zombie;
 import com.deadland.support.EditBuildingControl;
 import com.deadland.support.Health;
@@ -18,9 +18,8 @@ public abstract class Building extends Entity {
     protected Vector2 pos;
     protected Health health;
     protected EditBuildingControl control;
-
-    BitmapFont font;
     protected int level = 0;
+    BitmapFont font;
 
     public Building(float x, float y, float health) {
         z = -1000;

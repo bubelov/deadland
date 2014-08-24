@@ -2,6 +2,7 @@ package com.deadland.model;
 
 import com.badlogic.gdx.math.Vector2;
 import com.deadland.EntityManager;
+import com.deadland.base.model.Entity;
 import org.apache.commons.collections.CollectionUtils;
 
 import java.util.ArrayList;

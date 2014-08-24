@@ -2,7 +2,6 @@ package com.deadland.model.menu;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Camera;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
@@ -10,7 +9,7 @@ import com.deadland.Chelper;
 import com.deadland.EHelper;
 import com.deadland.EntityUtils;
 import com.deadland.ResourcesManager;
-import com.deadland.model.Entity;
+import com.deadland.base.model.Entity;
 import com.deadland.model.building.Building;
 
 /**
@@ -36,7 +35,7 @@ public abstract class BuildingSpirit extends Entity {
 
     protected abstract TextureRegion getTexture();
 
-    @Override
+    //    @Override
     public void update() {
         Camera c = Chelper.camera();
         collidesAll = EntityUtils.collidesAll(this);

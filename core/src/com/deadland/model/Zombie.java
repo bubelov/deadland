@@ -1,7 +1,6 @@
 package com.deadland.model;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Circle;
@@ -10,6 +9,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.deadland.Assets;
 import com.deadland.EntityManager;
 import com.deadland.EntityUtils;
+import com.deadland.base.model.Entity;
 import com.deadland.model.building.GunTower;
 import com.deadland.support.Health;
 
@@ -29,7 +29,7 @@ public class Zombie extends Entity {
 
     public Zombie(float x, float y) {
         sprite = new Sprite(Assets.Textures.zombie);
-        sprite.setSize(28 *  2, 19 * 2);
+        sprite.setSize(28 * 2, 19 * 2);
         sprite.setCenter(sprite.getWidth() / 2, sprite.getHeight() / 2);
         sprite.setOrigin(sprite.getWidth() / 2, sprite.getHeight() / 2);
 
@@ -47,8 +47,8 @@ public class Zombie extends Entity {
     }
 
     @Override
-    public void update() {
-        super.update();
+    public void update(float delta) {
+        super.update(delta);
 
         boolean attacking = false;
 

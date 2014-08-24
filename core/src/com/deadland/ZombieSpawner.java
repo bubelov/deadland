@@ -2,7 +2,7 @@ package com.deadland;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.MathUtils;
-import com.deadland.model.Entity;
+import com.deadland.base.model.Entity;
 import com.deadland.model.Zombie;
 
 import java.util.ArrayList;
@@ -15,10 +15,8 @@ import java.util.Collection;
 
 public class ZombieSpawner {
     public static ZombieSpawner instance = new ZombieSpawner();
-
-    private Collection<Entity> emitters = new ArrayList<>();
-
     public float spawnTimeout = 10;
+    private Collection<Entity> emitters = new ArrayList<>();
 
     public void registerEmitter(Entity entity) {
         emitters.add(entity);

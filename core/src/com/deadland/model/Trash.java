@@ -5,6 +5,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.deadland.Assets;
 import com.deadland.EntityManager;
 import com.deadland.ResourcesManager;
+import com.deadland.base.model.Entity;
 
 /**
  * Author: Igor Bubelov

@@ -3,6 +3,7 @@ package com.deadland.model;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.MathUtils;
 import com.deadland.Assets;
+import com.deadland.base.model.Entity;
 
 /**
  * Author: Igor Bubelov

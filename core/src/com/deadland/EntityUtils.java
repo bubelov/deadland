@@ -1,7 +1,7 @@
 package com.deadland;
 
 import com.badlogic.gdx.math.Intersector;
-import com.deadland.model.Entity;
+import com.deadland.base.model.Entity;
 import com.deadland.model.Trash;
 import com.deadland.model.Weapons;
 import com.deadland.model.building.Building;

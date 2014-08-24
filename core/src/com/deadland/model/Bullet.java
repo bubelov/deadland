@@ -8,6 +8,7 @@ import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.Vector2;
 import com.deadland.Assets;
 import com.deadland.EntityManager;
+import com.deadland.base.model.Entity;
 
 /**
  * Created by inver on 09.08.2014.
@@ -81,9 +82,9 @@ public class Bullet extends Entity {
         }
     }
 
-    @Override
+    //    @Override
     public void update() {
-        super.update();
+        super.update(0);
 
         float deltaSecs = Gdx.graphics.getDeltaTime();
         age = age + deltaSecs;

@@ -13,41 +13,49 @@ import com.deadland.Constants;
  */
 public class WorldRenderer {
 
-    private DeadlandWorld world;
-
     private SpriteBatch batch;
     private OrthographicCamera camera;
 
-    private Box2DDebugRenderer debugRenderer = new Box2DDebugRenderer();
+    private Box2DDebugRenderer debugRenderer;
 
-    public WorldRenderer(DeadlandWorld world) {
-        this.world = world;
+    private GameScene scene;
 
+    public WorldRenderer() {
         batch = new SpriteBatch();
 
         camera = new OrthographicCamera(Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
         camera.setToOrtho(false, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
+
+        debugRenderer = new Box2DDebugRenderer();
     }
 
-    public void render() {
+    public OrthographicCamera getCamera() {
+        return camera;
+    }
+
+    public void render(boolean isDebug) {
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+
+        if (isDebug) {
+            debugRenderer.render(((DemoScene) scene).getWorld(), batch.getProjectionMatrix().cpy().scl(1000));
+        }
 
         batch.setProjectionMatrix(camera.combined);
         batch.begin();
 
-        world.getScene().render(batch);
+        float minX = camera.position.x - camera.viewportWidth / 2;
+        float maxX = camera.position.x + camera.viewportWidth / 2;
+        float minY = camera.position.y - camera.viewportHeight / 2;
+        float maxY = camera.position.y + camera.viewportHeight / 2;
+        scene.smartRender(batch, minX, maxY, maxX, minY);
 
         batch.end();
 
         System.out.println("FPS: " + Gdx.graphics.getFramesPerSecond());
     }
 
-    public void debugRender() {
-        Gdx.gl.glClearColor(0, 0, 0, 1);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        debugRenderer.render(world.getWorld(), camera.combined);
-
-        System.out.println("FPS: " + Gdx.graphics.getFramesPerSecond());
+    public void setScene(GameScene scene) {
+        this.scene = scene;
     }
 }
