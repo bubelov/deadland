@@ -13,6 +13,6 @@ public class DesktopLauncher {
         config.height = Constants.SCREEN_HEIGHT / 2;
         config.title = "Deadland";
         config.samples = 16;
-        new LwjglApplication(new DeadlandGame2(), config);
+        new LwjglApplication(new DeadlandGame(), config);
     }
 }

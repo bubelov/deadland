@@ -11,6 +11,7 @@ import com.deadland.screen.WorldMapScreen;
 public class DeadlandGame2 extends Game {
     @Override
     public void create() {
+        Assets.initialize();
         setScreen(new WorldMapScreen(this));
     }
 }

@@ -1,7 +1,6 @@
 package com.deadland;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
@@ -44,6 +43,10 @@ public final class Assets {
         public static TextureRegion zombie;
         public static TextureRegion zombieHand;
         public static TextureRegion zombieHead;
+
+        public static TextureRegion mapBackground;
+        public static TextureRegion mapHeroMarker;
+        public static TextureRegion mapDestination;
     }
 
     public static final class Sounds {
@@ -93,5 +96,9 @@ public final class Assets {
         Textures.zombie = atlas.findRegion("zombie");
         Textures.zombieHand = atlas.findRegion("zombie_hand");
         Textures.zombieHead = atlas.findRegion("zombie_head");
+
+        Textures.mapBackground = atlas.findRegion("map_background");
+        Textures.mapHeroMarker = atlas.findRegion("map_hero_marker");
+        Textures.mapDestination = atlas.findRegion("map_destination");
     }
 }

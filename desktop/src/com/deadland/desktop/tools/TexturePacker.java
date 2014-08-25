@@ -10,8 +10,10 @@ import com.badlogic.gdx.graphics.Texture;
 public class TexturePacker {
     public static void main(String[] args) {
         com.badlogic.gdx.tools.texturepacker.TexturePacker.Settings settings = new com.badlogic.gdx.tools.texturepacker.TexturePacker.Settings();
-        //settings.filterMin = Texture.TextureFilter.Linear;
-        //settings.filterMag = Texture.TextureFilter.Linear;
+        settings.filterMin = Texture.TextureFilter.Linear;
+        settings.filterMag = Texture.TextureFilter.Linear;
+        settings.maxWidth = 2048;
+        settings.maxHeight = 2048;
         settings.combineSubdirectories = true;
         com.badlogic.gdx.tools.texturepacker.TexturePacker.process(settings, "textures", "atlas", "atlas");
     }
