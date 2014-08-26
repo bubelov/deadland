@@ -40,7 +40,8 @@ public class WorldMapScreen extends AbstractScreen {
 
         hero = new Sprite(Assets.Textures.mapHeroMarker);
         hero.setSize(48, 48);
-        hero.setPosition(512, 512);
+        hero.setCenter(512, 512);
+        hero.setOriginCenter();
 
         createDestination(768, 512);
 
@@ -73,18 +74,10 @@ public class WorldMapScreen extends AbstractScreen {
         }
 
         camera.update();
+
         batch.setProjectionMatrix(camera.combined);
-
         batch.begin();
-
         batch.draw(mapTexture, 0, 0, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
-
-        hero.draw(batch);
-
-        if (destination != null) {
-            destination.draw(batch);
-        }
-
         batch.end();
 
         if (destination != null) {
@@ -92,14 +85,30 @@ public class WorldMapScreen extends AbstractScreen {
             shapeRenderer.setColor(Color.WHITE);
             shapeRenderer.setProjectionMatrix(camera.combined);
             shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
-            shapeRenderer.line(hero.getX(), hero.getY(), destination.getX(), destination.getY());
+
+            shapeRenderer.line(
+                    hero.getX() + hero.getWidth() / 2,
+                    hero.getY() + hero.getHeight() / 2,
+                    destination.getX() + destination.getWidth() / 2,
+                    destination.getY() + destination.getHeight() / 2
+            );
+
             shapeRenderer.end();
         }
+
+        batch.begin();
+
+        if (destination != null) {
+            destination.draw(batch);
+        }
+
+        hero.draw(batch);
+        batch.end();
     }
 
     private void createDestination(float x, float y) {
         destination = new Sprite(Assets.Textures.mapDestination);
-        destination.setSize(24, 24);
-        destination.setPosition(x, y);
+        destination.setSize(48, 48);
+        destination.setCenter(x, y);
     }
 }
