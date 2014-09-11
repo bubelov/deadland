@@ -26,7 +26,7 @@ public class WorldRenderer {
         camera = new OrthographicCamera(Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
         camera.setToOrtho(false, Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
 
-        debugRenderer = new Box2DDebugRenderer();
+        debugRenderer = new Box2DDebugRenderer(true, true, false, true, true, false);
     }
 
     public OrthographicCamera getCamera() {
@@ -52,7 +52,7 @@ public class WorldRenderer {
 
         batch.end();
 
-        System.out.println("FPS: " + Gdx.graphics.getFramesPerSecond());
+//        System.out.println("FPS: " + Gdx.graphics.getFramesPerSecond());
     }
 
     public void setScene(GameScene scene) {

@@ -66,6 +66,14 @@ public abstract class Entity {
 
     }
 
+    public void keyDown(int button) {
+
+    }
+
+    public void keyUp(int button) {
+
+    }
+
     public void onDestroy() {
 
     }

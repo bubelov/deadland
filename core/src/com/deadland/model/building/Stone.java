@@ -16,7 +16,7 @@ public class Stone extends PhysicsEntity {
     }
 
     protected void initSprite() {
-        sprite = new Sprite(Assets.Textures.stone);
+        Sprite sprite = new Sprite(Assets.Textures.stone);
         sprite.setSize(32, 32);
         sprite.setCenter(sprite.getWidth() / 2, sprite.getHeight() / 2);
         sprite.setOrigin(sprite.getWidth() / 2, sprite.getHeight() / 2);

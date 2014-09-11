@@ -1,17 +1,15 @@
 package com.deadland.base;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.World;
 import com.deadland.Assets;
 import com.deadland.Constants;
-import com.deadland.model.Hero;
-import com.deadland.model.building.Stone;
 import com.deadland.model.menu.MenuButton;
 import com.deadland.model.menu.gun_tower.GunTowerButton;
 import com.deadland.model.menu.main_tower.MainTowerButton;
 import com.deadland.model.menu.wall.WallButton;
+import com.deadland.model.vehicle.Car;
 
 /**
  * @author Alexey Nevinsky
@@ -33,13 +31,14 @@ public class DemoScene extends GameScene {
     }
 
     private void initScene() {
-        Hero hero = new Hero(world, 100, 100);
+//        Hero hero = new Hero(world, 100, 100);
+        Car hero = new Car(world, 0, 0);
         add(hero);
         addToFastAccess(HERO_KEY, hero);
 
         for (int i = 0; i < 2000; i++) {
-            Stone stone = new Stone(world, MathUtils.random(-200, 10000), MathUtils.random(-200, 10000));
-            add(stone);
+//            Stone stone = new Stone(world, MathUtils.random(-200, 10000), MathUtils.random(-200, 10000));
+//            add(stone);
         }
     }
 

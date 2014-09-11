@@ -36,7 +36,7 @@ public abstract class GameScene {
     }
 
     public void smartRender(SpriteBatch batch, float left, float top, float right, float bottom) {
-        drawGround(batch, left, top, right, bottom);
+//        drawGround(batch, left, top, right, bottom);
         if (CollectionUtils.isNotEmpty(entities)) {
             for (Entity entity : entities) {
                 entity.smartRender(batch, left, top, right, bottom);
@@ -73,5 +73,23 @@ public abstract class GameScene {
 
     protected void drawGround(SpriteBatch batch, float left, float top, float right, float bottom) {
         //nothing to do
+    }
+
+    public void keyDown(int button) {
+        for (Entity entity : entities) {
+            entity.keyDown(button);
+        }
+    }
+
+    public void keyUp(int button) {
+        for (Entity entity : entities) {
+            entity.keyUp(button);
+        }
+    }
+
+    public void onTap(float x, float y, int count, int button) {
+        for (Entity entity : entities) {
+            entity.onTap(x, y, count, button);
+        }
     }
 }
