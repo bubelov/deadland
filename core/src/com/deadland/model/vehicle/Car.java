@@ -1,6 +1,5 @@
 package com.deadland.model.vehicle;
 
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
@@ -19,7 +18,7 @@ import java.util.List;
 /**
  * Created by linv3r on 11.09.14.
  */
-public class Car extends Entity {
+public class Car extends Entity implements MovableObject {
 
     private Sprite carBodySprite;
 
@@ -197,38 +196,34 @@ public class Car extends Entity {
     }
 
     @Override
-    public void keyDown(int button) {
-        //todo add methods for setting keys and add interface MovableObjectControl
-        switch (button) {
-            case Input.Keys.UP:
-                accelerate = ACCELERATE.FORWARD;
-                break;
-            case Input.Keys.DOWN:
-                accelerate = ACCELERATE.BACKWARD;
-                break;
-            case Input.Keys.LEFT:
-                steer = Steer.LEFT;
-                break;
-            case Input.Keys.RIGHT:
-                steer = Steer.RIGHT;
-                break;
-        }
+    public void goForward() {
+        accelerate = ACCELERATE.FORWARD;
     }
 
     @Override
-    public void keyUp(int button) {
-        switch (button) {
-            case Input.Keys.UP:
-            case Input.Keys.DOWN:
-                accelerate = ACCELERATE.NONE;
-                break;
-            case Input.Keys.LEFT:
-            case Input.Keys.RIGHT:
-                steer = Steer.NONE;
-                break;
-        }
+    public void goBackward() {
+        accelerate = ACCELERATE.BACKWARD;
     }
 
+    @Override
+    public void steerRight() {
+        steer = Steer.RIGHT;
+    }
+
+    @Override
+    public void steerLeft() {
+        steer = Steer.LEFT;
+    }
+
+    @Override
+    public void stop() {
+        accelerate = ACCELERATE.NONE;
+    }
+
+    @Override
+    public void steerNone() {
+        steer = Steer.NONE;
+    }
 
     public enum Steer {
         LEFT,

@@ -1,7 +1,11 @@
 package com.deadland.base;
 
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;
+import com.deadland.CMHelper;
 import com.deadland.ControlManager;
+import com.deadland.control.*;
+import com.deadland.model.vehicle.MovableObject;
 
 /**
  * @author Alexey Nevinsky
@@ -21,7 +25,19 @@ public class BaseInputProcessor extends InputAdapter {
 
     @Override
     public boolean keyUp(int keycode) {
-        ControlManager.instance.demoScene.keyUp(keycode);
+        MovableObject obj = (MovableObject) ControlManager.instance.demoScene.fastAccess(DemoScene.HERO_KEY);
+        switch (keycode) {
+            case Input.Keys.UP:
+            case Input.Keys.DOWN:
+                CMHelper.addCommand(new StopCommand(obj));
+                break;
+            case Input.Keys.LEFT:
+            case Input.Keys.RIGHT:
+                CMHelper.addCommand(new SteerNoneCommand(obj));
+                break;
+        }
+
+//        ControlManager.instance.demoScene.keyUp(keycode);
 //        if (keycode == Input.Keys.H) {
 //            Hero hero = scene.fastAccess(DemoScene.HERO_KEY);
 //            if (hero == null)
@@ -66,7 +82,24 @@ public class BaseInputProcessor extends InputAdapter {
 
     @Override
     public boolean keyDown(int keycode) {
-        ControlManager.instance.demoScene.keyDown(keycode);
+        MovableObject obj = (MovableObject) ControlManager.instance.demoScene.fastAccess(DemoScene.HERO_KEY);
+
+        switch (keycode) {
+            case Input.Keys.UP:
+                CMHelper.addCommand(new GoForwardCommand(obj));
+                break;
+            case Input.Keys.DOWN:
+                CMHelper.addCommand(new GoBackwardCommand(obj));
+                break;
+            case Input.Keys.LEFT:
+                CMHelper.addCommand(new SteerLeftCommand(obj));
+                break;
+            case Input.Keys.RIGHT:
+                CMHelper.addCommand(new SteerRightCommand(obj));
+                break;
+        }
+
+//        ControlManager.instance.demoScene.keyDown(keycode);
 
 //        ControlManager.instance.demoScene.onTap(0, 0, 0, keycode);
         return false;

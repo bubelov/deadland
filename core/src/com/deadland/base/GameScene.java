@@ -3,6 +3,8 @@ package com.deadland.base;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.input.GestureDetector;
+import com.deadland.CMHelper;
+import com.deadland.base.control.ActionCommand;
 import com.deadland.base.model.Entity;
 import org.apache.commons.collections.CollectionUtils;
 
@@ -44,6 +46,9 @@ public abstract class GameScene {
     }
 
     public void update(float delta) {
+
+        executeCommands();
+
         //todo change list entities to set
         Collections.sort(entities, new Comparator<Entity>() {
             @Override
@@ -64,6 +69,13 @@ public abstract class GameScene {
 
         entities.addAll(entitiesToCreate);
         entitiesToCreate.clear();
+    }
+
+    private void executeCommands() {
+        for (ActionCommand command : CMHelper.getCommands()) {
+            command.execute();
+        }
+        CMHelper.clearCommands();
     }
 
     //todo change public access to protected
