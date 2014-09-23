@@ -57,6 +57,7 @@ public class Car extends Entity {
         this.wheelAngle = 0;
 
         body = PhysicsFactory.createBody(world, BodyDef.BodyType.DynamicBody, position, angle);
+        body.setUserData(this);
         float friction = 0.6f; //friction when rubbing against other shapes
         float restitution = 0.4f; //amount of force feedback when hitting something. >0 makes the car bounce off, it's fun!
         PhysicsFactory.createBoxFixture(body, width / 2, length / 2, 1.0f, friction, restitution, false);
@@ -197,6 +198,7 @@ public class Car extends Entity {
 
     @Override
     public void keyDown(int button) {
+        //todo add methods for setting keys and add interface MovableObjectControl
         switch (button) {
             case Input.Keys.UP:
                 accelerate = ACCELERATE.FORWARD;

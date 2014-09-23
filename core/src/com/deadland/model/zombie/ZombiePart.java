@@ -1,4 +1,4 @@
-package com.deadland.model;
+package com.deadland.model.zombie;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.MathUtils;
@@ -6,23 +6,20 @@ import com.deadland.Assets;
 import com.deadland.base.model.Entity;
 
 /**
- * Author: Igor Bubelov
- * Date: 6/16/13 8:47 PM
+ * Created by linv3r on 16.09.14.
  */
+public class ZombiePart extends Entity {
 
-public class BloodMess extends Entity {
-    public BloodMess(float x, float y) {
-        Sprite sprite = new Sprite(Assets.Textures.bloodmess);
-        sprite.setSize(64, 64);
+    public ZombiePart(float x, float y, boolean handOrHead) {
+        Sprite sprite = new Sprite(handOrHead ? Assets.Textures.zombieHand : Assets.Textures.zombieHead);
+        sprite.setSize(40, 14);
         sprite.setCenter(sprite.getWidth() / 2, sprite.getHeight() / 2);
         sprite.setOrigin(sprite.getWidth() / 2, sprite.getHeight() / 2);
 
         sprite.setPosition(x, y);
 
-        z = -100;
-
+        z = -50;
         sprite.setRotation(MathUtils.random(360));
-        sprite.setScale(MathUtils.random(0.7f, 1.3f));
         addSprite(sprite);
     }
 }

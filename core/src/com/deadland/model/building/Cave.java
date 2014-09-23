@@ -2,14 +2,11 @@ package com.deadland.model.building;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
 import com.deadland.Assets;
 import com.deadland.EntityManager;
-import com.deadland.EntityUtils;
 import com.deadland.base.model.Entity;
 import com.deadland.model.Bullet;
-import com.deadland.model.Zombie;
 
 /**
  * Created by inver on 10.08.2014.
@@ -61,13 +58,13 @@ public class Cave extends Building {
             int zombiesToSpawn = 3;
 
             while (zombiesToSpawn > 0) {
-                Zombie zombie = new Zombie(centerX() - 100 + MathUtils.random(200), centerY() - 100 + MathUtils.random(200));
-
-                while (EntityUtils.collidesAny(zombie, EntityManager.instance.entities, false)) {
-                    zombie = new Zombie(centerX() - 200 + MathUtils.random(400), centerY() - 200 + MathUtils.random(400));
-                }
-
-                EntityManager.instance.add(zombie);
+//                Zombie zombie = new Zombie(centerX() - 100 + MathUtils.random(200), centerY() - 100 + MathUtils.random(200));
+//
+//                while (EntityUtils.collidesAny(zombie, EntityManager.instance.entities, false)) {
+//                    zombie = new Zombie(centerX() - 200 + MathUtils.random(400), centerY() - 200 + MathUtils.random(400));
+//                }
+//
+//                EntityManager.instance.add(zombie);
                 zombiesToSpawn--;
             }
         }

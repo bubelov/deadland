@@ -7,7 +7,7 @@ import com.deadland.ControlManager;
 import com.deadland.EntityManager;
 import com.deadland.ResourcesManager;
 import com.deadland.base.model.Entity;
-import com.deadland.model.Zombie;
+import com.deadland.model.zombie.Zombie;
 import com.deadland.support.EditBuildingControl;
 import com.deadland.support.Health;
 

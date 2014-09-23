@@ -1,23 +1,24 @@
 package com.deadland;
 
-import com.badlogic.gdx.ApplicationAdapter;
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.InputProcessor;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.input.GestureDetector;
 import com.deadland.base.*;
 
-public class DeadlandGame extends ApplicationAdapter {
+public class DeadlandGame extends Game {
     public static DeadlandGame instance;
-    public boolean gameOver;
-    BitmapFont font;
+    //    public boolean gameOver;
+//    BitmapFont font;
     private WorldRenderer renderer;
     private GameScene demoScene;
 
     @Override
     public void create() {
         initializeResources();
+
+//        setScreen(new WorldMapScreen(this));
 
         renderer = new WorldRenderer();
         demoScene = new DemoScene();

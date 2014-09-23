@@ -1,9 +1,7 @@
 package com.deadland;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.math.MathUtils;
 import com.deadland.base.model.Entity;
-import com.deadland.model.Zombie;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -36,13 +34,13 @@ public class ZombieSpawner {
                 int zombiesToSpawn = 3;
 
                 while (zombiesToSpawn > 0) {
-                    Zombie zombie = new Zombie(emitter.centerX() - 100 + MathUtils.random(200), emitter.centerY() - 100 + MathUtils.random(200));
+//                    Zombie zombie = new Zombie(emitter.centerX() - 100 + MathUtils.random(200), emitter.centerY() - 100 + MathUtils.random(200));
 
-                    while (EntityUtils.collidesAny(zombie, EntityManager.instance.entities, false)) {
-                        zombie = new Zombie(emitter.centerX() - 100 + MathUtils.random(200), emitter.centerY() - 100 + MathUtils.random(200));
-                    }
-
-                    EntityManager.instance.add(zombie);
+//                    while (EntityUtils.collidesAny(zombie, EntityManager.instance.entities, false)) {
+////                        zombie = new Zombie(emitter.centerX() - 100 + MathUtils.random(200), emitter.centerY() - 100 + MathUtils.random(200));
+//                    }
+//
+//                    EntityManager.instance.add(zombie);
                     zombiesToSpawn--;
                 }
             }

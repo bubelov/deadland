@@ -17,11 +17,7 @@ public class PhysicsFactory {
     }
 
     public static void createBoxFixture(Body body, float width, float length, float density, float friction, float restitution, boolean isSensor) {
-        FixtureDef fixtureDef = new FixtureDef();
-        fixtureDef.density = density;
-        fixtureDef.friction = friction;
-        fixtureDef.restitution = restitution;
-        fixtureDef.isSensor = isSensor;
+        FixtureDef fixtureDef = createFixtureDef(density, friction, restitution, isSensor);
 
         PolygonShape wheelShape = new PolygonShape();
         wheelShape.setAsBox(width, length);
@@ -33,4 +29,28 @@ public class PhysicsFactory {
     public static void createBoxFixture(Body body, float width, float length, float density, boolean isSensor) {
         createBoxFixture(body, width, length, density, 0.2f, 0, isSensor);
     }
+
+    public static FixtureDef createFixtureDef(float density, float friction, float restitution, boolean isSensor) {
+        FixtureDef fixtureDef = new FixtureDef();
+        fixtureDef.density = density;
+        fixtureDef.friction = friction;
+        fixtureDef.restitution = restitution;
+        fixtureDef.isSensor = isSensor;
+        return fixtureDef;
+    }
+
+    public static void createCircleFixture(Body body, float radius, float density, float friction, float restitution, boolean isSensor) {
+        FixtureDef fixtureDef = createFixtureDef(density, friction, restitution, isSensor);
+
+        CircleShape shape = new CircleShape();
+        shape.setRadius(radius);
+        fixtureDef.shape = shape;
+        body.createFixture(fixtureDef);
+        shape.dispose();
+    }
+
+    public static void createCircleFixture(Body body, float width, float length, float density, boolean isSensor) {
+        createBoxFixture(body, width, length, density, 0.2f, 0, isSensor);
+    }
+
 }

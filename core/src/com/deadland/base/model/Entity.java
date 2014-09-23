@@ -4,6 +4,8 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.physics.box2d.World;
+import com.deadland.base.GameScene;
 import org.apache.commons.collections.CollectionUtils;
 
 import java.util.ArrayList;
@@ -15,15 +17,26 @@ import java.util.List;
  */
 
 public abstract class Entity {
+
     @Deprecated
     public Sprite sprite;
+    @Deprecated
     public Circle boundingCircle;
+    @Deprecated
     public Rectangle boundingRectangle;
     public int z;
+    protected World world;
+    protected GameScene gameScene;
     protected List<Sprite> sprites;
 
     protected Entity() {
+        this(null, null);
+    }
+
+    protected Entity(World world, GameScene scene) {
         sprites = new ArrayList<Sprite>();
+        this.world = world;
+        this.gameScene = scene;
     }
 
     public float x() {
@@ -62,6 +75,14 @@ public abstract class Entity {
 
     }
 
+    public void beginContact(Entity e) {
+
+    }
+
+    public void endContact(Entity e) {
+
+    }
+
     public void onTap(float x, float y, int count, int button) {
 
     }
@@ -80,5 +101,9 @@ public abstract class Entity {
 
     protected void addSprite(Sprite sprite) {
         sprites.add(sprite);
+    }
+
+    protected void removeSprite(Sprite sprite) {
+        sprites.remove(sprite);
     }
 }

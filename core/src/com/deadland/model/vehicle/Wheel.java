@@ -54,14 +54,14 @@ public class Wheel {
      * @param angle - wheel angle relative to car, in degrees
      */
     public void setAngle(float angle) {
-        this.body.setTransform(body.getPosition(), car.getBody().getAngle() + (float) Math.toRadians(angle));
+        body.setTransform(body.getPosition(), car.getBody().getAngle() + (float) Math.toRadians(angle));
     }
 
     /**
      * @return get velocity vector relative to car
      */
     public Vector2 getLocalVelocity() {
-        return car.getBody().getLocalVector(car.getBody().getLinearVelocityFromLocalPoint(this.body.getPosition()));
+        return car.getBody().getLocalVector(car.getBody().getLinearVelocityFromLocalPoint(body.getPosition()));
     }
 
     /**
@@ -69,11 +69,11 @@ public class Wheel {
      */
     public Vector2 getDirectionVector() {
         Vector2 directionVector;
-        if (this.getLocalVelocity().y > 0)
+        if (getLocalVelocity().y > 0)
             directionVector = new Vector2(0, 1);
         else
             directionVector = new Vector2(0, -1);
-        return directionVector.rotate((float) Math.toDegrees(this.body.getAngle()));
+        return directionVector.rotate((float) Math.toDegrees(body.getAngle()));
     }
 
     /**
@@ -82,8 +82,8 @@ public class Wheel {
      * @return
      */
     public Vector2 getKillVelocityVector() {
-        Vector2 velocity = this.body.getLinearVelocity();
-        Vector2 sidewaysAxis = this.getDirectionVector();
+        Vector2 velocity = body.getLinearVelocity();
+        Vector2 sidewaysAxis = getDirectionVector();
         float dotprod = velocity.dot(sidewaysAxis);
         return new Vector2(sidewaysAxis.x * dotprod, sidewaysAxis.y * dotprod);
     }
@@ -92,6 +92,6 @@ public class Wheel {
      * removes all sideways velocity from this wheels velocity
      */
     public void killSidewaysVelocity() {
-        this.body.setLinearVelocity(this.getKillVelocityVector());
+        body.setLinearVelocity(getKillVelocityVector());
     }
 }

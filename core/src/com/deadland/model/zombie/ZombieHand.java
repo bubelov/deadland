@@ -1,4 +1,4 @@
-package com.deadland.model;
+package com.deadland.model.zombie;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.MathUtils;

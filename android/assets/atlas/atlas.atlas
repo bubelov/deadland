@@ -1,250 +1,257 @@
 
 atlas.png
-size: 2046,1414
+size: 2046,1359
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
 blackPixel
   rotate: false
-  xy: 2042, 1413
+  xy: 2042, 1358
   size: 1, 1
   orig: 1, 1
   offset: 0, 0
   index: -1
 bloodmess
   rotate: false
-  xy: 2, 104
+  xy: 68, 115
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 building_cave
   rotate: false
-  xy: 1924, 1350
+  xy: 1924, 1295
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: -1
 building_gun
   rotate: false
-  xy: 68, 170
+  xy: 347, 245
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 building_gun2
   rotate: false
-  xy: 347, 300
+  xy: 1924, 1195
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 building_mainTower
   rotate: false
-  xy: 1924, 1250
+  xy: 2008, 1327
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 building_mainTower_transparent
   rotate: false
-  xy: 2008, 1382
+  xy: 23, 49
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 building_remove
   rotate: false
-  xy: 1990, 1300
+  xy: 1990, 1245
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 building_tower
   rotate: false
-  xy: 2, 70
+  xy: 381, 245
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 building_tower_green_transparent
   rotate: false
-  xy: 381, 300
+  xy: 1924, 1161
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 building_tower_red_transparent
   rotate: false
-  xy: 1924, 1216
+  xy: 2008, 1293
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 building_upgrade
   rotate: false
-  xy: 212, 242
+  xy: 212, 187
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 building_wall
   rotate: false
-  xy: 36, 120
+  xy: 2, 2
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 building_wall_green_transparent
   rotate: false
-  xy: 68, 152
+  xy: 68, 97
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 building_wall_red_transparent
   rotate: false
-  xy: 102, 186
+  xy: 102, 131
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 bullet
   rotate: false
-  xy: 281, 264
+  xy: 281, 209
   size: 8, 2
   orig: 8, 2
   offset: 0, 0
   index: -1
 gates
   rotate: false
-  xy: 1990, 1318
+  xy: 1990, 1263
   size: 16, 96
   orig: 16, 96
   offset: 0, 0
   index: -1
 greenPixel
   rotate: false
-  xy: 2045, 1413
+  xy: 2045, 1358
   size: 1, 1
   orig: 1, 1
   offset: 0, 0
   index: -1
 hero_gun
   rotate: false
-  xy: 132, 232
+  xy: 132, 177
   size: 78, 26
   orig: 78, 26
   offset: 0, 0
   index: -1
 map_background
   rotate: false
-  xy: 2, 334
+  xy: 2, 279
   size: 1920, 1080
   orig: 1920, 1080
   offset: 0, 0
   index: -1
 map_destination
   rotate: false
-  xy: 2, 138
+  xy: 2, 83
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: -1
 map_hero_marker
   rotate: false
-  xy: 2, 204
+  xy: 2, 149
   size: 128, 128
   orig: 128, 128
   offset: 0, 0
   index: -1
 menu_gunTower
   rotate: false
-  xy: 2008, 1348
+  xy: 415, 245
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 menu_mainTower
   rotate: false
-  xy: 2, 36
+  xy: 1924, 1127
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 menu_wall
   rotate: false
-  xy: 415, 300
+  xy: 449, 245
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 pain
   rotate: false
-  xy: 2008, 1345
+  xy: 23, 46
   size: 1, 1
   orig: 1, 1
   offset: 0, 0
   index: -1
 sand
   rotate: false
-  xy: 449, 301
+  xy: 1924, 1060
   size: 31, 31
   orig: 31, 31
   offset: 0, 0
   index: -1
 stone
   rotate: false
-  xy: 1924, 1182
+  xy: 1924, 1093
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 stone2
   rotate: false
-  xy: 2, 2
+  xy: 483, 245
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 trash
   rotate: false
-  xy: 281, 268
+  xy: 281, 213
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: -1
 truck
   rotate: false
-  xy: 132, 260
+  xy: 132, 205
   size: 147, 72
   orig: 147, 72
   offset: 0, 0
   index: -1
 weapons
   rotate: false
-  xy: 1924, 1284
+  xy: 1924, 1229
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: -1
 zombie
   rotate: false
-  xy: 132, 211
+  xy: 132, 156
   size: 28, 19
   orig: 28, 19
   offset: 0, 0
   index: -1
+zombie_flying
+  rotate: false
+  xy: 2, 20
+  size: 19, 61
+  orig: 19, 61
+  offset: 0, 0
+  index: -1
 zombie_hand
   rotate: false
-  xy: 347, 291
+  xy: 347, 236
   size: 20, 7
   orig: 20, 7
   offset: 0, 0
   index: -1
 zombie_head
   rotate: false
-  xy: 1958, 1273
+  xy: 1958, 1218
   size: 13, 9
   orig: 13, 9
   offset: 0, 0

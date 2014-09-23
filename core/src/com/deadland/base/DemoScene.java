@@ -1,6 +1,7 @@
 package com.deadland.base;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.World;
 import com.deadland.Assets;
@@ -10,6 +11,7 @@ import com.deadland.model.menu.gun_tower.GunTowerButton;
 import com.deadland.model.menu.main_tower.MainTowerButton;
 import com.deadland.model.menu.wall.WallButton;
 import com.deadland.model.vehicle.Car;
+import com.deadland.model.zombie.Zombie;
 
 /**
  * @author Alexey Nevinsky
@@ -24,7 +26,7 @@ public class DemoScene extends GameScene {
     public DemoScene() {
         super();
         world = new World(new Vector2(0, 0), true);
-        world.setContactListener(new BaseContactListener());
+        world.setContactListener(new GameContactListener());
 
         initScene();
         initButtons();
@@ -37,6 +39,8 @@ public class DemoScene extends GameScene {
         addToFastAccess(HERO_KEY, hero);
 
         for (int i = 0; i < 2000; i++) {
+            Zombie z = new Zombie(world, this, MathUtils.random(-200, 10000), MathUtils.random(-200, 10000));
+            add(z);
 //            Stone stone = new Stone(world, MathUtils.random(-200, 10000), MathUtils.random(-200, 10000));
 //            add(stone);
         }

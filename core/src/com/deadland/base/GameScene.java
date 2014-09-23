@@ -6,10 +6,7 @@ import com.badlogic.gdx.input.GestureDetector;
 import com.deadland.base.model.Entity;
 import org.apache.commons.collections.CollectionUtils;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @author Alexey Nevinsky
@@ -18,14 +15,16 @@ import java.util.Map;
 public abstract class GameScene {
 
     protected List<Entity> entities;
-
     protected Map<String, Entity> fastAccessMap;
-
     protected InputProcessor inputProcessor;
     protected GestureDetector gestureDetector;
+    private Collection<Entity> entitiesToCreate;
+    private Collection<Entity> entitiesToDestroy;
 
     protected GameScene() {
         entities = new ArrayList<>();
+        entitiesToCreate = new ArrayList<>();
+        entitiesToDestroy = new ArrayList<>();
         fastAccessMap = new HashMap<>();
     }
 
@@ -36,7 +35,7 @@ public abstract class GameScene {
     }
 
     public void smartRender(SpriteBatch batch, float left, float top, float right, float bottom) {
-//        drawGround(batch, left, top, right, bottom);
+        drawGround(batch, left, top, right, bottom);
         if (CollectionUtils.isNotEmpty(entities)) {
             for (Entity entity : entities) {
                 entity.smartRender(batch, left, top, right, bottom);
@@ -45,9 +44,26 @@ public abstract class GameScene {
     }
 
     public void update(float delta) {
+        //todo change list entities to set
+        Collections.sort(entities, new Comparator<Entity>() {
+            @Override
+            public int compare(Entity o1, Entity o2) {
+                return o1.z - o2.z;
+            }
+        });
+
         for (Entity entity : entities) {
             entity.update(delta);
         }
+
+        for (Entity entity : entitiesToDestroy) {
+            entity.onDestroy();
+        }
+        entities.removeAll(entitiesToDestroy);
+        entitiesToDestroy.clear();
+
+        entities.addAll(entitiesToCreate);
+        entitiesToCreate.clear();
     }
 
     //todo change public access to protected
@@ -56,10 +72,14 @@ public abstract class GameScene {
         entities.add(entity);
     }
 
+    public void create(Entity entity) {
+        entitiesToCreate.add(entity);
+    }
+
     //todo change public access to protected
     //    protected void remove(Entity entity) {
     public void remove(Entity entity) {
-        entities.remove(entity);
+        entitiesToDestroy.add(entity);
     }
 
     protected void addToFastAccess(String key, Entity e) {

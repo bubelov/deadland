@@ -10,57 +10,6 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
  */
 
 public final class Assets {
-    public static final class Textures {
-        public static TextureRegion blackPixel;
-        public static TextureRegion bloodmess;
-        public static TextureRegion buildingCave;
-        public static TextureRegion buildingGun;
-        public static TextureRegion buildingGun2;
-        public static TextureRegion buildingMainTower;
-        public static TextureRegion buildingMainTowerTransparent;
-        public static TextureRegion buildingRemove;
-        public static TextureRegion buildingTower;
-        public static TextureRegion buildingTowerGreenTransparent;
-        public static TextureRegion buildingTowerRedTransparent;
-        public static TextureRegion buildingUpgrade;
-        public static TextureRegion buildingWall;
-        public static TextureRegion buildingWallGreenTransparent;
-        public static TextureRegion buildingWallRedTransparent;
-        public static TextureRegion bullet;
-        public static TextureRegion gates;
-        public static TextureRegion greenPixel;
-        public static TextureRegion heroGun;
-        public static TextureRegion menuGunTower;
-        public static TextureRegion menuMainTower;
-        public static TextureRegion menuWall;
-        public static TextureRegion pain;
-        public static TextureRegion sand;
-        public static TextureRegion stone;
-        public static TextureRegion stone2;
-        public static TextureRegion trash;
-        public static TextureRegion truck;
-        public static TextureRegion weapons;
-        public static TextureRegion zombie;
-        public static TextureRegion zombieHand;
-        public static TextureRegion zombieHead;
-
-        public static TextureRegion mapBackground;
-        public static TextureRegion mapHeroMarker;
-        public static TextureRegion mapDestination;
-    }
-
-    public static final class Sounds {
-        // TODO
-    }
-
-    public static final class Animations {
-        // TODO
-    }
-
-    public static final class Fonts {
-        // TODO
-    }
-
     public static void initialize() {
         TextureAtlas atlas = new TextureAtlas(Gdx.files.internal("atlas/atlas.atlas"));
 
@@ -96,9 +45,62 @@ public final class Assets {
         Textures.zombie = atlas.findRegion("zombie");
         Textures.zombieHand = atlas.findRegion("zombie_hand");
         Textures.zombieHead = atlas.findRegion("zombie_head");
+        Textures.zombieFlying = atlas.findRegion("zombie_flying");
 
         Textures.mapBackground = atlas.findRegion("map_background");
         Textures.mapHeroMarker = atlas.findRegion("map_hero_marker");
         Textures.mapDestination = atlas.findRegion("map_destination");
+    }
+
+    public static final class Textures {
+        public static TextureRegion blackPixel;
+        public static TextureRegion bloodmess;
+        public static TextureRegion buildingCave;
+        public static TextureRegion buildingGun;
+        public static TextureRegion buildingGun2;
+        public static TextureRegion buildingMainTower;
+        public static TextureRegion buildingMainTowerTransparent;
+        public static TextureRegion buildingRemove;
+        public static TextureRegion buildingTower;
+        public static TextureRegion buildingTowerGreenTransparent;
+        public static TextureRegion buildingTowerRedTransparent;
+        public static TextureRegion buildingUpgrade;
+        public static TextureRegion buildingWall;
+        public static TextureRegion buildingWallGreenTransparent;
+        public static TextureRegion buildingWallRedTransparent;
+        public static TextureRegion bullet;
+        public static TextureRegion gates;
+        public static TextureRegion greenPixel;
+        public static TextureRegion heroGun;
+        public static TextureRegion menuGunTower;
+        public static TextureRegion menuMainTower;
+        public static TextureRegion menuWall;
+        public static TextureRegion pain;
+        public static TextureRegion sand;
+        public static TextureRegion stone;
+        public static TextureRegion stone2;
+        public static TextureRegion trash;
+        public static TextureRegion truck;
+        public static TextureRegion weapons;
+        public static TextureRegion zombie;
+        public static TextureRegion zombieHand;
+        public static TextureRegion zombieHead;
+        public static TextureRegion zombieFlying;
+
+        public static TextureRegion mapBackground;
+        public static TextureRegion mapHeroMarker;
+        public static TextureRegion mapDestination;
+    }
+
+    public static final class Sounds {
+        // TODO
+    }
+
+    public static final class Animations {
+        // TODO
+    }
+
+    public static final class Fonts {
+        // TODO
     }
 }

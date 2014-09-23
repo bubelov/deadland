@@ -9,6 +9,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.deadland.Assets;
 import com.deadland.EntityManager;
 import com.deadland.base.model.Entity;
+import com.deadland.model.zombie.Zombie;
 
 /**
  * Created by inver on 09.08.2014.
